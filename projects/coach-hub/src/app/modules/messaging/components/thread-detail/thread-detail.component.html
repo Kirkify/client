@@ -1,0 +1,16 @@
+<div class="threadDetail">
+  <ch-simple-loader [loader]="loader"></ch-simple-loader>
+  <ch-simple-message [message]="errorMsg | async"></ch-simple-message>
+
+  <mat-list *ngIf="thread$ | async as thread">
+
+    <ch-message-creator [thread]="thread"></ch-message-creator>
+
+    <mat-card>
+      <ch-thread-message-displayer *ngFor="let message of messages$ | async"
+                                   [message]="message"
+                                   [user]="getUserFromId(message.user_id) | async">
+      </ch-thread-message-displayer>
+    </mat-card>
+  </mat-list>
+</div>

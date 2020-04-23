@@ -1,0 +1,60 @@
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <ch-simple-loader [loader]="loader"></ch-simple-loader>
+
+  <mat-form-field class="d-block" appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput
+           #emailInput
+           formControlName="email"
+           tabindex="1"
+           autofocus>
+
+    <mat-error *ngIf="formGroup.get('email').hasError('required')">
+      Email is required
+    </mat-error>
+
+    <mat-error *ngIf="formGroup.get('email').hasError('email')">
+      Please enter a valid email address
+    </mat-error>
+
+  </mat-form-field>
+
+  <mat-form-field class="d-block" appearance="outline">
+    <mat-label>Password</mat-label>
+    <input matInput
+           type="password"
+           formControlName="password"
+           tabindex="2">
+
+    <mat-error *ngIf="formGroup.get('password').hasError('required')">
+      Password is required
+    </mat-error>
+
+    <mat-error *ngIf="formGroup.get('password').hasError('minlength')">
+      Password must be a minimum of 6 characters
+    </mat-error>
+
+  </mat-form-field>
+
+  <a [routerLink]="'forgot'"
+     class="d-block" tabindex="3">
+    Forgot Password?
+  </a>
+
+  <button mat-raised-button
+          color="primary"
+          type="submit"
+          class="d-block my-3 w-100"
+          tabindex="4">
+    Sign In
+  </button>
+
+  <ch-simple-message [message]="error$ | async"></ch-simple-message>
+
+  <mat-checkbox class="d-block"
+  tabindex="5"
+  formControlName="rememberMe">
+  Remember Me
+  </mat-checkbox>
+
+</form>

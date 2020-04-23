@@ -1,0 +1,36 @@
+.messageCreatorContainer {
+  position: relative;
+  display: block;
+}
+
+.textContainer {
+  width: 100%;
+}
+
+.negativeTopMargin {
+  margin-top: -20px;
+}
+
+::ng-deep .mat-form-field {
+  margin-bottom: 0;
+}
+
+::ng-deep .mat-form-field-flex {
+  padding: 0.75em;
+}
+.headerContainer {
+  height: 50px;
+  padding: 0.75em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bottomActionItems {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px 15px;
+  align-items: center;
+}

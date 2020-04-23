@@ -1,0 +1,16 @@
+<ng-container *ngIf="displayer | async as message">
+  <div *ngIf="message.msg"
+       [class]="'alert ' + message.type"
+       role="alert">
+    {{ message.msg }}
+
+    <ng-container *ngIf="message.errors.length">
+      <ul class="mb-0">
+        <li *ngFor="let error of message.errors">
+          {{ error }}
+        </li>
+      </ul>
+    </ng-container>
+  </div>
+</ng-container>
+

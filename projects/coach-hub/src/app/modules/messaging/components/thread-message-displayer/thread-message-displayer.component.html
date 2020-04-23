@@ -1,0 +1,18 @@
+<div class="threadMessageContainer">
+  <img class="avatar" src="https://cdn-images-1.medium.com/fit/c/45/45/1*dmbNkD5D-u45r44go_cf0g.png" alt="User Avatar">
+  <div class="itemContainer pl-2">
+    <p class="nameDateContainer">
+      <strong>
+        {{ user | fullName }}
+      </strong>
+      <span class="time pl-2">
+        {{ message.created_at | timeFromNow }}
+      </span>
+    </p>
+    <p>
+      {{ message.body }}
+    </p>
+  </div>
+  <div class="clearfix"></div>
+</div>
+

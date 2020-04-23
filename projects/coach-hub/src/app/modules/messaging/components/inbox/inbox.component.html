@@ -1,0 +1,21 @@
+<div class="headerContainer">
+  <p class="mb-0">Messaging</p>
+  <div>
+    <button mat-icon-button
+            matTooltip="Refresh"
+            [routerLink]="'../' + routes.Create">
+      <mat-icon aria-label="Compose a new message">refresh</mat-icon>
+    </button>
+    <button mat-icon-button
+            matTooltip="Compose a new message"
+            [routerLink]="'../' + routes.Create">
+      <mat-icon aria-label="Compose a new message">create</mat-icon>
+    </button>
+  </div>
+</div>
+<mat-divider></mat-divider>
+<mat-form-field class="w-100 mb-0" appearance="legacy">
+  <input matInput [formControl]="searchControl" placeholder="Search" type="search">
+  <mat-icon matSuffix>search</mat-icon>
+</mat-form-field>
+<ch-thread-list></ch-thread-list>

@@ -1,0 +1,148 @@
+<h2 mat-dialog-title>Manage Group Participants</h2>
+<mat-dialog-content class="p-0">
+  <mat-divider></mat-divider>
+</mat-dialog-content>
+<mat-dialog-content class="mat-typography participantManagerDialog">
+
+  <ch-autocomplete-chips
+    label="Add New Participants..."
+    placeHolder="Type a name or multiple names"
+    [hasPadding]="true"
+    [allItems]="friendList$ | async"
+    [displayFunc]="displayFunc"
+    [removable]="true"
+    (selectedItemsUpdated)="onRecipientsUpdated($event)"
+  ></ch-autocomplete-chips>
+
+  <div class="headerContainer negativeTopMargin">
+    <div class="historyContainer pr-1">
+      <p class="textMain">Include conversation history</p>
+      <p class="textSecondary">If enabled, new members will be able to see prior messages in this conversation</p>
+    </div>
+    <mat-slide-toggle [checked]="includeConversationHistory"></mat-slide-toggle>
+  </div>
+
+  <mat-list>
+    <h3 matSubheader>{{ thread.userParticipants.length }} PEOPLE ARE IN THIS CONVERSATION</h3>
+    <mat-list-item *ngFor="let user of thread.userParticipants">
+      <img matListAvatar src="https://cdn-images-1.medium.com/fit/c/45/45/1*dmbNkD5D-u45r44go_cf0g.png" alt="User avatar">
+      <h3 matLine> {{ user | fullName }} <span *ngIf="user.currentUser">(You)</span> </h3>
+      <p matLine>
+        <span> {{user.participant.is_admin}} </span>
+        <span class="demo-2"> -- {{user.participant.last_read}} </span>
+      </p>
+      <button mat-icon-button
+              [matMenuTriggerFor]="appMenu" [matMenuTriggerData]="{ user: user }"
+              matTooltip="Options"
+              aria-label="Options Button">
+        <mat-icon>more_horiz</mat-icon>
+      </button>
+    </mat-list-item>
+  </mat-list>
+
+  <mat-menu #appMenu="matMenu">
+    <ng-template matMenuContent let-user="user">
+      <button mat-menu-item (click)="removeUser(user)">Remove</button>
+      <button mat-menu-item (click)="reportUser(user)">Report</button>
+    </ng-template>
+  </mat-menu>
+
+</mat-dialog-content>
+
+<mat-dialog-content class="p-0">
+  <mat-divider></mat-divider>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-stroked-button
+          mat-dialog-close
+          class="mr-2"
+  >
+    Cancel
+  </button>
+  <button mat-raised-button
+          [mat-dialog-close]="true"
+          color="primary"
+          cdkFocusInitial
+  >
+    Done
+  </button>
+</mat-dialog-actions>
+
+<!--<div class="participantManagerDialog">-->
+  <!--<div class="headerContainer">-->
+    <!--<span>Manage Group Participants</span>-->
+    <!--<button-->
+      <!--mat-icon-button-->
+      <!--(click)="close()"-->
+    <!--&gt;-->
+      <!--<mat-icon aria-label="Close dialog">close</mat-icon>-->
+    <!--</button>-->
+  <!--</div>-->
+  <!--<mat-divider></mat-divider>-->
+  <!--<div class="contentContainer">-->
+    <!--<div class="addParticipantContainer">-->
+      <!--<ch-autocomplete-chips-->
+        <!--label="Add New Participants..."-->
+        <!--placeHolder="Type a name or multiple names"-->
+        <!--[allItems]="friendList$ | async"-->
+        <!--[selectedItems]="newParticipants"-->
+        <!--[removable]="true"-->
+        <!--(updated)="onRecipientsUpdated($event)"-->
+      <!--&gt;</ch-autocomplete-chips>-->
+    <!--</div>-->
+    <!--<div class="headerContainer negativeTopMargin">-->
+      <!--<div class="historyContainer pr-1">-->
+        <!--<p class="textMain">Include conversation history</p>-->
+        <!--<p class="textSecondary">If enabled, new members will be able to see prior messages in this conversation</p>-->
+      <!--</div>-->
+      <!--<mat-slide-toggle [checked]="includeConversationHistory"></mat-slide-toggle>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<mat-divider></mat-divider>-->
+  <!--<mat-list>-->
+    <!--<h3 matSubheader>{{ thread.userParticipants.length }} PEOPLE ARE IN THIS CONVERSATION</h3>-->
+    <!--<mat-list-item *ngFor="let user of thread.userParticipants">-->
+      <!--<img matListAvatar src="https://cdn-images-1.medium.com/fit/c/45/45/1*dmbNkD5D-u45r44go_cf0g.png" alt="User avatar">-->
+      <!--<h3 matLine> {{ user | fullName }} <span *ngIf="user.currentUser">(You)</span> </h3>-->
+      <!--<p matLine>-->
+        <!--<span> {{user.participant.is_admin}} </span>-->
+        <!--<span class="demo-2"> &#45;&#45; {{user.participant.last_read}} </span>-->
+      <!--</p>-->
+      <!--<button mat-icon-button-->
+              <!--[matMenuTriggerFor]="appMenu" [matMenuTriggerData]="{ user: user }"-->
+              <!--matTooltip="Options"-->
+              <!--aria-label="Options Button">-->
+        <!--<mat-icon>more_horiz</mat-icon>-->
+      <!--</button>-->
+    <!--</mat-list-item>-->
+  <!--</mat-list>-->
+  <!--<mat-menu #appMenu="matMenu">-->
+    <!--<ng-template matMenuContent let-user="user">-->
+      <!--<button mat-menu-item (click)="removeUser(user)">Remove</button>-->
+      <!--<button mat-menu-item (click)="reportUser(user)">Report</button>-->
+    <!--</ng-template>-->
+  <!--</mat-menu>-->
+
+  <!--<mat-divider></mat-divider>-->
+  <!--&lt;!&ndash; Bottom Action Buttons &ndash;&gt;-->
+  <!--<div class="actionContainer">-->
+    <!--<div class="float-right p-3">-->
+      <!--<button mat-stroked-button-->
+              <!--(click)="close()"-->
+              <!--class="mr-2"-->
+      <!--&gt;-->
+        <!--Cancel-->
+      <!--</button>-->
+      <!--<button mat-raised-button-->
+              <!--color="primary"-->
+      <!--&gt;-->
+        <!--Done-->
+      <!--</button>-->
+    <!--</div>-->
+
+  <!--</div>-->
+
+
+<!--</div>-->
+

@@ -1,0 +1,21 @@
+.threadDetail {
+  position: relative;
+  min-height: 200px;
+}
+.mat-expansion-panel-header-title,
+.mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+.mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.time::before {
+  content: '•';
+  text-transform: lowercase;
+}
+
+.time {
+  font-size: 13px;
+}

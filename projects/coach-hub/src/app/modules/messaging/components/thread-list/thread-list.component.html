@@ -1,0 +1,54 @@
+<div class="threads negativeTopMargin">
+  <ch-simple-loader [loader]="loader"></ch-simple-loader>
+
+  <!-- Show error dialog with a refresh if there are any errors -->
+  <div *ngIf="errorMsg | async as error" class="p-4 d-flex flex-column align-content-center">
+    <ch-simple-message [message]="error"></ch-simple-message>
+    <button mat-raised-button
+            (click)="refresh()"
+            class="mx-auto"
+            matTooltip="Reload Thread List"
+            aria-label="Reload Thread List">
+      Reload
+    </button>
+  </div>
+
+  <mat-list dense *ngIf="threadsLoaded | async">
+    <!-- If user has 0 threads let them know -->
+    <div *ngIf="(threads | async)?.length === 0" class="p-4 d-flex flex-column align-content-center">
+      <p class="text-center">You are currently not a part of any <strong>threads</strong></p>
+      <a mat-icon-button
+         routerLink="../create"
+         class="mx-auto"
+         matTooltip="Create a new thread"
+         aria-label="Create a new thread">
+        <mat-icon>add</mat-icon>
+      </a>
+    </div>
+    <mat-list-item *ngFor="let thread of threads | async" [routerLink]="'./' + thread.id">
+      <img matListAvatar src="https://cdn-images-1.medium.com/fit/c/45/45/1*dmbNkD5D-u45r44go_cf0g.png" alt="User Avatar">
+
+      <div class="threadContainer">
+
+        <div class="subjectMessageContainer px-2">
+
+          <span mat-line [class.unread]="thread.unread">
+            {{ selectThreadNameForThread(thread) | async }}
+          </span>
+          <span mat-line
+                *ngIf="selectLatestMessageFromThread(thread) | async as message"
+                [class.unread]="thread.unread">
+            <ng-container *ngIf="selectUserNameForMessage(message) | async as user">
+              {{ user + ': ' + message.body }}
+            </ng-container>
+          </span>
+        </div>
+        <div class="date" [class.unread]="thread.unread">
+          {{ thread.updated_at | timeFromNow }}
+        </div>
+      </div>
+
+    </mat-list-item>
+  </mat-list>
+</div>
+

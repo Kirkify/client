@@ -1,0 +1,123 @@
+<div class="messageCreatorContainer">
+  <ch-simple-loader [loader]="loader"></ch-simple-loader>
+
+  <div class="headerContainer">
+    <span
+      *ngIf="selectThreadName() | async as threadName"
+      class="text-truncate"
+      [matTooltip]="threadName"
+    >
+      {{ threadName }}
+    </span>
+
+    <div class="topActionItems" *ngIf="thread">
+      <button mat-icon-button
+              [matMenuTriggerFor]="rootMenu"
+              matTooltip="Options"
+              aria-label="Options Button">
+        <mat-icon>more_horiz</mat-icon>
+      </button>
+      <!-- Menu for the above button -->
+      <mat-menu #rootMenu="matMenu">
+        <ng-template matMenuContent>
+          <button mat-menu-item
+                  (click)="openParticipantManager()"
+                  *ngIf="getIsCurrentUserAnAdmin(thread)">
+            <mat-icon>people</mat-icon>
+            <span>{{ selectManageParticipantsMessage(thread) | async }}</span>
+          </button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item>
+            <mat-icon>notifications_off</mat-icon>
+            <span>Mute</span>
+          </button>
+          <ng-container *ngIf="{item: getIsThreadUnread(thread)} as unread">
+            <button mat-menu-item
+            *ngIf="!unread.item"
+            (click)="markThreadAsUnread(thread)">
+            <mat-icon>markunread</mat-icon>
+            <span>Mark as unread</span>
+            </button>
+            <button mat-menu-item
+            *ngIf="unread.item"
+            (click)="markThreadAsRead(thread)">
+            <mat-icon>drafts</mat-icon>
+            <span>Mark as read</span>
+            </button>
+          </ng-container>
+          <button mat-menu-item>
+            <mat-icon>archive</mat-icon>
+            <span>Archive</span>
+          </button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item>
+            <mat-icon>report</mat-icon>
+            <span>Report</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>delete_sweep</mat-icon>
+            <span>Delete</span>
+          </button>
+        </ng-template>
+
+      </mat-menu>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+
+  <div class="subjectContainer" *ngIf="!thread && participants.length > 1">
+    <mat-form-field class="w-100" floatLabel="always" appearance="legacy">
+      <mat-label>Conversation Name</mat-label>
+      <input matInput placeholder="You can add a conversation name" [formControl]="subject">
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="!thread"
+       [class.negativeTopMargin]="!thread && participants.length > 1">
+    <ch-autocomplete-chips
+      label="Participants..."
+      placeHolder="Type a name or multiple names"
+      [allItems]="friendList$ | async"
+      [removable]="true"
+      [displayFunc]="displayFunc"
+      (selectedItemsUpdated)="onRecipientsUpdated($event)"
+    ></ch-autocomplete-chips>
+  </div>
+
+
+  <mat-form-field appearance="fill" class="textContainer" [class.negativeTopMargin]="!thread">
+    <textarea matInput
+              class="textArea"
+              [formControl]="message"
+              placeholder="Write a message or attach a file"
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="3"
+              cdkAutosizeMaxRows="5"></textarea>
+  </mat-form-field>
+
+  <div class="bottomActionItems negativeTopMargin">
+    <div class="attachmentContainer">
+      <button mat-icon-button matTooltip="Add a photo">
+        <mat-icon aria-label="Insert Photo Button">insert_photo</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Add an attachment">
+        <mat-icon aria-label="Add Attachment Button">attachment</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Add a GIF">
+        <mat-icon aria-label="Add GIF Button">gif</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Add an emoji">
+        <mat-icon aria-label="Add Emoji">sentiment_very_satisfied</mat-icon>
+      </button>
+    </div>
+
+    <div class="sendContainer">
+      <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">Send</button>
+    </div>
+
+  </div>
+
+  <ch-simple-message [message]="errorMsg | async"></ch-simple-message>
+
+</div>

@@ -2,8 +2,136 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
-    "packageManager": "yarn"
+    "packageManager": "yarn",
+    "defaultCollection": "@datorama/akita"
   },
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "coach-hub": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss",
+          "changeDetection": "OnPush"
+        }
+      },
+      "root": "projects/coach-hub",
+      "sourceRoot": "projects/coach-hub/src",
+      "prefix": "ch",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/coach-hub",
+            "index": "projects/coach-hub/src/index.html",
+            "main": "projects/coach-hub/src/main.ts",
+            "polyfills": "projects/coach-hub/src/polyfills.ts",
+            "tsConfig": "projects/coach-hub/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/coach-hub/src/favicon.ico",
+              "projects/coach-hub/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "projects/coach-hub/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/coach-hub/src/environments/environment.ts",
+                  "with": "projects/coach-hub/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "coach-hub:build",
+            "proxyConfig": "projects/coach-hub/src/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "coach-hub:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "coach-hub:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/coach-hub/src/test.ts",
+            "polyfills": "projects/coach-hub/src/polyfills.ts",
+            "tsConfig": "projects/coach-hub/tsconfig.spec.json",
+            "karmaConfig": "projects/coach-hub/karma.conf.js",
+            "assets": [
+              "projects/coach-hub/src/favicon.ico",
+              "projects/coach-hub/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "projects/coach-hub/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/coach-hub/tsconfig.app.json",
+              "projects/coach-hub/tsconfig.spec.json",
+              "projects/coach-hub/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/coach-hub/e2e/protractor.conf.js",
+            "devServerTarget": "coach-hub:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "coach-hub:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "coach-hub"
 }

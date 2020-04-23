@@ -1,0 +1,11 @@
+.headerContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.50em;
+}
+
+::ng-deep .mat-form-field-flex {
+  padding: 0.50em;
+}

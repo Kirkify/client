@@ -1,0 +1,35 @@
+.participantManagerDialog {
+  position: relative;
+  padding: 0px;
+
+  .topHeader {
+    height: 50px;
+  }
+
+  .headerContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75em;
+  }
+
+  .historyContainer {
+
+    .textMain {
+      font-size: 15px;
+      margin-bottom: 5px;
+    }
+    .textSecondary {
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+.contentContainer {
+
+}
+.negativeTopMargin {
+  margin-top: -30px;
+}

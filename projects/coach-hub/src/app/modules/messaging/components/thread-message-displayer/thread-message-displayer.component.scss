@@ -1,0 +1,32 @@
+$avatarSize: 40px;
+
+.avatar {
+  flex-shrink: 0;
+  width: $avatarSize;
+  height: $avatarSize;
+  border-radius: 50%;
+  display: inline;
+  float: left;
+}
+
+.threadMessageContainer {
+  margin-bottom: 20px;
+}
+
+.nameDateContainer {
+  margin-bottom: 0.5rem;
+}
+
+.itemContainer {
+  display: inline-block;
+  float: left;
+  width: calc(100% - #{$avatarSize});
+}
+
+.time {
+  font-size: 13px;
+  &:before {
+    content: '•';
+    text-transform: lowercase;
+  }
+}

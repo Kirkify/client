@@ -1,0 +1,14 @@
+{
+  "/api/*": {
+    "target": "http://homestead.test",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/ws/*": {
+    "target": "http://homestead.test",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

@@ -1,0 +1,7 @@
+<div class="container pt-3 text-center">
+  <h2>
+    404 - Page not found
+  </h2>
+  <mat-icon inline>broken_image</mat-icon>
+  <p *ngIf="path">You might want to go to the <a [routerLink]="path">"{{ path }}" page</a></p>
+</div>
