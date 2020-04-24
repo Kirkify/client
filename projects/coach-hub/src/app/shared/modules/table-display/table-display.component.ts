@@ -79,7 +79,6 @@ export class TableDisplayComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    console.log(this.paginator);
     for (const column of this._columns) {
       if (column.sortable && column.activeSort) {
         this.sort.sortChange.emit({

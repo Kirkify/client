@@ -8,21 +8,17 @@ mat-drawer {
 }
 
 // TODO: Check if this needs to react to the toolbar height change
-mat-nav-list, mat-drawer-content {
-  padding-bottom: 60px;
-}
+//mat-nav-list, mat-drawer-content {
+//  padding-bottom: 60px;
+//}
 
-mat-list-item {
-  height: 100% !important;
-}
-
-.itemContainer {
-  padding: 1rem 0;
-  height: auto !important;
-  &:hover {
-    background: transparent !important;
-  }
-}
+//.itemContainer {
+//  padding: 1rem 0;
+//  height: auto !important;
+//  &:hover {
+//    background: transparent !important;
+//  }
+//}
 
 .itemDescription {
   white-space: normal !important;

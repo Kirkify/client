@@ -1,9 +1,10 @@
 import { DataSource } from '@angular/cdk/collections';
-import { MatPaginator, MatSort } from '@angular/material';
 import { merge, Observable } from 'rxjs';
 import { TagInterface } from '../../models/tag.interface';
 import { TagsQuery } from '../../state/tags.query';
 import { TagsService } from '../../services/tags.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 /**
  * Data source for the TestTable view. This class should
