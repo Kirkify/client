@@ -4,7 +4,7 @@ import { MessagingComponent } from './messaging.component';
 import { MessagingRoutesEnum } from './messaging-routes.enum';
 import { InboxComponent } from './components/inbox/inbox.component';
 import { ThreadDetailComponent } from './components/thread-detail/thread-detail.component';
-import { MessageCreatorComponent } from './components/message-creator/message-creator.component';
+import { MessageCreatorComponent } from './modules/message-creator/components/message-creator/message-creator.component';
 
 
 const routes: Routes = [

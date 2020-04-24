@@ -13,20 +13,27 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SimpleLoaderModule } from '../../shared/modules/simple-loader/simple-loader.module';
 import { SimpleMessageModule } from '../../shared/modules/simple-message/simple-message.module';
 import { MatListModule } from '@angular/material/list';
-import { ThreadListComponent } from './components/thread-list/thread-list.component';
 import { ParticipantManagerDialogComponent } from './components/participant-manager-dialog/participant-manager-dialog.component';
 import { ThreadMessageDisplayerComponent } from './components/thread-message-displayer/thread-message-displayer.component';
 import { ThreadDetailComponent } from './components/thread-detail/thread-detail.component';
-import { MessageCreatorComponent } from './components/message-creator/message-creator.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AutocompleteChipsModule } from '../../shared/modules/autocomplete-chips/autocomplete-chips.module';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { SharedPipesModule } from '../../shared/pipes/shared-pipes.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ThreadsModule } from './modules/threads/threads.module';
+import { MessageCreatorModule } from './modules/message-creator/message-creator.module';
 
 
 @NgModule({
   declarations: [
     MessagingComponent,
-    ThreadListComponent,
     ThreadDetailComponent,
     ThreadMessageDisplayerComponent,
-    MessageCreatorComponent,
     ParticipantManagerDialogComponent,
     InboxComponent
   ],
@@ -39,13 +46,24 @@ import { MessageCreatorComponent } from './components/message-creator/message-cr
 
     SimpleLoaderModule,
     SimpleMessageModule,
+    ThreadsModule,
+    MessageCreatorModule,
+    AutocompleteChipsModule,
+    SharedPipesModule,
 
     MatListModule,
     MatIconModule,
     MatButtonModule,
     MatDividerModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule,
+    MatDialogModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatMenuModule,
+    MatTooltipModule,
+    MatSnackBarModule
   ],
   entryComponents: [
     ParticipantManagerDialogComponent

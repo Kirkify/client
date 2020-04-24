@@ -1,29 +1,31 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { ThreadInterface } from '../../models/thread.interface';
+import { ThreadInterface } from '../../../../models/thread.interface';
 import { FormControl } from '@angular/forms';
-import { MessagingService } from '../../services/messaging.service';
-import { IThreadReply } from '../../models/thread-reply.interface';
+import { MessagingService } from '../../../../services/messaging.service';
+import { IThreadReply } from '../../../../models/thread-reply.interface';
 import { BehaviorSubject, Observable, of, Subscription, throwError } from 'rxjs';
 import { catchError, finalize, map, takeUntil, tap } from 'rxjs/operators';
-import { ThreadParticipantsQuery } from '../../state/thread-participants/thread-participants.query';
-import { ThreadsQuery } from '../../state/threads/threads.query';
-import { ParticipantInterface } from '../../models/participant.interface';
-import { FriendsQuery } from '../../state/friends/friends.query';
-import { ICompose } from '../../models/compose.interface';
+import { ThreadParticipantsQuery } from '../../../../state/thread-participants/thread-participants.query';
+import { ThreadsQuery } from '../../../threads/state/threads.query';
+import { ParticipantInterface } from '../../../../models/participant.interface';
+import { FriendsQuery } from '../../../../state/friends/friends.query';
+import { ICompose } from '../../../../models/compose.interface';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatDialog, MatSnackBar } from '@angular/material';
-import { ParticipantManagerDialogComponent } from '../participant-manager-dialog/participant-manager-dialog.component';
-import { ParticipantManagerDialogMessageInterface } from '../../models/participant-manager-dialog-message.interface';
-import { ThreadParticipantsInterface } from '../../state/threads/models/thread-participants.interface';
-import { CurrentUserQuery } from '../../../../state/current-user/current-user.query';
-import { FullNamePipe } from '../../../../shared/pipes/full-name/full-name.pipe';
-import { UserInterface } from '../../../../state/authentication/models/user.interface';
-import { SimpleMessageType } from '../../../../shared/modules/simple-message/models/simple-message.type';
+import { ParticipantManagerDialogComponent } from '../../../../components/participant-manager-dialog/participant-manager-dialog.component';
+import { ParticipantManagerDialogMessageInterface } from '../../../../models/participant-manager-dialog-message.interface';
+import { ThreadParticipantsInterface } from '../../../threads/state/models/thread-participants.interface';
+import { FullNamePipe } from '../../../../../../shared/pipes/full-name/full-name.pipe';
+import { UserInterface } from '../../../../../../state/authentication/models/user.interface';
+import { SimpleMessageType } from '../../../../../../shared/modules/simple-message/models/simple-message.type';
+import { VerySimpleLoaderClass } from '../../../../../../shared/modules/simple-loader/models/very-simple-loader.class';
+import { AuthenticationQuery } from '../../../../../../state/authentication/authentication.query';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'ch-message-creator',
   templateUrl: './message-creator.component.html',
-  styleUrls: ['./message-creator.component.scss'],
+  styleUrls: [ './message-creator.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MessageCreatorComponent implements OnInit, OnDestroy {
@@ -41,7 +43,7 @@ export class MessageCreatorComponent implements OnInit, OnDestroy {
 
   constructor(
     private service: MessagingService,
-    private currentUserQuery: CurrentUserQuery,
+    private currentUserQuery: AuthenticationQuery,
     private friendsQuery: FriendsQuery,
     private threadsQuery: ThreadsQuery,
     private threadParticipantsQuery: ThreadParticipantsQuery,

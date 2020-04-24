@@ -1,14 +1,15 @@
 import { QueryConfig, QueryEntity } from '@datorama/akita';
 import { Injectable } from '@angular/core';
 import { ThreadsState, ThreadsStore } from './threads.store';
-import { ThreadInterface } from '../../models/thread.interface';
+import { ThreadInterface } from '../../../models/thread.interface';
 import { ThreadSortByEnum } from './models/thread-sort-by.enum';
 import { auditTime, map, mergeMap } from 'rxjs/operators';
-import { ThreadParticipantsQuery } from '../thread-participants/thread-participants.query';
+import { ThreadParticipantsQuery } from '../../../state/thread-participants/thread-participants.query';
 import { combineLatest, Observable } from 'rxjs';
 import { ThreadParticipantsInterface } from './models/thread-participants.interface';
-import { ThreadUnreadInterface } from '../../models/thread-unread.interface';
-import { AuthenticationQuery } from '../../../../state/authentication/authentication.query';
+import { ThreadUnreadInterface } from '../../../models/thread-unread.interface';
+import { AuthenticationQuery } from '../../../../../state/authentication/authentication.query';
+import { sortByDate } from '../../../../../shared/helpers/sorting/sort-by-date.helper';
 
 const sortBy = (a, b, state) => {
   return ( state.sortBy === ThreadSortByEnum.Recent ? sortByDate(a.updated_at, b.updated_at, 'asc') : sortByDate(a, b, 'asc') );
@@ -49,11 +50,11 @@ export class ThreadsQuery extends QueryEntity<ThreadsState, ThreadInterface> {
   }
 
   selectAllThreadsWithUnread(): Observable<ThreadUnreadInterface[]> {
-    return combineLatest(
+    return combineLatest([
       this.selectAll(),
       this.currentUserQuery.selectUserIfNotNull(),
       this.threadParticipantsQuery.selectAll()
-    ).pipe(
+    ]).pipe(
       auditTime(1),
       mergeMap(([ threads, currentUser ]) => this.threadParticipantsQuery.selectAll({
         filterBy: entity => entity.user_id === currentUser.id

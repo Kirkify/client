@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Query } from '@datorama/akita';
 import { AuthenticationStore, AuthenticationState } from './authentication.store';
-import { filter, shareReplay } from 'rxjs/operators';
+import { filter, map, shareReplay } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationQuery extends Query<AuthenticationState> {
@@ -9,6 +9,17 @@ export class AuthenticationQuery extends Query<AuthenticationState> {
   constructor(protected store: AuthenticationStore) {
     super(store);
   }
+
+  selectAccessToken$ = this.select(store => store.accessToken);
+
+  selectAccessTokenString$ = this.selectAccessToken$.pipe(
+    map(accessToken => {
+      if (accessToken) {
+        return `${accessToken.token_type} ${accessToken.value}`;
+      }
+      return '';
+    })
+  );
 
   selectIsAuthenticated$ = this.select(({ user }) => user !== null);
 
@@ -21,5 +32,9 @@ export class AuthenticationQuery extends Query<AuthenticationState> {
       filter(user => user !== null),
       shareReplay(1)
     );
+  }
+
+  getUserId() {
+    return this.getValue().user.id;
   }
 }

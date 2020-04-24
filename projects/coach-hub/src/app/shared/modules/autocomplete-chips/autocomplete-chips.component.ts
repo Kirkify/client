@@ -1,16 +1,13 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import {
-  MatAutocomplete,
-  MatAutocompleteSelectedEvent,
-  MatAutocompleteTrigger,
-  MatChipInputEvent,
-  MatFormFieldAppearance
-} from '@angular/material';
+
 import { BehaviorSubject, combineLatest, merge, Observable, Subscription } from 'rxjs';
 import { AutoCompleteChipInterface } from './models/auto-complete-chip.interface';
 import { auditTime, debounceTime, mergeMap, tap, map, share } from 'rxjs/internal/operators';
+import { MatAutocomplete, MatAutocompleteSelectedEvent, MatAutocompleteTrigger } from '@angular/material/autocomplete';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { MatFormFieldAppearance } from '@angular/material/form-field';
 
 @Component({
   selector: 'ch-autocomplete-chips',
@@ -166,7 +163,8 @@ export class AutocompleteChipsComponent implements OnInit, OnDestroy {
       }
     }
 
-    this._filterItems();
+    // console.error('CALLLLED');
+    // this._filterItems();
   }
 
   /**

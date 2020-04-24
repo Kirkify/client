@@ -19,6 +19,29 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   flex: 1 1 auto;
 }
 
+// This forces mat checkbox labels to wrap
+.mat-checkbox-layout {
+  white-space: normal !important;
+}
+
+mat-error:not(:first-of-type) { display: none; }
+mat-form-field {
+  margin-bottom: 5px;
+}
+
+// Sometimes we want dialogs to not have any padding
+.full-bleed-dialog {
+  .mat-dialog-container {
+    padding: 0;
+    // Todo: maybe this should be added to all dialog-containers?
+    max-height: calc(100vh - 64px);
+  }
+}
+
+.mat-checkbox-inner-container {
+  margin: 2px 8px auto 0 !important;
+}
+
 //mat-form-field .mat-form-field {
 //  &-underline {
 //    position: relative;

@@ -4,15 +4,15 @@ import { MessagingService } from '../../services/messaging.service';
 import { catchError, finalize, takeUntil } from 'rxjs/operators';
 import { ThreadMessagesQuery } from '../../state/thread-messages/thread-messages.query';
 import { MessageInterface } from '../../models/message.interface';
-import { ThreadsQuery } from '../../state/threads/threads.query';
+import { ThreadsQuery } from '../../modules/threads/state/threads.query';
 import { BehaviorSubject, Observable, Subscription, throwError } from 'rxjs';
-import { UserInterface } from '../../../../core/services/authentication/models/user.interface';
-import { UsersQuery } from '../../../../state/users/users.query';
-import { CurrentUserQuery } from '../../../../state/current-user/current-user.query';
-import { ThreadsStore } from '../../state/threads/threads.store';
-import { ThreadParticipantsInterface } from '../../state/threads/models/thread-participants.interface';
+import { ThreadsStore } from '../../modules/threads/state/threads.store';
+import { ThreadParticipantsInterface } from '../../modules/threads/state/models/thread-participants.interface';
 import { VerySimpleLoaderClass } from '../../../../shared/modules/simple-loader/models/very-simple-loader.class';
 import { SimpleMessageType } from '../../../../shared/modules/simple-message/models/simple-message.type';
+import { AuthenticationQuery } from '../../../../state/authentication/authentication.query';
+import { UsersQuery } from '../../state/users/users.query';
+import { UserInterface } from '../../../../state/authentication/models/user.interface';
 
 @Component({
   selector: 'ch-thread-detail',
@@ -31,7 +31,7 @@ export class ThreadDetailComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private service: MessagingService,
-    private currentUserQuery: CurrentUserQuery,
+    private currentUserQuery: AuthenticationQuery,
     private threadsStore: ThreadsStore,
     private threadMessagesQuery: ThreadMessagesQuery,
     private usersQuery: UsersQuery,

@@ -10,7 +10,7 @@ import { AppRoutesEnum } from '../../../../app-routes.enum';
 })
 export class LandingComponent implements OnInit {
 
-  title = environment.app_name;
+  appName = environment.app_name;
   routes = AppRoutesEnum;
 
   constructor() { }

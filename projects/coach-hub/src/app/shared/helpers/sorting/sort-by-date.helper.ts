@@ -1,5 +1,5 @@
-import { SortDirection } from '@angular/material';
 import * as moment from 'moment';
+import { SortDirection } from '@angular/material/sort';
 
 export function sortByDate(left, right, order: SortDirection) {
   if (!order) {

@@ -15,6 +15,14 @@ const routes: Routes = [
     loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule)
   },
   {
+    path: AppRoutesEnum.SignUp,
+    loadChildren: () => import('./modules/sign-up/sign-up.module').then(m => m.SignUpModule)
+  },
+  {
+    path: AppRoutesEnum.ForgotPassword,
+    loadChildren: () => import('./modules/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule)
+  },
+  {
     path: AppRoutesEnum.Dashboard,
     loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
     canLoad: [ AuthenticatedGuard ],

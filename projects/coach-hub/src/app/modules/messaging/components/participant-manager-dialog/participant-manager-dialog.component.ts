@@ -1,16 +1,14 @@
 import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Observable, Subscription } from 'rxjs';
 import { ParticipantManagerDialogMessageInterface } from '../../models/participant-manager-dialog-message.interface';
-import { ThreadInterface } from '../../models/thread.interface';
 import { ParticipantInterface } from '../../models/participant.interface';
 import { FriendsQuery } from '../../state/friends/friends.query';
 import { MessagingService } from '../../services/messaging.service';
 import { ThreadParticipantsQuery } from '../../state/thread-participants/thread-participants.query';
-import { UserParticipantInterface } from '../../state/threads/models/user-participant.interface';
-import { ThreadParticipantsInterface } from '../../state/threads/models/thread-participants.interface';
+import { ThreadParticipantsInterface } from '../../modules/threads/state/models/thread-participants.interface';
 import { FullNamePipe } from '../../../../shared/pipes/full-name/full-name.pipe';
 import { UserInterface } from '../../../../state/authentication/models/user.interface';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'ch-participant-dialog',

@@ -8,7 +8,7 @@ import { map, mergeMap } from 'rxjs/operators';
 import { AuthenticationQuery } from '../../../../state/authentication/authentication.query';
 import { FullNamePipe } from '../../../../shared/pipes/full-name/full-name.pipe';
 import { UsersQuery } from '../users/users.query';
-import { UserParticipantInterface } from '../threads/models/user-participant.interface';
+import { UserParticipantInterface } from '../../modules/threads/state/models/user-participant.interface';
 
 @Injectable({ providedIn: 'root' })
 export class ThreadParticipantsQuery extends QueryEntity<ThreadParticipantsState, ParticipantInterface> {

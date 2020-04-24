@@ -1,0 +1,47 @@
+<div class="container py-3">
+  <mat-card class="mx-auto">
+    <ch-simple-loader [loader]="loader"></ch-simple-loader>
+    <h2 class="mat-title">Forgot your password</h2>
+
+    <mat-card-content>
+
+      <form #form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+
+        <mat-form-field class="d-block" appearance="outline">
+          <mat-label>Enter your email</mat-label>
+          <input matInput
+                 formControlName="email"
+                 type="email"
+                 tabindex="1"
+                 autofocus>
+
+          <mat-error *ngIf="formGroup.get('email').hasError('required')">
+            Email is required
+          </mat-error>
+
+          <mat-error *ngIf="formGroup.get('email').hasError('email')">
+            Please enter a valid email address
+          </mat-error>
+
+        </mat-form-field>
+
+        <ch-simple-message [message]="formMsg | async"></ch-simple-message>
+
+        <re-captcha #captcha
+                    (resolved)="resolved($event)"
+                    size="invisible"></re-captcha>
+
+        <button mat-raised-button
+                color="primary"
+                tabindex="2"
+                type="submit">
+          Reset Password
+        </button>
+
+      </form>
+
+    </mat-card-content>
+  </mat-card>
+</div>
+
+

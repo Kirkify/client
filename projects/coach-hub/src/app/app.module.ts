@@ -10,6 +10,7 @@ import { environment } from '../environments/environment';
 import { NotFoundModule } from './modules/not-found/not-found.module';
 import { HttpClientModule } from '@angular/common/http';
 import { httpInterceptorProviders } from './interceptors';
+import { RECAPTCHA_SETTINGS, RecaptchaSettings } from 'ng-recaptcha';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,11 @@ import { httpInterceptorProviders } from './interceptors';
     NotFoundModule
   ],
   providers: [
-    httpInterceptorProviders
+    httpInterceptorProviders,
+    {
+      provide: RECAPTCHA_SETTINGS,
+      useValue: { siteKey: '6LewhT8UAAAAALO89pk5gDOhrUKOCqka-XbJvW6z' } as RecaptchaSettings
+    }
   ],
   bootstrap: [ AppComponent ]
 })

@@ -5,22 +5,23 @@ import { ParticipantInterface } from '../models/participant.interface';
 import { IThreadReply } from '../models/thread-reply.interface';
 import { Observable, of } from 'rxjs';
 import { environment } from '../../../../environments/environment';
-import { map, mergeMap, take, tap } from 'rxjs/operators';
-import { ThreadsStore } from '../state/threads/threads.store';
-import { JsonResponseInterface } from '../../../shared/models/json-response.interface';
+import { filter, map, mergeMap, take, tap } from 'rxjs/operators';
+import { ThreadsStore } from '../modules/threads/state/threads.store';
 import { GetThreadsResponseInterface } from './models/get-threads-response.interface';
-import { ThreadsQuery } from '../state/threads/threads.query';
+import { ThreadsQuery } from '../modules/threads/state/threads.query';
 import { ThreadMessagesStore } from '../state/thread-messages/thread-messages.store';
 import { ThreadMessagesQuery } from '../state/thread-messages/thread-messages.query';
 import { ThreadParticipantsStore } from '../state/thread-participants/thread-participants.store';
 import { GetThreadResponseInterface } from './models/get-thread-response.interface';
-import { UsersStore } from '../../../state/users/users.store';
 import { MarkAsReadOrUnreadResponseInterface } from './models/mark-as-read-or-unread-response.interface';
 import { MessageCreatedResponseInterface } from './models/message-created-response.interface';
-import { WebSocketQuery } from '../../../core/services/web-socket/state/web-socket.query';
-import { UserInterface } from '../../../core/services/authentication/models/user.interface';
 import { FriendsStore } from '../state/friends/friends.store';
 import { ThreadParticipantsQuery } from '../state/thread-participants/thread-participants.query';
+import { JsonResponseInterface } from '../../../models/json-response.interface';
+import { UsersStore } from '../state/users/users.store';
+import { UserInterface } from '../../../state/authentication/models/user.interface';
+import { WebSocketQuery } from '../../../state/web-socket/web-socket.query';
+import { EVENT_PREFIX } from '../../../state/web-socket/models/event-prefix';
 
 @Injectable({
   providedIn: 'root',
@@ -41,9 +42,12 @@ export class MessagingService {
     private threadParticipantsStore: ThreadParticipantsStore) {
 
     // Whenever we receive a new message over the socket
-    this.webSocketQuery.messageCreatedResponse().pipe(
+    this.webSocketQuery.onSocketMessage$.pipe(
+      filter(ev => ev.event === EVENT_PREFIX + 'ThreadMessage'),
+      map(ev => ev.data),
       // Update the store
       tap(msg => {
+        console.log(msg);
         return this._updateStoreFromNewMessage(msg);
       }),
       mergeMap(msg => {

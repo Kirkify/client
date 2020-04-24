@@ -5,8 +5,8 @@ import { MessageInterface } from '../../models/message.interface';
 import { ThreadInterface } from '../../models/thread.interface';
 import { map, mergeMap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
-import { CurrentUserQuery } from '../../../../state/current-user/current-user.query';
-import { UsersQuery } from '../../../../state/users/users.query';
+import { AuthenticationQuery } from '../../../../state/authentication/authentication.query';
+import { UsersQuery } from '../users/users.query';
 
 @Injectable({ providedIn: 'root' })
 // TODO: Update this to sort by created_at
@@ -17,7 +17,7 @@ import { UsersQuery } from '../../../../state/users/users.query';
 export class ThreadMessagesQuery extends QueryEntity<ThreadMessagesState, MessageInterface> {
   constructor(
     protected store: ThreadMessagesStore,
-    private currentUserQuery: CurrentUserQuery,
+    private currentUserQuery: AuthenticationQuery,
     private usersQuery: UsersQuery
   ) {
     super(store);

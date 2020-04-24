@@ -1,6 +1,6 @@
 import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
 import { Injectable } from '@angular/core';
-import { ThreadInterface } from '../../models/thread.interface';
+import { ThreadInterface } from '../../../models/thread.interface';
 import { ThreadSortByEnum } from './models/thread-sort-by.enum';
 
 export interface ThreadsState extends EntityState<ThreadInterface> {

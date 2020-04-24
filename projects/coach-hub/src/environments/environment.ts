@@ -8,7 +8,7 @@ export let environment: Partial<EnvironmentInterface> = {
   production: false,
   hmr: false,
   is_docker: false,
-  app_name: 'App Name',
+  app_name: 'Coach Hub',
   x_debug_key: '15773',
   url: 'http://localhost:4200',
   dev_url: 'http://homestead.test'

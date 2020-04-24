@@ -1,7 +1,7 @@
 import { QueryEntity } from '@datorama/akita';
 import { Injectable } from '@angular/core';
 import { FriendsState, FriendsStore } from './friends.store';
-import { UserInterface } from '../../../../core/services/authentication/models/user.interface';
+import { UserInterface } from '../../../../state/authentication/models/user.interface';
 
 
 @Injectable({ providedIn: 'root' })

@@ -1,6 +1,6 @@
 import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
 import { Injectable } from '@angular/core';
-import { UserInterface } from '../../../../core/services/authentication/models/user.interface';
+import { UserInterface } from '../../../../state/authentication/models/user.interface';
 
 export interface FriendsState extends EntityState<Partial<UserInterface>> {
   loaded: boolean;
