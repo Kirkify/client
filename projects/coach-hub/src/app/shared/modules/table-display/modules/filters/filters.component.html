@@ -1,0 +1,14 @@
+<button mat-stroked-button
+        color="primary"
+        matBadge="1"
+        matTooltip="Click to remove filters"
+        matBadgePosition="above after"
+        matBadgeColor="accent"
+        class="mt-2 float-right"
+        [class.d-none]="noFilters | async"
+        (click)="removeFilters()"
+>
+  <mat-icon matPrefix aria-label="Active Filters">filter_list</mat-icon>
+  Filters
+</button>
+<div class="clearfix"></div>

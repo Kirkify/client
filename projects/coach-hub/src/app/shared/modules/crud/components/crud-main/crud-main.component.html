@@ -1,0 +1,52 @@
+<div class="container py-4">
+
+  <div class="itemContainer">
+
+    <div *ngIf="showRefresh$ | async">
+      <h2 class="mat-title">{{ title }}</h2>
+      <p class="mat-body">
+        Click the button below to refresh
+      </p>
+      <button
+        mat-stroked-button
+        color="primary"
+        (click)="fetchAll(true)"
+      >
+        Refresh
+      </button>
+    </div>
+
+    <div *ngIf="showNoItems$ | async">
+      <h2 class="mat-title">{{ title }}</h2>
+      <p class="mat-body">
+        {{ noItemsText }}
+      </p>
+      <button
+        class="mr-2"
+        mat-stroked-button
+        color="primary"
+        (click)="create()"
+      >
+        Create News1
+      </button>
+      <button
+        mat-stroked-button
+        color="primary"
+        (click)="fetchAll(true)"
+      >
+        Refresh
+      </button>
+    </div>
+
+    <ch-simple-loader [loader]="loader"></ch-simple-loader>
+
+    <ng-container *ngIf="showTable$ | async">
+      <ch-crud-menu
+        (refresh)="fetchAll(true)"
+        (create)="create()"
+      ></ch-crud-menu>
+      <ng-content></ng-content>
+    </ng-container>
+  </div>
+
+</div>

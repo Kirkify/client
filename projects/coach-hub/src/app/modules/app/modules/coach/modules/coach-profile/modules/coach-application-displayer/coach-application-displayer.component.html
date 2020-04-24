@@ -1,0 +1,39 @@
+<ng-container *ngIf="profiles">
+  <div *ngIf="profiles.length === 0" class="text-center">
+    <h2 class="text-center mat-title">
+      You have yet to apply to coach a sport.
+    </h2>
+    <p class="mat-body">
+      Coaches have the ability to apply to coach multiple sports on the Coach Hub platform. To maintain
+      a solid reputation, all applications are screened by the Coach Hub administrators before being able
+      to go live.
+    </p>
+    <a mat-raised-button color="warn" [routerLink]="newApplicationRoute">Apply to Coach</a>
+  </div>
+
+  <div *ngIf="profiles.length">
+    <div class="clearfix">
+      <h1 class="mat-title float-left">List of Coach Profiles</h1>
+      <a mat-raised-button color="warn" class="float-right mb-1" [routerLink]="newApplicationRoute">Apply to Coach Another Sport</a>
+
+    </div>
+
+    <p class="mat-body">
+      Below is a list of all the sports you have applied to coach in.  Select a sport from the dropdown
+      to see the corresponding profile.
+    </p>
+    <mat-form-field>
+      <mat-label>Sports</mat-label>
+      <mat-select [(value)]="selected">
+        <mat-option *ngFor="let profile of profiles" [value]="profile.id">
+          {{ getSportName(profile.sports) }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-divider class="py-3"></mat-divider>
+    <ch-coach-application-form [profile]="getSelectedProfile()"></ch-coach-application-form>
+
+
+  </div>
+</ng-container>

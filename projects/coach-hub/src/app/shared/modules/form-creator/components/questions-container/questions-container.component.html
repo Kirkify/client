@@ -1,0 +1,20 @@
+<div *ngIf="!(formSubject | async)">
+  <p>Loading...</p>
+</div>
+
+<div #outerContainer [hidden]="!(formSubject | async)">
+  <div #container
+       class="sectionEditorContainer"
+       [style.max-width.px]="maxWidth">
+    <ch-section *ngFor="let section of sections$ | async; trackBy: trackByFunc"
+                [section]="section"
+    ></ch-section>
+
+    <ch-form-editor [outerContainerWidth]="outerContainerWidth$ | async"
+                    [containerMaxWidth]="maxWidth"
+                    [container]="container"
+    ></ch-form-editor>
+  </div>
+</div>
+
+

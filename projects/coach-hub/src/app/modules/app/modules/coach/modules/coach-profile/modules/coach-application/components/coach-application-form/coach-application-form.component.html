@@ -1,0 +1,136 @@
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <div class="row mb-3">
+    <div class="col-12">
+      <h3 class="mat-title">Sports</h3>
+      <p class="mat-body">
+        What sport are you applying to coach for?
+      </p>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Train Athletes In</mat-label>
+        <mat-select formControlName="sports">
+          <mat-select-trigger>
+            <ch-sport-displayer
+              [value]="formGroup.get('sports').value"
+              [allSports]="sportList | async"
+            ></ch-sport-displayer>
+          </mat-select-trigger>
+          <mat-option *ngFor="let sport of sportList | async"
+                      [value]="sport.id">{{sport.name}}</mat-option>
+        </mat-select>
+        <mat-hint *ngIf="formGroup.get('sports').value?.length === 0">You only need to
+          select 1 and can other profiles later
+        </mat-hint>
+        <mat-error *ngIf="formGroup.get('sports').hasError('required')">
+          You must select at least 1, you can add more later on
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h3 class="mat-title">Coaching Experience</h3>
+      <p class="mat-body">
+        What experience do you have coaching or training athletes? At what levels have you
+        coached? Where have you worked as a coach or trainer? What age groups do you typically
+        work with? Do you have any industry certifications?
+      </p>
+      <mat-form-field class="w-100" appearance="outline">
+            <textarea matInput
+                      formControlName="coaching_experience"
+                      rows="3"></textarea>
+
+        <mat-error *ngIf="formGroup.get('coaching_experience').hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+      <ch-min-character-displayer
+        [length]="formGroup.get('coaching_experience').value.length"
+      ></ch-min-character-displayer>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h3 class="mat-title">Athletic Highlights</h3>
+      <p class="mat-body">
+        What were your specific athletic accomplishments?
+        Did you compete at the collegiate or professional level?
+        Where did you compete? What awards or honors have you earned?
+      </p>
+      <mat-form-field class="w-100" appearance="outline">
+            <textarea matInput
+                      formControlName="athletic_highlights"
+                      rows="3"></textarea>
+
+        <mat-error *ngIf="formGroup.get('athletic_highlights').hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+      <ch-min-character-displayer
+        [length]="formGroup.get('athletic_highlights').value.length"
+      ></ch-min-character-displayer>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h3 class="mat-title">Session Plan</h3>
+      <p class="mat-body">
+        What can a client expect from a typical session with you?
+        What do you focus on (specific drills or techniques)?
+        Walk us through how you work out an athlete, so clients have a better sense of how you run
+        a session.
+      </p>
+      <mat-form-field class="w-100" appearance="outline">
+            <textarea matInput
+                      formControlName="session_plan"
+                      rows="3"></textarea>
+
+        <mat-error *ngIf="formGroup.get('session_plan').hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+      <ch-min-character-displayer
+        [length]="formGroup.get('session_plan').value.length"
+      ></ch-min-character-displayer>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h3 class="mat-title">One Sentence Bio</h3>
+      <p class="mat-body">
+        Give us a one sentence summary of your experience.
+        This is a client's first impression of you and is displayed in search results and on
+        your profile on Coach profile.
+      </p>
+      <mat-form-field class="w-100" appearance="outline">
+        <textarea matInput
+                  maxlength="180"
+                  formControlName="one_sentence_bio"
+                  rows="3"></textarea>
+
+        <mat-hint align="start"><strong>180 character maximum</strong></mat-hint>
+        <mat-hint align="end">{{ formGroup.get('one_sentence_bio').value.length }} / 180
+        </mat-hint>
+
+        <mat-error *ngIf="formGroup.get('one_sentence_bio').hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <ch-simple-message [message]="errorMsg | async"></ch-simple-message>
+
+  <button mat-raised-button
+          color="primary"
+          *ngIf="!hideSubmit"
+          type="submit">
+    Submit
+  </button>
+</form>

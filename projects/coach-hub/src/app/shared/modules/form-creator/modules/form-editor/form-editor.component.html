@@ -1,0 +1,47 @@
+<div #div
+     class="itemList"
+     [style.flex-direction]="flexDirection$ | async"
+     [style.position]="position$ | async"
+     [style.width.px]="width$ | async"
+     [style.top.px]="top$ | async"
+     [style.right.px]="right$ | async"
+     [style.bottom.px]="bottom$ | async"
+     [style.left.px]="left$ | async"
+>
+  <button mat-icon-button
+          aria-label="Add question"
+          type="button"
+          (click)="addQuestion()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+  <button mat-icon-button
+          aria-label="Import questions"
+          type="button"
+          (click)="validateForm()"
+  >
+    <mat-icon>input</mat-icon>
+  </button>
+  <button mat-icon-button
+          aria-label="Add title and description"
+          type="button"
+          (click)="addTitleAndDescription()"
+  >
+    <mat-icon>text_fields</mat-icon>
+  </button>
+  <button mat-icon-button
+          aria-label="Add photo"
+          type="button"
+  >
+    <mat-icon>insert_photo</mat-icon>
+  </button>
+
+  <button mat-icon-button
+          aria-label="Create new section"
+          type="button"
+          (click)="createSection()"
+  >
+    <mat-icon>view_agenda</mat-icon>
+  </button>
+</div>
+

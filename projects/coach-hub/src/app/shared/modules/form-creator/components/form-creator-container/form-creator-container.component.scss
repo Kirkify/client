@@ -1,0 +1,17 @@
+$color: #fafafa;
+
+.extraHeight {
+  padding: 1rem 0;
+  background-color: $color;
+}
+
+mat-tab-group {
+  margin: 0 auto;
+
+  ::ng-deep .mat-tab-header {
+    position: sticky;
+    top: 0;
+    background-color: $color;
+    z-index: 2;
+  }
+}

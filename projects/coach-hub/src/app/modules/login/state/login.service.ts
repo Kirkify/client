@@ -5,14 +5,14 @@ import { LoginInterface } from '../../../state/authentication/models/login.inter
 import { AuthenticationService } from '../../../state/authentication/authentication.service';
 import { throwError } from 'rxjs';
 import { Router } from '@angular/router';
-import { AppRoutingQuery } from '../../../state/app-routing/app-routing.query';
+import { RootRoutingQuery } from '../../../state/root-routing/root-routing.query';
 
 @Injectable({ providedIn: 'root' })
 export class LoginService {
 
   constructor(
     private loginStore: LoginStore,
-    private appRoutingQuery: AppRoutingQuery,
+    private appRoutingQuery: RootRoutingQuery,
     private router: Router,
     private service: AuthenticationService) {
   }

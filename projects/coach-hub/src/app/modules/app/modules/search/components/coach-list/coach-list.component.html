@@ -1,0 +1,8 @@
+<mat-list >
+  <mat-list-item *ngFor="let coach of coaches$ | async">
+    <ch-coach-card [item]="coach"></ch-coach-card>
+    <!--<mat-icon mat-list-icon>folder</mat-icon>-->
+    <!--<h4 mat-line>{{folder.name}}</h4>-->
+    <!--<p mat-line> {{folder.updated | date}} </p>-->
+  </mat-list-item>
+</mat-list>

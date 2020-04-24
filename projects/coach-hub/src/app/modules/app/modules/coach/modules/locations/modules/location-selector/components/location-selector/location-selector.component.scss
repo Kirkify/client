@@ -1,0 +1,21 @@
+.locationContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 9px;
+}
+
+.locationButton {
+  margin-top: -35px;
+  margin-left: 10px;
+}
+
+.select-placeholder-container {
+  display: flex;
+  align-items: center;
+}
+
+.select-placeholder-container > span {
+  flex: 1;
+}

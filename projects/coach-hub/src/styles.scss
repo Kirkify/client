@@ -24,6 +24,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   white-space: normal !important;
 }
 
+// Make the default form-field width 100%
+mat-form-field {
+  width: 100%;
+}
+
 mat-error:not(:first-of-type) { display: none; }
 mat-form-field {
   margin-bottom: 5px;

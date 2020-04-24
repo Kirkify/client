@@ -1,0 +1,29 @@
+<div>
+  <ch-simple-loader [loader]="loader"></ch-simple-loader>
+
+  <div class="container aboutQuestions"
+       *ngIf="!form"
+  >
+    <p class="mat-body">
+      <strong>*This section is not required*</strong>
+    </p>
+    <p class="mat-body">
+      But if needed you can generate a set of questions that need to be filled out by each registrant,
+      many times it can be useful for when you need extra info from each registrant
+      (Example: You want each registrant to include a description about themselves).
+    </p>
+    <button mat-raised-button
+            type="button"
+            color="primary"
+            class="mt-2 mx-auto"
+            (click)="generateForm()"
+    >
+      Add Questions
+    </button>
+  </div>
+
+  <div *ngIf="form">
+    <ch-questions-container [form]="form"></ch-questions-container>
+  </div>
+</div>
+

@@ -4,7 +4,7 @@ import { AuthenticationService } from '../../../state/authentication/authenticat
 import { ResetPasswordInterface } from '../../forgot-password/models/reset-password.interface';
 import { catchError, finalize, switchMap, tap } from 'rxjs/operators';
 import { EMPTY, throwError } from 'rxjs';
-import { AppRoutingQuery } from '../../../state/app-routing/app-routing.query';
+import { RootRoutingQuery } from '../../../state/root-routing/root-routing.query';
 import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
@@ -12,7 +12,7 @@ export class ResetPasswordService {
 
   constructor(private store: ResetPasswordStore,
               private router: Router,
-              private appRoutingQuery: AppRoutingQuery,
+              private appRoutingQuery: RootRoutingQuery,
               private service: AuthenticationService) {
   }
 

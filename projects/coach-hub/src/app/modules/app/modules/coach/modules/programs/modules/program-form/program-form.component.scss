@@ -1,0 +1,19 @@
+.formContainer {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.contentContainer {
+  overflow: auto;
+  height: 100%;
+  padding-bottom: 128px;
+}
+
+//:host /deep/ .mat-tab-labels {
+//  justify-content: center;
+//}
+
+::ng-deep .hiddenTabs .mat-tab-header {
+  display: none;
+}

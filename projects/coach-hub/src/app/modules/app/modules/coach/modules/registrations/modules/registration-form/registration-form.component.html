@@ -1,0 +1,106 @@
+<form class="position-relative" #formRef="ngForm" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <ch-simple-loader [loader]="loader"></ch-simple-loader>
+
+  <div class="row">
+    <div class="col-12">
+      <ch-program-autocomplete [control]="programControl"></ch-program-autocomplete>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+
+        <input matInput
+               formControlName="first_name"
+               required
+        >
+
+        <mat-error *ngIf="formGroup.get('first_name').hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+
+        <input matInput
+               formControlName="last_name">
+
+        <mat-error *ngIf="formGroup.get('last_name').hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput
+               placeholder="Enter an email"
+               formControlName="email">
+
+        <mat-error *ngIf="formGroup.get('email').hasError('required')">
+          Email is required
+        </mat-error>
+
+        <mat-error *ngIf="formGroup.get('email').hasError('email')">
+          Please enter a valid email address
+        </mat-error>
+
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Date of Birth</mat-label>
+        <input matInput
+               formControlName="date_of_birth"
+               [matDatepicker]="date_of_birth"
+               (focus)="date_of_birth.open()">
+        <mat-datepicker-toggle matSuffix [for]="date_of_birth"></mat-datepicker-toggle>
+        <mat-datepicker
+          [touchUi]="isScreenMobile | async"
+          startView="multi-year"
+          [startAt]="startDate"
+          #date_of_birth></mat-datepicker>
+
+        <mat-error *ngIf="formGroup.get('date_of_birth').hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <mat-form-field appearance="outline">
+        <mat-label>Notes</mat-label>
+        <textarea matInput
+                  formControlName="notes"
+                  rows="3"></textarea>
+
+        <mat-error *ngIf="formGroup.get('notes').hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <ch-simple-message [message]="msg | async"></ch-simple-message>
+
+  <button *ngIf="!hideSubmit"
+          mat-raised-button
+          color="primary"
+          type="submit">
+      {{ isAnUpdateRequest ? 'Update' : 'Create' }}
+  </button>
+
+</form>

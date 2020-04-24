@@ -1,0 +1,138 @@
+<form class="position-relative" #formRef="ngForm" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <ch-simple-loader [loader]="loader"></ch-simple-loader>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <mat-form-field>
+        <mat-label>Location Name</mat-label>
+
+        <input matInput
+               formControlName="name">
+
+        <mat-error *ngIf="formGroup.get('name').hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Location Description</mat-label>
+        <textarea matInput
+                  formControlName="description"
+                  rows="3"></textarea>
+
+        <mat-error *ngIf="formGroup.get('description').hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-6">
+
+      <div class="row">
+
+        <mat-form-field class="col-md-3 col-lg-5">
+          <mat-label>Street Number</mat-label>
+
+          <input matInput
+                 type="text"
+                 id="street_number"
+                 placeholder="Street Number"
+                 formControlName="street_number">
+
+          <mat-error *ngIf="formGroup.get('street_number').hasError('required')">
+            This field is required
+          </mat-error>
+
+        </mat-form-field>
+
+        <mat-form-field class="col-md-9 col-lg-7">
+          <mat-label>Street Name</mat-label>
+          <input matInput
+                 type="text"
+                 id="street_name"
+                 placeholder="Street Name"
+                 formControlName="street_name">
+
+          <mat-error *ngIf="formGroup.get('street_name').hasError('required')">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+
+      </div>
+
+      <div class="row">
+
+        <mat-form-field class="col-md-4">
+          <mat-label>City</mat-label>
+
+          <input matInput
+                 type="text"
+                 id="city"
+                 placeholder="City"
+                 formControlName="city">
+
+          <mat-error *ngIf="formGroup.get('city').hasError('required')">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4">
+          <mat-label>Province</mat-label>
+
+          <input matInput
+                 type="text"
+                 id="province"
+                 placeholder="Province"
+                 formControlName="province">
+
+          <mat-error *ngIf="formGroup.get('province').hasError('required')">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4">
+          <mat-label>Postal Code</mat-label>
+
+          <input matInput
+                 type="text"
+                 id="postal_code"
+                 placeholder="Postal Code"
+                 formControlName="postal_code">
+
+          <mat-error *ngIf="formGroup.get('postal_code').hasError('required')">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <mat-form-field>
+        <mat-label>Notes</mat-label>
+        <textarea matInput
+                  formControlName="notes"
+                  rows="3"></textarea>
+
+        <mat-error *ngIf="formGroup.get('notes').hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <ch-simple-message [message]="msg | async"></ch-simple-message>
+
+  <button *ngIf="!hideSubmit"
+          mat-raised-button
+          color="primary"
+          type="submit">
+    {{ isAnUpdateRequest ? 'Update' : 'Create' }}
+  </button>
+
+</form>
+
+

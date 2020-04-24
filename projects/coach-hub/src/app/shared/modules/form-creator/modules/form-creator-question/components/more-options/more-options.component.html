@@ -1,0 +1,7 @@
+<h4>Show</h4>
+<button mat-menu-item
+        type="button"
+        (click)="toggleDescription.emit(question.id)">
+  <mat-icon>{{ !question.hideDescription ? 'check' : '' }}</mat-icon>
+  <span>Show Description</span>
+</button>

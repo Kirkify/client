@@ -1,0 +1,93 @@
+<div *ngIf="formControls">
+  <div class="row">
+
+    <mat-form-field class="col-md-3" appearance="outline">
+      <mat-label>Street Number</mat-label>
+
+      <input matInput
+             type="text"
+             id="street_number"
+             placeholder="Street Number"
+             [formControl]="formControls.streetNumber">
+
+      <mat-error *ngIf="formControls.streetNumber.hasError('required')">
+        This field is required
+      </mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field class="col-md-6" appearance="outline">
+      <mat-label>Street Name</mat-label>
+      <input matInput
+             type="text"
+             id="street_name"
+             placeholder="Street Name"
+             [formControl]="formControls.streetName">
+
+      <mat-error *ngIf="formControls.streetName.hasError('required')">
+        This field is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-3" appearance="outline">
+      <mat-label>Apartment Number</mat-label>
+
+      <input matInput
+             type="text"
+             id="apt_number"
+             placeholder="Apartment Number"
+             [formControl]="formControls.apartmentNumber">
+
+      <mat-error *ngIf="formControls.apartmentNumber.hasError('required')">
+        This field is required
+      </mat-error>
+    </mat-form-field>
+
+  </div>
+
+  <div class="row">
+
+    <mat-form-field class="col-md-4" appearance="outline">
+      <mat-label>City</mat-label>
+
+      <input matInput
+             type="text"
+             id="city"
+             placeholder="City"
+             [formControl]="formControls.city">
+
+      <mat-error *ngIf="formControls.city.hasError('required')">
+        This field is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-4" appearance="outline">
+      <mat-label>Province</mat-label>
+
+      <input matInput
+             type="text"
+             id="province"
+             placeholder="Province"
+             [formControl]="formControls.province">
+
+      <mat-error *ngIf="formControls.province.hasError('required')">
+        This field is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-4" appearance="outline">
+      <mat-label>Postal Code</mat-label>
+
+      <input matInput
+             type="text"
+             id="postal_code"
+             placeholder="Postal Code"
+             [formControl]="formControls.postalCode">
+
+      <mat-error *ngIf="formControls.postalCode.hasError('required')">
+        This field is required
+      </mat-error>
+    </mat-form-field>
+
+  </div>
+</div>

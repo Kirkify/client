@@ -1,0 +1,12 @@
+.createContainer {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.createOverflow {
+  overflow: scroll;
+  height: 100%;
+  padding-top: 20px;
+  padding-bottom: 128px;
+}

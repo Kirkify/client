@@ -1,0 +1,147 @@
+<div class="formContainer">
+  <ch-simple-loader [loader]="loader"></ch-simple-loader>
+  <mat-divider></mat-divider>
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <mat-slide-toggle color="primary" [disabled]="disabled">Is Live</mat-slide-toggle>
+
+      <!-- This fills the remaining space of the current row -->
+      <span class="fill-space"></span>
+
+      <a
+        *ngIf="registrationCount | async as count"
+        mat-stroked-button
+        matTooltip="View Registrations"
+        [routerLink]="registrationRoute"
+        [queryParams]="registrationParams"
+        color="primary"
+        class="mb-3 mr-2"
+      >
+        <!--<div>-->
+        <!--<span class="mat-title">{{ count }}</span><br>-->
+        <!--<span class="mat-subheading-2">Registration{{ count > 1 ? 's' : ''}}</span>-->
+
+        <!--</div>-->
+        View Registrations ({{ count }})
+        <!--<mat-icon matSuffix>arrow_forward</mat-icon>-->
+      </a>
+      <a
+        *ngIf="isAnUpdateRequest"
+        mat-stroked-button
+        matTooltip="Add New Registrations"
+        [routerLink]="[registrationRoute, createRoute]"
+        [queryParams]="registrationParams"
+        color="warn"
+        class="mb-3"
+      >
+        <!--<div>-->
+        <!--<span class="mat-title">Add</span><br>-->
+        <!--<span class="mat-subheading-2">Registration</span>-->
+
+        <!--</div>-->
+        Add Registration
+        <!--<mat-icon matSuffix>arrow_forward</mat-icon>-->
+      </a>
+
+      <div *ngIf="disabled">
+        <a mat-stroked-button
+           color="warn"
+           class="mr-2"
+        >
+          Delete
+        </a>
+        <a mat-stroked-button
+                color="primary"
+                routerLink="edit"
+                preserveFragment
+        >Edit</a>
+      </div>
+      <button mat-stroked-button *ngIf="!disabled">Save &amp; Exit</button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-divider></mat-divider>
+
+  <ch-sticky-header [element]="scroll">
+    <mat-tab-group #matTabGroup
+                   [dynamicHeight]="true"
+                   mat-align-tabs="center"
+                   [selectedIndex]="tabSelectedIndex$ | async"
+                   (selectedTabChange)="navigate($event)"
+    >
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon>edit</mat-icon>
+          <span class="pl-2">General</span>
+        </ng-template>
+      </mat-tab>
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon>attach_money</mat-icon>
+          <span class="pl-2">Pricing</span>
+        </ng-template>
+      </mat-tab>
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon>question_answer</mat-icon>
+          <span class="pl-2">Questions</span>
+        </ng-template>
+      </mat-tab>
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon>attachment</mat-icon>
+          <span class="pl-2">Attachments</span>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </ch-sticky-header>
+
+  <div class="contentContainer" #scroll>
+    <ch-simple-message [message]="msg | async"></ch-simple-message>
+
+    <form #formRef="ngForm" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+
+
+      <mat-tab-group [dynamicHeight]="true"
+                     class="hiddenTabs"
+                     [selectedIndex]="tabSelectedIndex$ | async"
+      >
+        <!-- General Tab -->
+        <mat-tab>
+          <ch-general-info [formGroup]="formGroup"
+                           [isFormDisabled]="isFormDisabled"
+                           [preSelectedTags]="preSelectedTags"
+          ></ch-general-info>
+        </mat-tab>
+
+        <!-- Prices Tab -->
+        <mat-tab>
+          <ch-price-list
+            [formGroup]="formGroup"
+            [disabled]="disabled"
+            [programPrices]="programPrices.asObservable() | async"
+          ></ch-price-list>
+        </mat-tab>
+
+        <!-- Questions Tab -->
+        <mat-tab>
+          <ch-questions-generator [programId]="programId" [form]="form$ | async"></ch-questions-generator>
+        </mat-tab>
+
+      </mat-tab-group>
+
+      <button *ngIf="!hideSubmit"
+              mat-raised-button
+              color="primary"
+              type="submit">
+        {{ isAnUpdateRequest ? 'Update' : 'Create' }}
+      </button>
+    </form>
+  </div>
+</div>
+
+
+
+

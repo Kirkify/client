@@ -1,0 +1,25 @@
+.tableContainer {
+  min-width: 500px;
+  margin-top: 30px;
+  position: relative;
+}
+
+.action-container {
+  margin-left: -10px;
+}
+
+.mat-column-actions {
+  max-width: 135px;
+}
+
+.mat-cell:not(:first-of-type), .mat-header-cell:not(:first-of-type) {
+  padding-left: 5px;
+}
+.mat-column-name {
+  word-break: break-word;
+  padding-right: 5px;
+}
+
+.mat-column-start, .mat-column-end {
+  max-width: 115px;
+}

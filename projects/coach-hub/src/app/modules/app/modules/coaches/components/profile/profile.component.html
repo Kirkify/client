@@ -1,0 +1,17 @@
+<div class="container mt-3">
+  <ch-simple-loader [loader]="loader"></ch-simple-loader>
+  <div *ngIf="coachPortfolio$ | async as coachPortfolio; else errTemplate">
+    <p>{{ coachPortfolio.id }}</p>
+    <div *ngIf="coachPortfolio.profiles.length">
+      <p>I have at least one profile</p>
+    </div>
+    <div *ngIf="coachPortfolio.programs.length">
+      <p>I have at least one program</p>
+    </div>
+  </div>
+
+  <ng-template #errTemplate>
+    <ch-simple-message [message]="errMsg | async"></ch-simple-message>
+  </ng-template>
+</div>
+

@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>Edit Profile</h2>
+<mat-dialog-content class="p-0">
+  <mat-divider></mat-divider>
+</mat-dialog-content>
+<mat-dialog-content class="mat-typography pt-3">
+  <ch-coach-base-profile-form
+    [submitEvent]="submitSubject.asObservable()"
+    (updated)="close($event)"
+  ></ch-coach-base-profile-form>
+</mat-dialog-content>
+<mat-dialog-content class="p-0">
+  <mat-divider></mat-divider>
+</mat-dialog-content><mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
+  <button mat-button (click)="onSubmit()">Update</button>
+</mat-dialog-actions>

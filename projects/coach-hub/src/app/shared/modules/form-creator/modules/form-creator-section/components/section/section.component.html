@@ -1,0 +1,59 @@
+<div class="questionsTabContainer mat-elevation-z1">
+  <div class="headerContainer pr-1">
+    <div class="sectionNumber">
+      <span>Section {{ section.sortId + 1 }} of {{ sectionsLength$ | async }}</span>
+    </div>
+    <div>
+      <mat-menu #sectionMenu="matMenu">
+        <ng-template matMenuContent>
+          <button mat-menu-item
+                  type="button"
+          >
+            Duplicate Section
+          </button>
+          <button mat-menu-item
+                  type="button"
+                  (click)="openDialog()"
+          >
+            Re-order Sections
+          </button>
+        </ng-template>
+      </mat-menu>
+      <button mat-icon-button
+              type="button"
+              [matMenuTriggerFor]="sectionMenu"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </div>
+  </div>
+  <ng-container *ngIf="sectionHeader$ | async as sectionHeader">
+    <ch-question class="questionBox"
+                 [questionId]="sectionHeader.id"
+                 (click)="setActive(sectionHeader.id)"
+                 [hideDrag]="true"
+    ></ch-question>
+  </ng-container>
+
+  <div cdkDropList
+       class="questionList"
+       (cdkDropListDropped)="drop($event)"
+       [cdkDropListData]="section.id"
+       *ngIf="questions$ | async as questions"
+  >
+    <ch-question *ngFor="let question of questions; trackBy: trackByFunc"
+                 class="questionBox"
+                 [questionId]="question.id"
+                 (click)="setActive(question.id)"
+                 [hideDrag]="questions.length === 1"
+                 [cdkDragDisabled]="questions.length === 1"
+                 [cdkDragData]="question.id"
+                 cdkDrag
+    >
+      <div slot="drag-handle"
+           style="position: absolute; top: 0; left: 0; right: 0; bottom: 0"
+           cdkDragHandle
+      ></div>
+    </ch-question>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div *ngIf="!(isLoading$ | async) && (programs$ | async)?.length === 0" class="mb-2">
+  <ch-simple-message
+    message="Before adding a new registration, you must add at least one program."
+  ></ch-simple-message>
+  <a class="new-program" routerLink="/coach-hub/coach/programs/create">Create new program</a>
+</div>
+
+
+<mat-form-field appearance="outline" class="example-full-width" *ngIf="control">
+  <mat-label *ngIf="!(isLoading$ | async)">
+    Program
+  </mat-label>
+  <mat-label *ngIf="isLoading$ | async">
+    <ch-form-field-spinner></ch-form-field-spinner>
+  </mat-label>
+  <input matInput aria-label="Program" required [matAutocomplete]="auto" [formControl]="control" (blur)="clearUnselectedValue()">
+  <mat-icon *ngIf="!(isLoading$ | async)" matSuffix>keyboard_arrow_down</mat-icon>
+
+  <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption [displayWith]="displayFn">
+    <mat-option *ngFor="let program of filteredPrograms$ | async" [value]="program">
+      <img class="example-option-img" aria-hidden src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Flag_of_Arkansas.svg" height="25">
+      <span>{{program.program_title}}</span> |
+      <small>Start Date: {{program.program_start}}</small>
+    </mat-option>
+  </mat-autocomplete>
+
+  <mat-error *ngIf="control.hasError('required')">
+    This field is required
+  </mat-error>
+
+</mat-form-field>

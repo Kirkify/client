@@ -5,14 +5,14 @@ import { throwError } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SignUpStore } from './sign-up.store';
 import { SignUpInterface } from '../../../state/authentication/models/sign-up.interface';
-import { AppRoutingQuery } from '../../../state/app-routing/app-routing.query';
+import { RootRoutingQuery } from '../../../state/root-routing/root-routing.query';
 
 @Injectable({ providedIn: 'root' })
 export class SignUpService {
 
   constructor(
     private store: SignUpStore,
-    private appRoutingQuery: AppRoutingQuery,
+    private appRoutingQuery: RootRoutingQuery,
     private router: Router,
     private route: ActivatedRoute,
     private service: AuthenticationService) {

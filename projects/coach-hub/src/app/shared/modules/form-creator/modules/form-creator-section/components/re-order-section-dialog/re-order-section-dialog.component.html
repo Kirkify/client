@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>Reorder Sections</h2>
+<mat-dialog-content>
+  <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let section of sections; let i = index" cdkDrag>
+      <div class="dragContainer" cdkDragHandle>
+        <mat-icon>drag_handle</mat-icon>
+      </div>
+      <span>Section {{ section.sortId + 1 }}</span>
+      <div>
+        <button mat-icon-button
+                matTooltip="Move Up"
+                aria-label="Move Up"
+                type="button"
+                [disabled]="i === 0"
+                (click)="moveUp(i)"
+        >
+          <mat-icon>arrow_upward</mat-icon>
+        </button>
+        <button mat-icon-button
+                matTooltip="Move Down"
+                aria-label="Move Down"
+                type="button"
+                [disabled]="i === sections.length - 1"
+                (click)="moveDown(i)"
+        >
+          <mat-icon>arrow_downward</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+
+  <button mat-button
+          mat-dialog-close
+          type="button"
+          cdkFocusInitial
+  >
+    Cancel
+  </button>
+
+  <button mat-button
+          [mat-dialog-close]="sections"
+          type="button"
+  >
+    Save
+  </button>
+
+</mat-dialog-actions>

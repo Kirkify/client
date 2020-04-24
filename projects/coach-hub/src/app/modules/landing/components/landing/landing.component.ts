@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { environment } from '../../../../../environments/environment';
-import { AppRoutesEnum } from '../../../../app-routes.enum';
+import { RootRoutesEnum } from '../../../../root-routes.enum';
 
 @Component({
   selector: 'ch-landing',
@@ -11,7 +11,7 @@ import { AppRoutesEnum } from '../../../../app-routes.enum';
 export class LandingComponent implements OnInit {
 
   appName = environment.app_name;
-  routes = AppRoutesEnum;
+  routes = RootRoutesEnum;
 
   constructor() { }
 

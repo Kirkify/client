@@ -1,0 +1,24 @@
+<mat-card>
+  <div *ngFor="let price of prices">
+    <mat-checkbox matLine
+                  #rootCheckbox
+                  (change)="rootSelectionUpdated($event, selectionList)"
+    >
+      {{ price.name }}
+      <span class="float-right">{{ price.price }}</span>
+    </mat-checkbox>
+    <p matLine [hidden]="price.sub_options_values.length === 0">
+      <mat-selection-list #selectionList (selectionChange)="subSelectionUpdated($event, rootCheckbox)">
+        <h3 mat-subheader>Sub Options:
+          <span *ngIf="isSubOptionRequired(price)">&nbsp;{{ getRequiredSubOptions(price) }}</span>
+        </h3>
+        <mat-list-option *ngFor="let p of price.sub_options_values" checkboxPosition="before">
+          {{ p.name }} <span class="float-right">{{ p.price }}</span>
+        </mat-list-option>
+      </mat-selection-list>
+    </p>
+  </div>
+  <button mat-raised-button color="warn" (click)="register()">Register Now</button>
+</mat-card>
+
+

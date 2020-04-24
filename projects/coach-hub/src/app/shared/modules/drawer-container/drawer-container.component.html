@@ -1,0 +1,48 @@
+<mat-drawer-container autosize>
+  <mat-drawer opened="true" mode="side">
+    <mat-nav-list>
+      <mat-list-item [matTooltip]="isExpanded ? 'Close Menu' : 'Open Menu'"
+                     (click)="isExpanded = !isExpanded">
+        <button mat-icon-button>
+          <mat-icon *ngIf="!isExpanded">chevron_right</mat-icon>
+          <mat-icon *ngIf="isExpanded">chevron_left</mat-icon>
+        </button>
+      </mat-list-item>
+
+      <mat-list-item
+        *ngFor="let item of navList"
+        [matTooltip]="!isExpanded ? item.name : ''"
+        class="matItem"
+      >
+        <a class="itemContainer" mat-list-item [routerLink]="item.route" routerLinkActive="active"
+        >
+          <mat-icon
+            matListIcon
+            [innerHTML]="item.icon"
+          ></mat-icon>
+
+          <h3
+            class="mat-title"
+            *ngIf="isExpanded"
+            matLine
+            [innerHTML]="item.name"
+          ></h3>
+
+          <p
+            *ngIf="isExpanded"
+            matLine
+            class="itemDescription"
+            [innerHTML]="item.description ? item.description : ''"
+          ></p>
+        </a>
+
+
+
+      </mat-list-item>
+
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content #drawerContent>
+    <ng-content></ng-content>
+  </mat-drawer-content>
+</mat-drawer-container>

@@ -1,4 +1,4 @@
-import { SortDirection } from '@angular/material';
+import { SortDirection } from '@angular/material/sort';
 
 export function sortByName(left: string, right: string, order: SortDirection) {
   if (!order) {

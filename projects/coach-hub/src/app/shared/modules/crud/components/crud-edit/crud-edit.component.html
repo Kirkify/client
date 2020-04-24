@@ -1,0 +1,10 @@
+<div class="container py-4">
+  <h1 class="mat-title">Edit {{ title }}</h1>
+
+  <ch-simple-loader [loader]="loader"></ch-simple-loader>
+
+  <ch-simple-message [message]="errMsg | async"></ch-simple-message>
+
+  <ng-content *ngIf="!(loader.selectLoading() | async) && !(errMsg | async)"></ng-content>
+
+</div>

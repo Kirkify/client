@@ -1,0 +1,20 @@
+<div class="container">
+  <ch-price-group
+    class="mat-elevation-z2"
+    *ngFor="let priceFormGroup of controls; let i = index"
+    (addSubOption)="addSubOption($event)"
+    (remove)="remove($event)"
+    [index]="i"
+    [formGroup]="priceFormGroup" [canRemove]="canRemove">
+  </ch-price-group>
+  <div class="clearfix m-1">
+    <button type="button"
+            mat-raised-button
+            color="primary"
+            class="float-right"
+            [disabled]="disabled"
+            (click)="add()">Add Another Pricing Option</button>
+  </div>
+</div>
+
+

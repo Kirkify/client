@@ -1,0 +1,48 @@
+<!--<div class="mat-elevation-z8 tableContainer">-->
+  <!--<mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements">-->
+    <!--&lt;!&ndash; Actions Column &ndash;&gt;-->
+    <!--<ng-container cdkColumnDef="actions">-->
+      <!--<mat-header-cell *cdkHeaderCellDef>Actions</mat-header-cell>-->
+      <!--<mat-cell *cdkCellDef="let row">-->
+        <!--<div class="action-container">-->
+          <!--<button mat-icon-button color="primary" [routerLink]="[routes.Edit, row.id]">-->
+            <!--<mat-icon aria-label="Edit">edit</mat-icon>-->
+          <!--</button>-->
+          <!--<button mat-icon-button color="warn" (click)="delete(row)">-->
+            <!--<mat-icon aria-label="Delete">delete</mat-icon>-->
+          <!--</button>-->
+        <!--</div>-->
+      <!--</mat-cell>-->
+    <!--</ng-container>-->
+
+    <!--&lt;!&ndash; Program Title Column &ndash;&gt;-->
+    <!--<ng-container cdkColumnDef="name">-->
+      <!--<mat-header-cell *cdkHeaderCellDef>Title</mat-header-cell>-->
+      <!--<mat-cell *cdkCellDef="let row"> {{row.program_title}} </mat-cell>-->
+    <!--</ng-container>-->
+
+    <!--&lt;!&ndash; Program Start Column &ndash;&gt;-->
+    <!--<ng-container cdkColumnDef="start">-->
+      <!--<mat-header-cell *cdkHeaderCellDef>Start Date</mat-header-cell>-->
+      <!--<mat-cell *cdkCellDef="let row"> {{row.program_start}} </mat-cell>-->
+    <!--</ng-container>-->
+
+    <!--&lt;!&ndash; Program End Column &ndash;&gt;-->
+    <!--<ng-container cdkColumnDef="end">-->
+      <!--<mat-header-cell *cdkHeaderCellDef>End Date</mat-header-cell>-->
+      <!--<mat-cell *cdkCellDef="let row"> {{row.program_end}} </mat-cell>-->
+    <!--</ng-container>-->
+
+    <!--&lt;!&ndash; Header and Row Declarations &ndash;&gt;-->
+    <!--<mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>-->
+    <!--<mat-row *cdkRowDef="let row; columns: displayedColumns"></mat-row>-->
+
+  <!--</mat-table>-->
+
+  <!--<mat-paginator #paginator-->
+                 <!--[length]="paginator.length"-->
+                 <!--[pageIndex]="0"-->
+                 <!--[pageSize]="50"-->
+                 <!--[pageSizeOptions]="[25, 50, 100, 250]">-->
+  <!--</mat-paginator>-->
+<!--</div>-->

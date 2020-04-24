@@ -1,0 +1,23 @@
+<div class="tagContainer">
+  <ch-autocomplete-chips
+    class="w-100"
+    label="Add Tags"
+    placeHolder="Type a tag or multiple tags"
+    [allItems]="tags$ | async"
+    [displayFunc]="displayFunc"
+    appearance="outline"
+    [isLoading]="isLoading$ | async"
+    [preSelectedItems]="preSelectedTags"
+    (selectedItemsUpdated)="onTagsUpdated($event)"
+  ></ch-autocomplete-chips>
+
+  <button
+    class="tagButton"
+    mat-mini-fab color="primary"
+    type="button"
+    matTooltip="Create new tag(s)"
+    (click)="addTag()"
+  >
+    <mat-icon aria-label="Add new location">add</mat-icon>
+  </button>
+</div>

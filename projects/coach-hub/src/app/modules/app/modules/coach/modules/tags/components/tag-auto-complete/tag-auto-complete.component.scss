@@ -1,0 +1,12 @@
+.tagContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 9px;
+}
+
+.tagButton {
+  margin-top: -35px;
+  margin-left: 10px;
+}

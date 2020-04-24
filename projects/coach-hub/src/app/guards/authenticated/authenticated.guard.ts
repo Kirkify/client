@@ -3,7 +3,7 @@ import { CanActivate, CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, Router
 import { Observable } from 'rxjs';
 import { AuthenticationQuery } from '../../state/authentication/authentication.query';
 import { map, take } from 'rxjs/operators';
-import { AppRoutesEnum } from '../../app-routes.enum';
+import { RootRoutesEnum } from '../../root-routes.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +40,7 @@ export class AuthenticatedGuard implements CanActivate, CanLoad {
             // TODO: Query params are currently not being saved should probably add logic for that
             // const pathName = location.pathname;
             // this.authService.redirectUrl = pathName.startsWith(url) ? pathName : pathName + url;
-            this.router.navigate([ AppRoutesEnum.Login ]);
+            this.router.navigate([ RootRoutesEnum.Login ]);
             // this is executed on a 401 or on any error
             return false;
           }

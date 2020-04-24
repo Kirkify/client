@@ -1,0 +1,49 @@
+<section class="hero">
+  <div class="hero-wrap"></div>
+  <section class="hero-jumbotron text-center">
+    <h1>Welcome to Coach Hub</h1>
+    <h3>Offering the largest network of coaches with extensive training resources for athletes and fitness enthusiasts.</h3>
+    <div class="row">
+      <a
+        mat-stroked-button
+        class="col-sm-6"
+        *ngIf="isCoach | async"
+        [routerLink]="routes.Coach"
+      >
+        Coach Dashboard
+      </a>
+      <a
+        mat-stroked-button
+        class="col-sm-6"
+        *ngIf="!(isCoach | async)"
+        [routerLink]="routes.BecomeACoach"
+      >
+        Apply To Coach
+      </a>
+      <a mat-stroked-button
+         class="col-sm-6"
+         [routerLink]="routes.Search"
+      >Find A Coach</a>
+    </div>
+  </section>
+</section>
+<div class="mr-3">
+  <a
+    mat-raised-button
+    *ngIf="isCoach | async"
+    [routerLink]="routes.Coach"
+  >
+    Coach Dashboard
+  </a>
+
+  <a
+    mat-raised-button
+    *ngIf="!(isCoach | async)"
+    [routerLink]="routes.BecomeACoach"
+  >
+    Apply To Coach
+  </a>
+</div>
+
+
+

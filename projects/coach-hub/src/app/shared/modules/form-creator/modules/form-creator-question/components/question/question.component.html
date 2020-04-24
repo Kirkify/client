@@ -1,0 +1,122 @@
+<ng-template #shortAnswer>
+  <ch-short-answer [questionId]="questionId"></ch-short-answer>
+</ng-template>
+
+<ng-template #paragraph>
+  <ch-paragraph [questionId]="questionId"></ch-paragraph>
+</ng-template>
+
+<!--<ng-template #titleAndDescription>-->
+  <!--<ch-title-and-description [questionId]="questionId"></ch-title-and-description>-->
+<!--</ng-template>-->
+
+<ng-template #multipleChoice>
+  <ch-multiple-choice [questionId]="questionId"></ch-multiple-choice>
+</ng-template>
+
+<div class="questionContainer" *ngIf="question$ | async as question" [class.mat-elevation-z4]="(isActive$ | async) && !question.sectionHeader">
+  <ng-container *ngIf="{item: isActive$ | async} as isActive">
+    <div class="horizontalBar" *ngIf="isActive.item"></div>
+    <div class="w-100">
+      <div *ngIf="!hideDrag" class="dragContainer">
+        <mat-icon class="dragIcon">drag_indicator</mat-icon>
+        <ng-content select="[slot=drag-handle]" class="dragHeight">
+        </ng-content>
+      </div>
+      <div class="container-fluid" [class.pt-3]="hideDrag">
+        <div class="row">
+          <div [ngClass]="question.sectionHeader || !isActive.item ? 'col-12' : 'col-sm-6'"
+               [formGroup]="formGroup"
+          >
+            <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label class="requiredMarker">{{ question.required && !isActive.item ? '&#42; Required' : '' }}</mat-label>
+              <input matInput
+                     placeholder="Question"
+                     formControlName="question"
+              >
+            </mat-form-field>
+            <mat-form-field appearance="standard" [hidden]="question.hideDescription">
+              <textarea matInput
+                        cdkTextareaAutosize
+                        placeholder="Description (optional)"
+                        formControlName="description"
+              ></textarea>
+            </mat-form-field>
+          </div>
+          <div *ngIf="!question.sectionHeader && isActive.item" class="col-sm-6">
+            <mat-form-field>
+
+              <mat-select [value]="(selectedQuestionType$ | async)" (selectionChange)="onSelectionChanged($event)">
+                <mat-select-trigger *ngIf="(selectedQuestionType$ | async) as selectedType">
+                  <div class="triggerContainer">
+                    <mat-icon matPrefix>{{ selectedType.icon }}</mat-icon>
+                    <span class="ml-3">{{ selectedType.name }}</span>
+                  </div>
+                </mat-select-trigger>
+
+                <mat-option *ngFor="let questionType of questionTypes"
+                            [value]="questionType">
+                  <mat-icon matPrefix>{{ questionType.icon }}</mat-icon>
+                  {{ questionType.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <div class="row" *ngIf="selectedQuestionType$ | async as selectedType">
+          <div class="col-12">
+            <ng-container
+              *ngTemplateOutlet="selectedType?.template()">
+            </ng-container>
+          </div>
+        </div>
+        <mat-divider *ngIf="!question.sectionHeader && isActive.item"></mat-divider>
+        <div class="row" *ngIf="!question.sectionHeader && isActive.item">
+          <div class="col-12 py-2">
+            <div class="float-right">
+              <button mat-icon-button
+                      matTooltip="Duplicate Question"
+                      aria-label="Duplicate Question"
+                      type="button"
+                      (click)="duplicate()"
+              >
+                <mat-icon>filter_2</mat-icon>
+              </button>
+              <button mat-icon-button
+                      matTooltip="Delete Question"
+                      aria-label="Delete Question"
+                      type="button"
+                      (click)="remove()"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+              <!--<mat-divider vertical inset></mat-divider>-->
+              <mat-slide-toggle labelPosition="before" [checked]="question.required" (change)="onRequiredChanged($event)">Required</mat-slide-toggle>
+
+              <mat-menu #appMenu="matMenu">
+                <ng-template matMenuContent let-q="q">
+                  <ch-more-options [question]="q"
+                                   (toggleDescription)="toggleDescription($event)"
+                  ></ch-more-options>
+                </ng-template>
+              </mat-menu>
+
+              <button mat-icon-button
+                      type="button"
+                      [matMenuTriggerFor]="appMenu"
+                      [matMenuTriggerData]="{q: question}"
+              >
+                <mat-icon>more_vert</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+</div>
+
+

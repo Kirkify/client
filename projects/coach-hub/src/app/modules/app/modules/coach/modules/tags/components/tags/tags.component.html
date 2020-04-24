@@ -1,0 +1,21 @@
+<div class="container py-4">
+  <div>
+    <h2 class="mat-title">Tags</h2>
+    <p class="mat-body">
+      Tags allow you to add additional search criteria to your programs.
+    </p>
+
+    <ng-template #loading>Loading...</ng-template>
+
+    <ul *ngIf="!(isLoading$ | async); else loading">
+      <li *ngFor="let tag of (tags$ | async)">
+        ...
+      </li>
+    </ul>
+
+    <ch-tag-auto-complete></ch-tag-auto-complete>
+  </div>
+</div>
+
+
+

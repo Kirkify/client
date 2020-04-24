@@ -1,0 +1,9 @@
+<div class="extraHeight"></div>
+<!-- DynamicHeight needs to be used as there is a problem -->
+<!-- Finding the first scroll parent without it -->
+<mat-tab-group mat-align-tabs="center" dynamicHeight>
+  <mat-tab label="Questions">
+    <ch-questions-container [form]="form | async"></ch-questions-container>
+  </mat-tab>
+  <mat-tab label="Answers"> Answers </mat-tab>
+</mat-tab-group>

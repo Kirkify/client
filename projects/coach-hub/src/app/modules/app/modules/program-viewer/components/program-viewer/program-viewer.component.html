@@ -1,0 +1,24 @@
+<div class="container">
+  <div *ngIf="program | async as p">
+    <div class="row">
+      <div class="col-lg-6 mt-3">
+        <mat-card>
+          <h1 class="mat-title">
+            {{ p.program_title }}
+          </h1>
+          <p class="mat-body">
+            {{ p.program_description }}
+          </p>
+        </mat-card>
+
+      </div>
+      <div class="col-lg-6 mt-3">
+        <ch-program-price-selector [prices]="p.prices"></ch-program-price-selector>
+      </div>
+    </div>
+
+  </div>
+
+  <ch-simple-message [message]="errorMsg | async"></ch-simple-message>
+</div>
+

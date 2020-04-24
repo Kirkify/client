@@ -1,0 +1,12 @@
+<ng-container
+  *ngIf="display.linkable; then linkable; else unLinkable">
+</ng-container>
+
+<ng-template #linkable>
+  <a [routerLink]="getRoute">
+    {{ display.displayFunc(item) }}
+  </a>
+</ng-template>
+<ng-template #unLinkable>
+  {{ display.displayFunc(item) }}
+</ng-template>

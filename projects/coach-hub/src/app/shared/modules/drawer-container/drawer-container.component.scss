@@ -1,0 +1,38 @@
+mat-drawer-container {
+  width: 100%;
+  height: 100vh;
+}
+
+mat-drawer {
+  max-width: 400px;
+}
+
+// TODO: Check if this needs to react to the toolbar height change
+mat-nav-list, mat-drawer-content {
+  padding-bottom: 60px;
+}
+
+mat-list-item {
+  height: 100% !important;
+}
+
+.itemContainer {
+  padding: 1rem 0;
+  height: auto !important;
+  &:hover {
+    background: transparent !important;
+  }
+}
+
+.itemDescription {
+  white-space: normal !important;
+}
+
+.active {
+  background: rgba(0,0,0,.06);
+}
+
+::ng-deep mat-list-item.matItem > .mat-list-item-content {
+  padding: 0!important;
+}
+

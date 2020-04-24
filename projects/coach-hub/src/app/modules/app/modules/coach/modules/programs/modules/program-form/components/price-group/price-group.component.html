@@ -1,0 +1,138 @@
+<div class="container py-1" [class.mat-elevation-z1]="isSubOption">
+
+  <div [formGroup]="formGroup">
+
+    <div class="headerContainer">
+      <h1 class="mat-title mb-0">
+        {{ (isSubOption ? 'Sub Option ' : 'Option ') + (index + 1) }}
+      </h1>
+      <button [matTooltip]="'Delete' + (isSubOption ? ' Sub ' : ' ') + 'Pricing Option ' + (index + 1)"
+              mat-icon-button
+              *ngIf="canRemove"
+              [disabled]="disabled"
+              type="button"
+              (click)="remove.emit(formGroup)"
+              color="warn">
+        <mat-icon aria-label="Delete Pricing Option">close</mat-icon>
+      </button>
+    </div>
+
+
+    <div class="row mt-1">
+
+      <div class="col-lg-5">
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+
+          <input matInput
+                 formControlName="name">
+
+          <mat-error *ngIf="formGroup.get('name').hasError('required')">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-lg-2">
+        <mat-form-field>
+          <mat-label>Capacity</mat-label>
+          <mat-select formControlName="capacity">
+            <mat-option *ngFor="let item of capacityArray" [value]="item">
+              {{ item }}
+            </mat-option>
+          </mat-select>
+
+          <mat-error *ngIf="formGroup.get('capacity').hasError('required')">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-lg-3">
+        <mat-form-field>
+          <mat-label>Price</mat-label>
+
+          <input matInput
+                 type="number"
+                 formControlName="price">
+
+          <mat-error *ngIf="formGroup.get('price').hasError('required')">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-lg-2">
+        <mat-form-field>
+          <mat-label>Has Wait List</mat-label>
+          <mat-select formControlName="has_wait_list" required>
+            <mat-option [value]="true">
+              Yes
+            </mat-option>
+
+            <mat-option [value]="false">
+              No
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div *ngIf="subOptionsLength">
+      <div class="row">
+        <div class="col-md-4">
+          <mat-form-field>
+            <mat-label>Sub Option</mat-label>
+            <mat-select formControlName="sub_options_preset">
+              <mat-option [value]="0">
+                None Required
+              </mat-option>
+
+              <mat-option [value]="1">
+                One Required
+              </mat-option>
+
+              <mat-option [value]="2">
+                Multi Required
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div *ngIf="isSubOptionPresetMulti" class="col-md-8">
+          <mat-form-field>
+            <mat-label>Minimum Required Sub Options</mat-label>
+            <mat-select formControlName="multi_sub_options_required">
+              <mat-option *ngFor="let option of minSubOptionsArray" [value]="option">
+                {{ option }} Required
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <ch-price-group
+        class="d-block pl-4 mb-3"
+        *ngFor="let priceFormGroup of subOptions?.controls; let i = index"
+        (addSubOption)="addSubOption.emit(priceFormGroup)"
+        [isSubOption]="true"
+        [parentFormGroup]="formGroup"
+        [index]="i"
+        (remove)="remove.emit(priceFormGroup)"
+        [formGroup]="priceFormGroup" [canRemove]="true">
+      </ch-price-group>
+    </div>
+
+    <div *ngIf="!isSubOption" class="w-100 clearfix">
+      <button mat-button
+              type="button"
+              color="primary"
+              class="float-right mr-1"
+              [disabled]="disabled"
+              (click)="triggerAddSubOption()">Add Sub Option</button>
+    </div>
+  </div>
+
+</div>
+
+

@@ -1,0 +1,33 @@
+<div [formGroup]="formGroup">
+  <div class="optionContainer"
+       *ngFor="let option of options; let i = index"
+  >
+    <ng-container *ngIf="{type: type$ | async} as item">
+      <mat-icon *ngIf="item.type === questionTypeEnum.MultipleChoice">radio_button_unchecked</mat-icon>
+      <mat-icon *ngIf="item.type === questionTypeEnum.Checkboxes">check_box_outline_blank</mat-icon>
+      <span *ngIf="item.type === questionTypeEnum.Dropdown">{{ i + 1 }}.</span>
+    </ng-container>
+
+    <mat-form-field appearance="standard" class="mx-2" [style.fontSize.px]="13">
+      <input matInput [formControlName]="option.id">
+    </mat-form-field>
+    <button mat-icon-button
+            aria-label="Delete"
+            type="button"
+            *ngIf="(isActive$ | async) && (options.length > 1)"
+            (click)="removeOption(option)"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+</div>
+<button mat-button
+        color="primary"
+        aria-label="Add another option"
+        type="button"
+        *ngIf="isActive$ | async"
+        (click)="addOption()">
+  Add Another
+</button>
+
