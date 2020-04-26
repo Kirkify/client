@@ -217,6 +217,11 @@
   resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-9.1.2.tgz#01b6e289c43148378a54a616681f24d9e8b87183"
   integrity sha512-0BnDIFbIAtFKS/2HDI0efcnW3DSkAAFhUWluBnssvwGzuMHikOKGeamuWM27ki3IzPQKGJ7fGS2fz8A7sMeIYQ==
 
+"@angular/material-moment-adapter@^9.2.1":
+  version "9.2.1"
+  resolved "https://registry.yarnpkg.com/@angular/material-moment-adapter/-/material-moment-adapter-9.2.1.tgz#21cf436786846e5674691fb2315950bee5500811"
+  integrity sha512-i3tbL3DJQspO23cPAgW6pAvztuv2D8tkGhxl+bTUlq8FgGBqKrOa0T/maN1fik46AXZojowUVZoCG7EvV2T7nQ==
+
 "@angular/material@^9.2.1":
   version "9.2.1"
   resolved "https://registry.yarnpkg.com/@angular/material/-/material-9.2.1.tgz#99264d2bd3279dfd631d797f592177d59a559e9f"

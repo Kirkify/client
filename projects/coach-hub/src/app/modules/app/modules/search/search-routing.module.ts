@@ -12,7 +12,7 @@ const routes: Routes = [
       { path: '', pathMatch: 'full', component: SearchComponent },
       {
         path: 'programs/:id',
-        loadChildren: '../program-viewer/program-viewer.module#ProgramViewerModule'
+        loadChildren: () => import('../program-viewer/program-viewer.module').then(m => m.ProgramViewerModule),
       }
     ]
   }

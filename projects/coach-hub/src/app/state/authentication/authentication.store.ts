@@ -10,6 +10,7 @@ export interface AuthenticationState {
   accessToken: AccessTokenInterface;
   roles: RoleEnum[];
   rememberMe: boolean;
+  isTokenRefreshing: boolean;
 }
 
 export function createInitialState(): AuthenticationState {
@@ -17,7 +18,8 @@ export function createInitialState(): AuthenticationState {
     user: null,
     accessToken: null,
     roles: [],
-    rememberMe: false
+    rememberMe: false,
+    isTokenRefreshing: false
   };
 }
 
@@ -31,7 +33,11 @@ export class AuthenticationStore extends Store<AuthenticationState> {
     super(createInitialState());
   }
 
-  updateUser(token: TokenInterface, rememberMe: boolean) {
+  updateUser(token: TokenInterface, rememberMe?: boolean) {
+    if (rememberMe === undefined) {
+      rememberMe = this.getValue().rememberMe;
+    }
+
     this.update({
       user: token.user,
       accessToken: {
