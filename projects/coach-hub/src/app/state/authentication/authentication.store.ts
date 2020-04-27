@@ -4,6 +4,7 @@ import { UserInterface } from './models/user.interface';
 import { AccessTokenInterface } from './models/access-token.interface';
 import { RoleEnum } from './models/role.enum';
 import { TokenInterface } from './models/token.interface';
+import { UpdateUserInterface } from './models/update-user.interface';
 
 export interface AuthenticationState {
   user: UserInterface;
@@ -33,21 +34,28 @@ export class AuthenticationStore extends Store<AuthenticationState> {
     super(createInitialState());
   }
 
-  updateUser(token: TokenInterface, rememberMe?: boolean) {
-    if (rememberMe === undefined) {
-      rememberMe = this.getValue().rememberMe;
-    }
+  updateUser(params: UpdateUserInterface) {
+
+    const {
+      rememberMe = this.getValue().rememberMe,
+      isTokenRefreshing = this.getValue().isTokenRefreshing
+    } = params;
 
     this.update({
-      user: token.user,
+      user: params.token.user,
       accessToken: {
-        value: token.access_token,
-        token_type: token.token_type,
-        expires_in: token.expires_in
+        value: params.token.access_token,
+        token_type: params.token.token_type,
+        expires_in: params.token.expires_in
       },
-      roles: token.roles,
-      rememberMe
+      roles: params.token.roles,
+      rememberMe,
+      isTokenRefreshing
     });
+  }
+
+  updateRefreshToken(isTokenRefreshing: boolean) {
+    this.update({ isTokenRefreshing });
   }
 }
 

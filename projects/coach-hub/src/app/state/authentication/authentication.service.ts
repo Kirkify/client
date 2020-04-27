@@ -15,6 +15,7 @@ import { AuthenticationQuery } from './authentication.query';
 import { JwtClass } from './models/jwt/jwt.class';
 import { CustomHeadersEnum } from './models/custom-headers.enum';
 import { AccessTokenInterface } from './models/access-token.interface';
+import { TokenService } from '../token/token.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -26,12 +27,16 @@ export class AuthenticationService {
   constructor(
     private store: AuthenticationStore,
     private query: AuthenticationQuery,
+    private service: TokenService,
     private http: HttpClient,
     private router: Router,
     @Inject(STORAGE_PROVIDER_KEY) private persistStorage: PersistState
   ) {
   }
 
+  setRedirectUrl(url: string) {
+
+  }
   logout(force = false) {
     console.log('Logging you out securely now ...');
 
@@ -49,7 +54,7 @@ export class AuthenticationService {
   }
 
   finishLogout() {
-    // Check if persist is even needed
+    // TODO: Check if persist is even needed
     this.persistStorage.clear();
     resetStores();
     this.router.navigate([ '/' ]);
@@ -59,10 +64,20 @@ export class AuthenticationService {
   login(user: LoginInterface) {
     const path = '/login';
 
+    // By adding this custom header the token interceptor will not add a token to the request
+    const httpOptions = {
+      headers: new HttpHeaders({
+        [ CustomHeadersEnum.TokenFree ]: ''
+      }),
+      withCredentials: true
+    };
+
     return this.http
-      .post<TokenInterface>(environment.api_url + path, JSON.stringify(user), { withCredentials: true })
+      .post<TokenInterface>(environment.api_url + path, JSON.stringify(user), httpOptions)
       .pipe(
-        tap(res => this.store.updateUser(res, user.rememberMe))
+        tap(token => {
+          this.service.setAccessToken(token, user.rememberMe);
+        })
       );
   }
 
@@ -79,7 +94,9 @@ export class AuthenticationService {
     return this.http
       .post<TokenInterface>(environment.api_url + path, JSON.stringify({ email, token: verificationToken }))
       .pipe(
-        tap(res => this.store.updateUser(res, true))
+        tap(token => {
+          this.service.setAccessToken(token, true);
+        })
       );
   }
 
@@ -90,18 +107,14 @@ export class AuthenticationService {
     return this.http
       .post<TokenInterface>(environment.api_url + path, JSON.stringify({ ...credentials }))
       .pipe(
-        tap(res => this.store.updateUser(res, true))
+        tap(token => {
+          this.service.setAccessToken(token, true);
+        })
       );
   }
 
-  selectIsAuthenticated() {
-    return this.query.selectIsAuthenticated$;
-  }
-
   selectIsTokenRefreshing() {
-    return this._isTokenRefreshingSubject.asObservable().pipe(
-      shareReplay(1)
-    );
+    return this.query.selectIsTokenRefreshing$;
   }
 
   selectTokenWhenNotRefreshing() {
@@ -136,8 +149,6 @@ export class AuthenticationService {
   }
 
   refreshToken(): Observable<TokenInterface> {
-    // We are now beginning the refresh so mark the subject as true
-    this._isTokenRefreshingSubject.next(true);
 
     const path = '/login/refresh';
 
@@ -150,7 +161,7 @@ export class AuthenticationService {
     // By adding this custom header the token interceptor will allow it through
     const httpOptions = {
       headers: new HttpHeaders({
-        [ CustomHeadersEnum.Refresh ]: ''
+        [ CustomHeadersEnum.TokenFree ]: ''
       }),
       withCredentials: true
     };
@@ -161,21 +172,10 @@ export class AuthenticationService {
       .pipe(
         tap(token => {
           // Successful so update with new token
-          this.store.updateUser(token)
-          // We have now completed the refresh so set back to false
-          this._isTokenRefreshingSubject.next(false);
-        }),
-        catchError(err => {
-          // Refresh failed so set back to false
-          this._isTokenRefreshingSubject.next(false);
-          // And force a logout
-          this.logout(true);
-          // Throw forward
-          return throwError(err);
-        }),
-        finalize(() => {
-          // In case a refresh request was somehow cancelled mid flight
-          this._isTokenRefreshingSubject.next(false);
+          // We also have completed the refresh so set back isRefreshingToken to false
+          this.store.updateUser({
+            token
+          });
         })
       );
   }
@@ -189,7 +189,7 @@ export class AuthenticationService {
   private isAccessTokenExpired(accessToken: string) {
     if (accessToken !== null && this._shouldCheckIfTokenIsExpired) {
       const jwtHelper = new JwtClass();
-      const isTokenExpired = jwtHelper.isTokenExpired(accessToken);
+      const isTokenExpired = jwtHelper.isTokenExpired(accessToken, 0);
 
       if (isTokenExpired) {
         if (this._lastTimeTokenExpired !== null) {

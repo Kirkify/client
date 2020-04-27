@@ -10,6 +10,7 @@ import { SPORTS_STORE_NAME } from './app/modules/app/state/sports/sports.store';
 import { COACH_HUB_STORE_NAME } from './app/modules/app/state/coach-hub/coach-hub.store';
 import { PROGRAMS_STORE_NAME } from './app/modules/app/modules/coach/modules/programs/state/programs.store';
 import { COACH_STORE_NAME } from './app/modules/app/modules/coach/state/coach.store';
+import { TOKEN_STORE, TokenState } from './app/state/token/token.store';
 
 if (environment.production) {
   enableProdMode();
@@ -20,6 +21,7 @@ const storage = persistState({
   key: 'ch-state',
 
   include: [
+    TOKEN_STORE,
     AUTHENTICATION_STORE_NAME,
     SPORTS_STORE_NAME,
     COACH_HUB_STORE_NAME,
@@ -28,9 +30,13 @@ const storage = persistState({
   ],
 
   preStorageUpdate(storeName: string, state: any): any {
-    if (storeName === AUTHENTICATION_STORE_NAME) {
-      if ((state as AuthenticationState).rememberMe) {
-        return state;
+    if (storeName === TOKEN_STORE) {
+      if ((state as TokenState).rememberToken) {
+        const tokenState: TokenState = state;
+        return {
+          token: tokenState.token,
+          rememberToken: tokenState.rememberToken
+        } as TokenState;
       }
     } else {
       return state;

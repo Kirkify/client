@@ -1,6 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy, ViewChild, ElementRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LoginInterface } from '../../../../state/authentication/models/login.interface';
+import { ChangeDetectionStrategy, Component, ElementRef, ViewChild } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { EMPTY, Subscription } from 'rxjs';
 import { LoginService } from '../../state/login.service';
 import { VerySimpleLoaderClass } from '../../../../shared/modules/simple-loader/models/very-simple-loader.class';
@@ -11,7 +10,8 @@ import { catchError, takeUntil } from 'rxjs/operators';
   selector: 'ch-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [ LoginService ]
 })
 export class LoginFormComponent {
 
@@ -34,8 +34,9 @@ export class LoginFormComponent {
   constructor(
     private fb: FormBuilder,
     private service: LoginService,
-    private query: LoginQuery
-  ) { }
+    private query: LoginQuery,
+  ) {
+  }
 
   onSubmit() {
 

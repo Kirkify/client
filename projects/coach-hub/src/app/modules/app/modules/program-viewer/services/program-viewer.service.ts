@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { JsonResponseInterface } from '../../../../../shared/models/json-response.interface';
 import { environment } from '../../../../../../environments/environment';
 import { map, tap } from 'rxjs/operators';
 import { ProgramsStore } from '../../../state/programs/programs.store';
 import { ProgramInterface } from '../../../models/program.interface';
+import { JsonResponseInterface } from '../../../../../models/json-response.interface';
 
 @Injectable({
   providedIn: 'root'

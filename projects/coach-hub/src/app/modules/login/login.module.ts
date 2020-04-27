@@ -14,6 +14,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { SimpleLoaderModule } from '../../shared/modules/simple-loader/simple-loader.module';
 import { SimpleMessageModule } from '../../shared/modules/simple-message/simple-message.module';
+import { LoginService } from './state/login.service';
 
 
 @NgModule({
@@ -34,6 +35,6 @@ import { SimpleMessageModule } from '../../shared/modules/simple-message/simple-
     MatCheckboxModule,
     MatProgressSpinnerModule,
     MatProgressBarModule
-  ]
+  ],
 })
 export class LoginModule { }

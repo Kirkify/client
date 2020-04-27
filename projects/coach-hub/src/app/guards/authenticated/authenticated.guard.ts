@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { AuthenticationQuery } from '../../state/authentication/authentication.query';
 import { map, take } from 'rxjs/operators';
 import { RootRoutesEnum } from '../../root-routes.enum';
+import { TokenQuery } from '../../state/token/token.query';
+import { QueryParamsEnum } from '../../models/query-params.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,7 @@ import { RootRoutesEnum } from '../../root-routes.enum';
 export class AuthenticatedGuard implements CanActivate, CanLoad {
 
   constructor(
-    private query: AuthenticationQuery,
+    private query: TokenQuery,
     private router: Router
   ) {
   }
@@ -40,7 +42,11 @@ export class AuthenticatedGuard implements CanActivate, CanLoad {
             // TODO: Query params are currently not being saved should probably add logic for that
             // const pathName = location.pathname;
             // this.authService.redirectUrl = pathName.startsWith(url) ? pathName : pathName + url;
-            this.router.navigate([ RootRoutesEnum.Login ]);
+            this.router.navigate([ RootRoutesEnum.Login ], {
+              queryParams: {
+                [ QueryParamsEnum.RedirectTo ]: location.pathname + location.search
+              }
+            });
             // this is executed on a 401 or on any error
             return false;
           }

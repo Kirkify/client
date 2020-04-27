@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { ProgramPriceInterface } from '../../../../models/program-price.interface';
 import { ProgramPriceSubOptionsPresetEnum } from '../../../../models/program-price-sub-options-preset.enum';
-import { MatSelectionListChange } from '@angular/material/typings/list';
-import { MatCheckbox, MatCheckboxChange, MatSelectionList } from '@angular/material';
+import { MatCheckbox, MatCheckboxChange } from '@angular/material/checkbox';
+import { MatSelectionList, MatSelectionListChange } from '@angular/material/list';
 
 @Component({
   selector: 'ch-program-price-selector',

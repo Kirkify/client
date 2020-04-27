@@ -1,5 +1,3 @@
-import { AccessTokenInterface } from '../access-token.interface';
-
 export class JwtClass {
   urlBase64Decode(str: string) {
     let output = str.replace(/-/g, '+').replace(/_/g, '/');
@@ -39,13 +37,15 @@ export class JwtClass {
     }
 
     // If you want to convert the timestamp to UTC
-    // const date = new Date(0);
-    // date.setUTCSeconds(decoded.exp);
+    const date = new Date(0);
+    date.setUTCSeconds((decoded as any).exp);
+    console.log(date);
 
-    return decoded.exp;
+    return (decoded as any).exp;
   }
 
   public isTokenExpired(accessToken: string, offsetSeconds?: number): boolean {
+    return false;
     const tokenExpiresAt = this.getTokenExpirationDate(accessToken);
     // TODO: Make offset 5 minutes (60 * 5)
     offsetSeconds = offsetSeconds || (60 * 5);

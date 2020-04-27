@@ -6,7 +6,9 @@ import { filter, map, shareReplay } from 'rxjs/operators';
 @Injectable({ providedIn: 'root' })
 export class AuthenticationQuery extends Query<AuthenticationState> {
 
-  constructor(protected store: AuthenticationStore) {
+  constructor(
+    protected store: AuthenticationStore
+  ) {
     super(store);
   }
 
@@ -21,7 +23,13 @@ export class AuthenticationQuery extends Query<AuthenticationState> {
     })
   );
 
+  selectAccessTokenStringWhenAvailable$ = this.selectAccessTokenString$.pipe(
+    filter(token => token !== '')
+  );
+
   selectIsAuthenticated$ = this.select(({ user }) => user !== null);
+
+  selectIsTokenRefreshing$ = this.select(store => store.isTokenRefreshing);
 
   selectUser() {
     return this.select(state => state.user);

@@ -15,7 +15,7 @@ const routes: Routes = [
     path: '',
     component: AppComponent,
     pathMatch: 'prefix',
-    canActivate: [ InitialStateGuardService ],
+    // canActivate: [ InitialStateGuardService ],
     children: [
       {
         path: '',

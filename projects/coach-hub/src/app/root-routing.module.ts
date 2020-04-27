@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { RootRoutesEnum } from './root-routes.enum';
 import { NotFoundComponent } from './modules/not-found/not-found.component';
 import { AuthenticatedGuard } from './guards/authenticated/authenticated.guard';
+import { GuestGuard } from './guards/guest/guest.guard';
 
 
 const routes: Routes = [
@@ -12,7 +13,9 @@ const routes: Routes = [
   },
   {
     path: RootRoutesEnum.Login,
-    loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule)
+    loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule),
+    canLoad: [ GuestGuard ],
+    canActivate: [ GuestGuard ]
   },
   {
     path: RootRoutesEnum.SignUp,
