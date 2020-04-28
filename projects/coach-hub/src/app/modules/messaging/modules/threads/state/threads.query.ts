@@ -21,7 +21,7 @@ export class ThreadsQuery extends QueryEntity<ThreadsState, ThreadInterface> {
   constructor(
     protected store: ThreadsStore,
     private threadParticipantsQuery: ThreadParticipantsQuery,
-    private currentUserQuery: AuthenticationQuery
+    private authQuery: AuthenticationQuery
   ) {
     super(store);
   }
@@ -37,10 +37,10 @@ export class ThreadsQuery extends QueryEntity<ThreadsState, ThreadInterface> {
   }
 
   selectThreadWithUserParticipants(threadId: number): Observable<ThreadParticipantsInterface> {
-    return combineLatest(
+    return combineLatest([
       this.selectEntity(threadId),
       this.threadParticipantsQuery.selectUserParticipantsFromThreadId(threadId)
-    ).pipe(
+    ]).pipe(
       auditTime(1),
       map(([ thread, userParticipants ]) => ({
         ...thread,
@@ -52,7 +52,7 @@ export class ThreadsQuery extends QueryEntity<ThreadsState, ThreadInterface> {
   selectAllThreadsWithUnread(): Observable<ThreadUnreadInterface[]> {
     return combineLatest([
       this.selectAll(),
-      this.currentUserQuery.selectUserIfNotNull(),
+      this.authQuery.selectUser$,
       this.threadParticipantsQuery.selectAll()
     ]).pipe(
       auditTime(1),

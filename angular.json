@@ -33,7 +33,7 @@
               "projects/coach-hub/src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "projects/coach-hub/src/styles-material-custom.scss",
               "projects/coach-hub/src/styles.scss"
             ],
             "scripts": []

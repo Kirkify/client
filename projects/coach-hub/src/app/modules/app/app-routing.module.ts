@@ -15,16 +15,12 @@ const routes: Routes = [
     path: '',
     component: AppComponent,
     pathMatch: 'prefix',
-    // canActivate: [ InitialStateGuardService ],
+    canActivate: [ InitialStateGuardService ],
     children: [
       {
         path: '',
         pathMatch: 'full',
         loadChildren: () => import('./modules/landing/landing.module').then(m => m.LandingModule)
-      },
-      {
-        path: CoachHubRoutesEnum.Search,
-        loadChildren: () => import('./modules/search/search.module').then(m => m.SearchModule)
       },
       {
         path: CoachHubRoutesEnum.Coach,

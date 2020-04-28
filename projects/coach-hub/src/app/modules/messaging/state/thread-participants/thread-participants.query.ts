@@ -14,7 +14,7 @@ import { UserParticipantInterface } from '../../modules/threads/state/models/use
 export class ThreadParticipantsQuery extends QueryEntity<ThreadParticipantsState, ParticipantInterface> {
   constructor(
     protected store: ThreadParticipantsStore,
-    private currentUserQuery: AuthenticationQuery,
+    private authQuery: AuthenticationQuery,
     private usersQuery: UsersQuery
     ) {
     super(store);
@@ -27,7 +27,7 @@ export class ThreadParticipantsQuery extends QueryEntity<ThreadParticipantsState
   }
 
   selectCurrentUserParticipantFromThread(thread: ThreadInterface) {
-    return this.currentUserQuery.selectUserIfNotNull().pipe(
+    return this.authQuery.selectUser$.pipe(
       mergeMap(user => this.selectAll({
         filterBy: entity => entity.thread_id === thread.id && entity.user_id === user.id
       }).pipe(
@@ -72,7 +72,7 @@ export class ThreadParticipantsQuery extends QueryEntity<ThreadParticipantsState
   }
 
   selectThreadNameForThread(thread: ThreadInterface) {
-    return this.currentUserQuery.selectUserIfNotNull().pipe(
+    return this.authQuery.selectUser$.pipe(
       map(currentUser => currentUser.id),
       mergeMap(currentUserId => this.selectParticipantsFromThreadId(thread.id).pipe(
         map(participants => participants.filter(p => p.user_id !== currentUserId)),

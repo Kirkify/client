@@ -1,0 +1,51 @@
+<ch-form-container title="Thanks for signing up."
+                   description="Before continuing we require you to verify your email address.  We have sent you a
+      confirmation email, please click the button in that email, or enter the confirmation code below."
+                   [maxWidth]="650"
+>
+  <form [formGroup]="formGroup" (ngSubmit)="verifyEmail()">
+    <ch-simple-loader [loader]="loader"></ch-simple-loader>
+
+    <div class="row">
+      <mat-form-field class="col-12" [class.d-none]="!showEmailField">
+        <input matInput
+               placeholder="Email"
+               formControlName="email"
+               tabindex="1"
+               autofocus>
+
+        <mat-error *ngIf="formGroup.get('email').hasError('required')">
+          An email is required
+        </mat-error>
+
+        <mat-error *ngIf="formGroup.get('email').hasError('email')">
+          Please enter a valid email address
+        </mat-error>
+
+      </mat-form-field>
+
+      <mat-form-field class="col-12">
+        <input matInput
+               placeholder="Confirmation Code"
+               formControlName="token"
+               tabindex="2"
+               autofocus>
+
+        <mat-error *ngIf="formGroup.get('token').hasError('required')">
+          A Confirmation Code is required to continue
+        </mat-error>
+
+      </mat-form-field>
+    </div>
+
+    <ch-simple-message [message]="errors$ | async"></ch-simple-message>
+
+    <button mat-raised-button
+            class="mt-1"
+            color="primary"
+            type="submit">
+      Confirm Email
+    </button>
+
+  </form>
+</ch-form-container>

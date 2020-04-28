@@ -17,7 +17,7 @@ import { UsersQuery } from '../users/users.query';
 export class ThreadMessagesQuery extends QueryEntity<ThreadMessagesState, MessageInterface> {
   constructor(
     protected store: ThreadMessagesStore,
-    private currentUserQuery: AuthenticationQuery,
+    private authQuery: AuthenticationQuery,
     private usersQuery: UsersQuery
   ) {
     super(store);
@@ -38,7 +38,7 @@ export class ThreadMessagesQuery extends QueryEntity<ThreadMessagesState, Messag
   }
 
   selectUserNameForMessage(message: MessageInterface) {
-    return this.currentUserQuery.selectUserIfNotNull().pipe(
+    return this.authQuery.selectUser$.pipe(
       mergeMap(currentUser => {
         if (currentUser.id === message.user_id) {
           return of('You');

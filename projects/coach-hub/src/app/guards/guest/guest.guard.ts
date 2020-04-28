@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivateChild, CanLoad, Route, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanLoad, Route, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { take, map, mergeMap } from 'rxjs/operators';
-import { TokenQuery } from '../../state/token/token.query';
+import { map, mergeMap, take } from 'rxjs/operators';
 import { RootRoutingQuery } from '../../state/root-routing/root-routing.query';
+import { AuthenticationQuery } from '../../state/authentication/authentication.query';
 
 // We only want unauthenticated users to be able to route to these pages
 @Injectable({ providedIn: 'root' })
 export class GuestGuard implements CanActivate, CanActivateChild, CanLoad {
   constructor(
-    private query: TokenQuery,
+    private query: AuthenticationQuery,
     private rootRoutingQuery: RootRoutingQuery,
     private router: Router) {
   }

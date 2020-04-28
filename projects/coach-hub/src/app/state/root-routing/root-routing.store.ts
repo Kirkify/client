@@ -4,11 +4,13 @@ import { RootRoutesEnum } from '../../root-routes.enum';
 
 export interface AppRoutingState {
    defaultRoute: string;
+   forgotPasswordRoute: string;
 }
 
 export function createInitialState(): AppRoutingState {
   return {
-    defaultRoute: RootRoutesEnum.App
+    defaultRoute: RootRoutesEnum.App,
+    forgotPasswordRoute: `/${RootRoutesEnum.ForgotPassword}`
   };
 }
 

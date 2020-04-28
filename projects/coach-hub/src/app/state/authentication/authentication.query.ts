@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Query } from '@datorama/akita';
-import { AuthenticationStore, AuthenticationState } from './authentication.store';
-import { filter, map, shareReplay } from 'rxjs/operators';
+import { filterNil, Query } from '@datorama/akita';
+import { AuthenticationState, AuthenticationStore } from './authentication.store';
+import { map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationQuery extends Query<AuthenticationState> {
@@ -12,37 +12,33 @@ export class AuthenticationQuery extends Query<AuthenticationState> {
     super(store);
   }
 
-  selectAccessToken$ = this.select(store => store.accessToken);
+  selectToken$ = this.select(store => store.token);
 
-  selectAccessTokenString$ = this.selectAccessToken$.pipe(
-    map(accessToken => {
-      if (accessToken) {
-        return `${accessToken.token_type} ${accessToken.value}`;
+  selectAccessTokenString$ = this.selectToken$.pipe(
+    map(token => {
+      if (token) {
+        return `${token.token_type} ${token.access_token}`;
       }
       return '';
     })
   );
 
-  selectAccessTokenStringWhenAvailable$ = this.selectAccessTokenString$.pipe(
-    filter(token => token !== '')
+  selectIsAccessTokenRefreshing$ = this.select(store => store.isAccessTokenRefreshing);
+
+  selectIsAuthenticated$ = this.selectToken$.pipe(
+    map(token => token !== null)
   );
 
-  selectIsAuthenticated$ = this.select(({ user }) => user !== null);
+  selectUser$ = this.selectToken$.pipe(
+    filterNil,
+    map(token => token.user)
+  );
 
-  selectIsTokenRefreshing$ = this.select(store => store.isTokenRefreshing);
-
-  selectUser() {
-    return this.select(state => state.user);
-  }
-
-  selectUserIfNotNull() {
-    return this.selectUser().pipe(
-      filter(user => user !== null),
-      shareReplay(1)
-    );
+  getUser() {
+    return this.getValue().token.user;
   }
 
   getUserId() {
-    return this.getValue().user.id;
+    return this.getUser().id;
   }
 }

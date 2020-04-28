@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { RootRoutesEnum } from './root-routes.enum';
 import { NotFoundComponent } from './modules/not-found/not-found.component';
 import { AuthenticatedGuard } from './guards/authenticated/authenticated.guard';
@@ -13,17 +13,21 @@ const routes: Routes = [
   },
   {
     path: RootRoutesEnum.Login,
-    loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule),
+    loadChildren: () => import('./modules/authentication/login/login.module').then(m => m.LoginModule),
     canLoad: [ GuestGuard ],
     canActivate: [ GuestGuard ]
   },
   {
     path: RootRoutesEnum.SignUp,
-    loadChildren: () => import('./modules/sign-up/sign-up.module').then(m => m.SignUpModule)
+    loadChildren: () => import('./modules/authentication/sign-up/sign-up.module').then(m => m.SignUpModule)
   },
   {
     path: RootRoutesEnum.ForgotPassword,
-    loadChildren: () => import('./modules/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule)
+    loadChildren: () => import('./modules/authentication/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule)
+  },
+  {
+    path: RootRoutesEnum.Search,
+    loadChildren: () => import('./modules/search/search.module').then(m => m.SearchModule)
   },
   {
     path: RootRoutesEnum.App,

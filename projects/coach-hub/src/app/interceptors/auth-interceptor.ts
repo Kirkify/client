@@ -3,15 +3,15 @@ import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
 import { catchError, filter, mergeMap, switchMap, take } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { CustomHeadersEnum } from '../state/authentication/models/custom-headers.enum';
-import { TokenService } from '../state/token/token.service';
-import { TokenQuery } from '../state/token/token.query';
+import { AuthenticationService } from '../state/authentication/authentication.service';
+import { AuthenticationQuery } from '../state/authentication/authentication.query';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
   constructor(
-    private tokenService: TokenService,
-    private query: TokenQuery
+    private service: AuthenticationService,
+    private query: AuthenticationQuery
   ){}
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
@@ -84,7 +84,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   private _attachTokenAndSendRequest(req: HttpRequest<any>, next: HttpHandler) {
     // Try grabbing the auth token
-    return this.tokenService.selectAccessTokenString$.pipe(
+    return this.service.selectAccessTokenString$.pipe(
       // We only care for the first emitted value
       take(1),
       mergeMap(token => {
@@ -113,7 +113,7 @@ export class AuthInterceptor implements HttpInterceptor {
         if (isRefreshing) {
           return this._waitForRefreshToFinish(req, next);
         }
-        return this.tokenService.refreshToken().pipe(
+        return this.service.refreshToken().pipe(
           switchMap(() => this._attachTokenAndSendRequest(req, next))
         );
       })

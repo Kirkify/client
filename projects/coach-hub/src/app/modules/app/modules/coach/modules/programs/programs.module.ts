@@ -12,6 +12,7 @@ import { ViewComponent } from './components/view/view.component';
 import { SimpleMessageModule } from '../../../../../../shared/modules/simple-message/simple-message.module';
 import { SimpleLoaderModule } from '../../../../../../shared/modules/simple-loader/simple-loader.module';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { CanDeactivateGuard } from '../../../../../../guards/can-deactivate/can-deactivate-guard.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     SimpleLoaderModule,
 
     MatToolbarModule
-  ]
+  ],
+  providers: [ CanDeactivateGuard ]
 })
 export class ProgramsModule {
 }

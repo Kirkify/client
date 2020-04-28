@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, CanLoad, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthenticationQuery } from '../../state/authentication/authentication.query';
 import { map, take } from 'rxjs/operators';
 import { RootRoutesEnum } from '../../root-routes.enum';
-import { TokenQuery } from '../../state/token/token.query';
 import { QueryParamsEnum } from '../../models/query-params.enum';
 
 @Injectable({
@@ -13,7 +12,7 @@ import { QueryParamsEnum } from '../../models/query-params.enum';
 export class AuthenticatedGuard implements CanActivate, CanLoad {
 
   constructor(
-    private query: TokenQuery,
+    private query: AuthenticationQuery,
     private router: Router
   ) {
   }

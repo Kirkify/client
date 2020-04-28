@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CrudFormInterface } from '../../../../../../../../shared/modules/crud/models/crud-form.interface';
 import { ActivatedRoute } from '@angular/router';
@@ -11,7 +11,7 @@ import { selectParam } from '../../../../../../../../shared/helpers/select-query
   templateUrl: './edit.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class EditComponent implements OnInit, CanComponentDeactivateInterface {
+export class EditComponent implements OnInit, OnDestroy, CanComponentDeactivateInterface {
   @ViewChild('form') form: CrudFormInterface;
 
   programId$: Observable<string>;
@@ -25,6 +25,10 @@ export class EditComponent implements OnInit, CanComponentDeactivateInterface {
     this.programId$ = selectParam(this.route).pipe(
       filterNil
     );
+  }
+
+  ngOnDestroy(): void {
+    console.error('DESTROYING TO');
   }
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {

@@ -13,4 +13,6 @@ export class RootRoutingQuery extends Query<AppRoutingState> {
   selectDefaultRouteOnce$ = this.select(store => store.defaultRoute).pipe(
     take(1)
   );
+
+  selectForgotPasswordRoute$ = this.select(store => store.forgotPasswordRoute);
 }

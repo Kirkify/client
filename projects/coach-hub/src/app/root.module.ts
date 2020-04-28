@@ -14,11 +14,13 @@ import { RECAPTCHA_SETTINGS, RecaptchaSettings } from 'ng-recaptcha';
 import { setAppInjector } from './app-injector';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from '@angular/material/form-field';
+import { NavigationShellModule } from './shared/modules/navigation-shell/navigation-shell.module';
 
 @NgModule({
   declarations: [
     RootComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,15 +30,21 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     environment.production ? [] : AkitaNgDevtools,
     AkitaNgRouterStoreModule,
 
+    NavigationShellModule,
     NotFoundModule,
 
-    MatDialogModule
+    // ConfirmDialog Component
+    MatDialogModule,
   ],
   providers: [
     httpInterceptorProviders,
     {
       provide: RECAPTCHA_SETTINGS,
       useValue: { siteKey: '6LewhT8UAAAAALO89pk5gDOhrUKOCqka-XbJvW6z' } as RecaptchaSettings
+    },
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'outline' } as MatFormFieldDefaultOptions
     }
   ],
   bootstrap: [ RootComponent ]
