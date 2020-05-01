@@ -23,10 +23,11 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { SharedPipesModule } from '../../shared/pipes/shared-pipes.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ThreadsModule } from './modules/threads/threads.module';
 import { MessageCreatorModule } from './modules/message-creator/message-creator.module';
+import { FullNameModule } from '../../shared/pipes/full-name/full-name.module';
+import { TimeFromNowModule } from '../../shared/pipes/time-from-now/time-from-now.module';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { MessageCreatorModule } from './modules/message-creator/message-creator.
     ThreadsModule,
     MessageCreatorModule,
     AutocompleteChipsModule,
-    SharedPipesModule,
+    FullNameModule,
+    TimeFromNowModule,
 
     MatListModule,
     MatIconModule,
@@ -69,4 +71,5 @@ import { MessageCreatorModule } from './modules/message-creator/message-creator.
     ParticipantManagerDialogComponent
   ]
 })
-export class MessagingModule { }
+export class MessagingModule {
+}

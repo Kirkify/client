@@ -15,7 +15,7 @@ import { setAppInjector } from './app-injector';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from '@angular/material/form-field';
-import { NavigationShellModule } from './shared/modules/navigation-shell/navigation-shell.module';
+import { AppContainerModule } from './modules/app-container/app-container.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,7 @@ import { NavigationShellModule } from './shared/modules/navigation-shell/navigat
     environment.production ? [] : AkitaNgDevtools,
     AkitaNgRouterStoreModule,
 
-    NavigationShellModule,
+    AppContainerModule,
     NotFoundModule,
 
     // ConfirmDialog Component

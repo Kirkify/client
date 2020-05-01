@@ -1,7 +1,7 @@
 <div class="loading-container" *ngIf="loader.selectLoading() | async">
   <div class="spinner-container" [class.hasBackground]="loader.selectHasBackground() | async">
     <div class="align-self-center mx-auto text-center cool">
-      <mat-spinner class="mx-auto"></mat-spinner>
+      <mat-spinner color="accent" class="mx-auto"></mat-spinner>
       <p class="m-0 pt-1">{{ loader.selectMessage() | async }}</p>
     </div>
   </div>
@@ -10,7 +10,6 @@
     <button
       mat-icon-button
       (click)="cancel()"
-      color="primary"
       type="button"
       class="align-self-start m-2 text-white"
     >

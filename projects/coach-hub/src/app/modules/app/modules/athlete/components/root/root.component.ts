@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { NavListItemInterface } from '../../../../../../shared/modules/drawer-container/models/nav-list-item.interface';
-import { CoachRoutesEnum } from '../../../coach/coach-routes.enum';
+import { CoachRoutesEnum } from '../../../../../coach/coach-routes.enum';
 import { AthleteRoutesEnum } from '../../athlete-routes.enum';
 
 @Component({

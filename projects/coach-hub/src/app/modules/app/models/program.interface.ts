@@ -1,4 +1,4 @@
-import { CreateProgramInterface } from '../modules/coach/modules/programs/models/create-program.interface';
+import { CreateProgramInterface } from '../../coach/modules/programs/models/create-program.interface';
 import { CoachBaseProfileInterface } from './coach-base-profile.interface';
 import { ProgramPriceInterface } from './program-price.interface';
 import { FormArray } from '@angular/forms';

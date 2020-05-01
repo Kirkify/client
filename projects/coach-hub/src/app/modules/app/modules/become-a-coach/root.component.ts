@@ -1,9 +1,0 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-
-@Component({
-  selector: 'ch-root',
-  template: '<router-outlet></router-outlet>',
-  changeDetection: ChangeDetectionStrategy.OnPush
-})
-export class RootComponent {
-}

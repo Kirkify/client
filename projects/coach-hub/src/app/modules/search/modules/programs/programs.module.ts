@@ -10,7 +10,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { ProgramListComponent } from './components/program-list/program-list.component';
 import { ProgramDisplayerComponent } from './components/program-displayer/program-displayer.component';
 import { PriceDisplayerComponent } from './components/program-displayer/components/price-displayer/price-displayer.component';
-import { SharedPipesModule } from '../../../../shared/pipes/shared-pipes.module';
+import { TimeDisplayModule } from '../../../../shared/pipes/time-display/time-display.module';
+import { SimpleRouterModule } from '../../../../shared/modules/simple-router/simple-router.module';
 
 
 @NgModule({
@@ -26,13 +27,15 @@ import { SharedPipesModule } from '../../../../shared/pipes/shared-pipes.module'
     CommonModule,
     ProgramsRoutingModule,
 
-    SharedPipesModule,
+    SimpleRouterModule,
     SimpleLoaderModule,
     SimpleMessageModule,
+    TimeDisplayModule,
 
     MatListModule,
     MatCardModule,
     MatButtonModule
   ]
 })
-export class ProgramsModule { }
+export class ProgramsModule {
+}

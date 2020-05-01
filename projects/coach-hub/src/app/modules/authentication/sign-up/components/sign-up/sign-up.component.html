@@ -150,11 +150,19 @@
     <ch-simple-message [message]="errors$ | async"></ch-simple-message>
 
     <button mat-raised-button
-            color="primary"
+            color="accent"
             class="d-block my-3"
             type="submit">
       Sign In
     </button>
 
   </form>
+  <div class="my-3">
+    <mat-divider></mat-divider>
+    <div class="pt-4 text-center">
+      <p class="mat-body d-inline">Already have an account?</p>
+      <a class="mat-body ml-1" [routerLink]="loginRoute">Login</a>
+    </div>
+
+  </div>
 </ch-form-container>

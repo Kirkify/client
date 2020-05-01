@@ -6,9 +6,8 @@ import { SimpleMessageModule } from '../../../../shared/modules/simple-message/s
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { SharedPipesModule } from '../../../../shared/pipes/shared-pipes.module';
 import { MatButtonModule } from '@angular/material/button';
-
+import { TimeFromNowModule } from '../../../../shared/pipes/time-from-now/time-from-now.module';
 
 
 @NgModule({
@@ -24,11 +23,12 @@ import { MatButtonModule } from '@angular/material/button';
 
     SimpleLoaderModule,
     SimpleMessageModule,
-    SharedPipesModule,
+    TimeFromNowModule,
 
     MatListModule,
     MatIconModule,
     MatButtonModule
   ]
 })
-export class ThreadsModule { }
+export class ThreadsModule {
+}

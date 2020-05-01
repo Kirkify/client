@@ -1,17 +1,32 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { ProgramListComponent } from './components/program-list/program-list.component';
+import { ProgramDisplayerComponent } from './components/program-displayer/program-displayer.component';
+import { SimpleRouterComponent } from '../../../../shared/modules/simple-router/simple-router.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: ProgramListComponent
+    component: SimpleRouterComponent,
+    pathMatch: 'prefix',
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: ProgramListComponent
+      },
+      {
+        path: ':id',
+        component: ProgramDisplayerComponent
+      }
+    ]
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  imports: [ RouterModule.forChild(routes) ],
+  exports: [ RouterModule ]
 })
-export class ProgramsRoutingModule { }
+export class ProgramsRoutingModule {
+}

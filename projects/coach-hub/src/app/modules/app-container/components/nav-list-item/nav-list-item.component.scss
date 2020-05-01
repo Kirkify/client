@@ -1,0 +1,6 @@
+@import '~@angular/material/theming';
+
+.active {
+  background: rgba(0,0,0,.06);
+  color: mat-color($mat-deep-orange);
+}

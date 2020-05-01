@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RootComponent } from './root.component';
 import { SearchComponent } from './components/search/search.component';
 import { SearchRoutesEnum } from './search-routes.enum';
 

@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, UrlSegment } from '@angular/router';
+import { RouterModule, Routes, UrlSegment } from '@angular/router';
 import { AppComponent } from './app.component';
 import { CoachHubRoutesEnum } from './coach-hub-routes.enum';
-import { InitialStateGuardService } from './guards/initial-state/initial-state-guard.service';
-import { IsCoachApplicationCompleteGuard } from './guards/is-coach-application-complete/is-coach-application-complete.guard';
-import { IsCoachApplicationNotCompleteGuard } from './guards/is-coach-application-not-complete/is-coach-application-not-complete.guard';
 // import { RootRouteInterface } from '../../shared/models/root-route.interface';
 import { AuthenticatedGuard } from '../../guards/authenticated/authenticated.guard';
 import { RootRouteInterface } from '../../models/root-route.interface';
+import { IsCoachGuard } from '../../guards/coach/is-coach.guard';
 
 
 const routes: Routes = [
@@ -15,7 +13,6 @@ const routes: Routes = [
     path: '',
     component: AppComponent,
     pathMatch: 'prefix',
-    canActivate: [ InitialStateGuardService ],
     children: [
       {
         path: '',
@@ -24,16 +21,11 @@ const routes: Routes = [
       },
       {
         path: CoachHubRoutesEnum.Coach,
-        canActivate: [ AuthenticatedGuard, IsCoachApplicationCompleteGuard ],
-        loadChildren: () => import('./modules/coach/coach.module').then(m => m.CoachModule),
+        canActivate: [ AuthenticatedGuard, IsCoachGuard ],
+        loadChildren: () => import('../coach/coach.module').then(m => m.CoachModule),
         data: {
           routeRoute: CoachHubRoutesEnum.Coach
         } as RootRouteInterface
-      },
-      {
-        path: CoachHubRoutesEnum.BecomeACoach,
-        canActivate: [ AuthenticatedGuard, IsCoachApplicationNotCompleteGuard ],
-        loadChildren: () => import('./modules/become-a-coach/become-a-coach.module').then(m => m.BecomeACoachModule)
       },
       {
         path: CoachHubRoutesEnum.Athlete,
@@ -53,7 +45,7 @@ const routes: Routes = [
 
           return null;
         },
-        loadChildren: () => import('./modules/coaches/coaches.module').then(m => m.CoachesModule)
+        loadChildren: () => import('../coaches/coaches.module').then(m => m.CoachesModule)
       }
     ]
   }

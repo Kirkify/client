@@ -8,7 +8,7 @@ import { environment } from '../../../environments/environment';
 import { resetStores } from '@datorama/akita';
 import { SignUpInterface } from './models/sign-up.interface';
 import { ResetPasswordInterface } from '../../modules/authentication/forgot-password/models/reset-password.interface';
-import { from, Observable } from 'rxjs';
+import { from, Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthenticationQuery } from './authentication.query';
 import { RootRoutesEnum } from '../../root-routes.enum';
@@ -53,11 +53,14 @@ export class AuthenticationService {
   logout(): Observable<any> {
     const path = '/logout';
 
-    return from(this.router.navigate([ RootRoutesEnum.Login])).pipe(
+    return from(this.router.navigate([ '/' ])).pipe(
       take(1),
-      mergeMap(() => this.http.post<string>(environment.api_url + path, null, { withCredentials: true }).pipe(
-        finalize(() => resetStores())
-      ))
+      tap(() => this.store.update({ isLoggingOut: true })),
+      mergeMap(() => {
+        return this.http.post<string>(environment.api_url + path, null, { withCredentials: true }).pipe(
+          finalize(() => resetStores())
+        );
+      })
     );
   }
 
@@ -147,7 +150,7 @@ export class AuthenticationService {
 
       if (isTokenExpired) {
         if (this._lastTimeTokenExpired !== null) {
-          const timeDiffInSeconds = Math.floor((Date.now() - this._lastTimeTokenExpired) / 1000);
+          const timeDiffInSeconds = Math.floor(( Date.now() - this._lastTimeTokenExpired ) / 1000);
 
           // If the clients time is for some reason wrong, we should remove the check for token expired
           if (timeDiffInSeconds <= 60) {

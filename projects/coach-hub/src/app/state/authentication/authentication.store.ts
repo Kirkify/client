@@ -6,13 +6,15 @@ export interface AuthenticationState {
   token: TokenInterface;
   isAccessTokenRefreshing: boolean;
   rememberToken: boolean;
+  isLoggingOut: boolean;
 }
 
 export function createInitialState(): AuthenticationState {
   return {
     token: null,
     isAccessTokenRefreshing: false,
-    rememberToken: false
+    rememberToken: false,
+    isLoggingOut: false
   };
 }
 

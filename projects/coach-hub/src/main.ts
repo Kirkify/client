@@ -6,10 +6,6 @@ import { environment } from './environments/environment';
 import { akitaConfig, enableAkitaProdMode, persistState } from '@datorama/akita';
 import { AUTHENTICATION_STORE_NAME, AuthenticationState } from './app/state/authentication/authentication.store';
 import { STORAGE_PROVIDER_KEY } from './app/models/storage-provider-key';
-import { SPORTS_STORE_NAME } from './app/modules/app/state/sports/sports.store';
-import { COACH_HUB_STORE_NAME } from './app/modules/app/state/coach-hub/coach-hub.store';
-import { PROGRAMS_STORE_NAME } from './app/modules/app/modules/coach/modules/programs/state/programs.store';
-import { COACH_STORE_NAME } from './app/modules/app/modules/coach/state/coach.store';
 
 if (environment.production) {
   enableProdMode();

@@ -1,16 +1,18 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RootRoutingQuery } from '../../../../../state/root-routing/root-routing.query';
 
 @Component({
   selector: 'ch-login',
   templateUrl: './login.component.html',
-  styleUrls: [ './login.component.scss'],
+  styleUrls: [ './login.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
+  signUpRoute = this.query.getSignUpRoute;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(
+    private query: RootRoutingQuery
+  ) {
   }
 
 }

@@ -1,0 +1,19 @@
+<ng-container *ngIf="profile">
+  <h1 class="text-center mat-title">Your Base Profile</h1>
+
+  <div class="headerContainer">
+    <button mat-mini-fab aria-label="Edit Profile"
+            color="primary"
+            class="mr-2"
+            (click)="openDialog()">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <div>
+      <p class="mat-body">Name: <strong>{{ profile.name }}</strong></p>
+      <p class="mat-body">Username: <strong>@{{ profile.username }}</strong></p>
+      <p class="mat-body">Date of birth: <strong>{{ profile.date_of_birth | date:"mediumDate" }}</strong></p>
+      <p class="mat-body">Gender: <strong>{{ profile.gender | genderDisplay }}</strong></p>
+    </div>
+  </div>
+</ng-container>
+

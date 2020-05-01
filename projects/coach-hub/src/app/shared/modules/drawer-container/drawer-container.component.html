@@ -14,10 +14,11 @@
         [matTooltip]="!isExpanded ? item.name : ''"
         class="matItem"
       >
-        <a class="itemContainer" mat-list-item [routerLink]="item.route" routerLinkActive="active"
+        <a class="itemContainer" mat-list-item [routerLink]="item.route" routerLinkActive="active" #rla="routerLinkActive"
         >
           <mat-icon
             matListIcon
+            [color]="rla.isActive ? 'primary' : ''"
             [innerHTML]="item.icon"
           ></mat-icon>
 

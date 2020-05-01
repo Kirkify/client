@@ -36,6 +36,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
+    MatDividerModule
   ],
 })
 export class SignUpModule {

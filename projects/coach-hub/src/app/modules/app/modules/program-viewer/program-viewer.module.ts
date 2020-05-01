@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RootComponent } from './root.component';
 import { SimpleLoaderModule } from '../../../../shared/modules/simple-loader/simple-loader.module';
-import { SharedPipesModule } from '../../../../shared/pipes/shared-pipes.module';
 import { ProgramViewerComponent } from './components/program-viewer/program-viewer.component';
 import { ProgramViewerRoutingModule } from './program-viewer-routing.module';
 import { SimpleMessageModule } from '../../../../shared/modules/simple-message/simple-message.module';
@@ -14,20 +12,21 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import { SimpleRouterModule } from '../../../../shared/modules/simple-router/simple-router.module';
 
 @NgModule({
   declarations: [
-    RootComponent,
     ProgramViewerComponent,
     ProgramPriceSelectorComponent
   ],
   imports: [
     CommonModule,
     ProgramViewerRoutingModule,
+    FormsModule,
+
+    SimpleRouterModule,
     SimpleMessageModule,
     SimpleLoaderModule,
-    SharedPipesModule,
-    FormsModule,
 
     MatButtonModule,
     MatButtonToggleModule,
@@ -38,4 +37,5 @@ import { MatCardModule } from '@angular/material/card';
     MatCheckboxModule
   ]
 })
-export class ProgramViewerModule { }
+export class ProgramViewerModule {
+}

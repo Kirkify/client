@@ -5,5 +5,7 @@ export enum RootRoutesEnum {
   ForgotPassword = 'forgot-password',
   Search = 'search',
   App = 'app',
-  Messaging = 'messaging'
+  Messaging = 'messaging',
+  CoachSignUp = 'become-a-coach',
+  Coach = 'coach'
 }

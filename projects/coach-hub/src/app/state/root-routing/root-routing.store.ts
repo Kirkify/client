@@ -5,12 +5,24 @@ import { RootRoutesEnum } from '../../root-routes.enum';
 export interface AppRoutingState {
    defaultRoute: string;
    forgotPasswordRoute: string;
+   coachRoute: string;
+   signUpRoute: string;
+   loginRoute: string;
+   coachSignUpRoute: string;
+   messagingRoute: string;
+   searchRoute: string;
 }
 
 export function createInitialState(): AppRoutingState {
   return {
-    defaultRoute: RootRoutesEnum.App,
-    forgotPasswordRoute: `/${RootRoutesEnum.ForgotPassword}`
+    defaultRoute: RootRoutesEnum.Search,
+    forgotPasswordRoute: `/${RootRoutesEnum.ForgotPassword}`,
+    coachRoute: RootRoutesEnum.Coach,
+    signUpRoute: `/${RootRoutesEnum.SignUp}`,
+    loginRoute: `/${RootRoutesEnum.Login}`,
+    coachSignUpRoute: `/${RootRoutesEnum.CoachSignUp}`,
+    messagingRoute: `/${RootRoutesEnum.Messaging}`,
+    searchRoute: `/${RootRoutesEnum.Search}`
   };
 }
 

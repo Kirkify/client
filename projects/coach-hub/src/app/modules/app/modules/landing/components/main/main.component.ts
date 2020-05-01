@@ -1,8 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { CoachHubRoutesEnum } from '../../../../coach-hub-routes.enum';
-import { Observable } from 'rxjs';
-import { CoachHubQuery } from '../../../../state/coach-hub/coach-hub.query';
+import { Subscription } from 'rxjs';
 import { LandingService } from '../../landing.service';
+import { CoachQuery } from '../../../../../../state/coach/coach.query';
 
 @Component({
   selector: 'ch-main',
@@ -10,22 +10,26 @@ import { LandingService } from '../../landing.service';
   styleUrls: ['./main.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy {
 
   routes = CoachHubRoutesEnum;
-  isCoach: Observable<boolean>;
+  isCoach = this.query.selectIsCoach$;
+
+  private _subscriptions = new Subscription();
 
   constructor(
-    private query: CoachHubQuery,
+    private query: CoachQuery,
     private service: LandingService
   ) {
-    this.isCoach = this.query.selectIsCoach();
   }
 
   ngOnInit() {
-    console.log('TEST');
-
-    this.service.fetchDashboard().subscribe();
+    this._subscriptions.add(
+      this.service.fetchDashboard().subscribe()
+    );
   }
 
+  ngOnDestroy(): void {
+    this._subscriptions.unsubscribe();
+  }
 }

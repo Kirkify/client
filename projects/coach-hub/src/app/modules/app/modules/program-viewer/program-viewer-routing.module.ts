@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { RootComponent } from './root.component';
+import { RouterModule, Routes } from '@angular/router';
 import { ProgramViewerComponent } from './components/program-viewer/program-viewer.component';
+import { SimpleRouterComponent } from '../../../../shared/modules/simple-router/simple-router.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: RootComponent,
+    component: SimpleRouterComponent,
     pathMatch: 'prefix',
     children: [
       { path: '', pathMatch: 'full', component: ProgramViewerComponent },
@@ -15,7 +15,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  imports: [ RouterModule.forChild(routes) ],
+  exports: [ RouterModule ]
 })
-export class ProgramViewerRoutingModule { }
+export class ProgramViewerRoutingModule {
+}

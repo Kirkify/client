@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { filterNil, Query } from '@datorama/akita';
 import { AuthenticationState, AuthenticationStore } from './authentication.store';
 import { map } from 'rxjs/operators';
+import { RoleEnum } from './models/role.enum';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationQuery extends Query<AuthenticationState> {
@@ -12,7 +13,20 @@ export class AuthenticationQuery extends Query<AuthenticationState> {
     super(store);
   }
 
+  selectIsLoggingOut$ = this.select(store => store.isLoggingOut);
+
   selectToken$ = this.select(store => store.token);
+
+  selectRoles$ = this.selectToken$.pipe(
+    filterNil,
+    map(token => token.roles)
+  );
+
+  selectHasCoachRole$ = this.selectRoles$.pipe(
+    map(roles => {
+      return roles.includes(RoleEnum.Coach);
+    })
+  );
 
   selectAccessTokenString$ = this.selectToken$.pipe(
     map(token => {
@@ -32,6 +46,10 @@ export class AuthenticationQuery extends Query<AuthenticationState> {
   selectUser$ = this.selectToken$.pipe(
     filterNil,
     map(token => token.user)
+  );
+
+  selectUserFirstName$ = this.selectUser$.pipe(
+    map(user => user.first_name)
   );
 
   getUser() {

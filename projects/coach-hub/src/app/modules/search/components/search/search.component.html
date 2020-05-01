@@ -1,26 +1,3 @@
-<!--<div class="container mt-4">-->
-  <!--<div class="text-center">-->
-    <!--<mat-button-toggle-group #group="matButtonToggleGroup"-->
-                             <!--[value]="selectedValue | async"-->
-    <!--&gt;-->
-      <!--<mat-button-toggle *ngFor="let item of toggleOptions"-->
-                         <!--[value]="item.value"-->
-                         <!--(change)="selectionChanged($event)"-->
-      <!--&gt;-->
-        <!--<mat-icon>{{item.icon}}</mat-icon>-->
-        <!--{{item.display}}-->
-      <!--</mat-button-toggle>-->
-    <!--</mat-button-toggle-group>-->
-  <!--</div>-->
-
-  <!--<div *ngIf="(selectedValue | async) === 'programs'">-->
-    <!--<ch-program-list></ch-program-list>-->
-  <!--</div>-->
-  <!--<div *ngIf="(selectedValue | async) === 'coaches'">-->
-    <!--<ch-coach-list></ch-coach-list>-->
-  <!--</div>-->
-<!--</div>-->
-
 <nav mat-tab-nav-bar mat-align-tabs="center">
   <a mat-tab-link
      *ngFor="let link of toggleOptions"

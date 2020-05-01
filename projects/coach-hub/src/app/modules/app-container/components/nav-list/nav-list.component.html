@@ -1,0 +1,34 @@
+<div>
+  <ch-nav-list-item [route]="searchRoute"
+                    icon="folder"
+                    name="Search"></ch-nav-list-item>
+
+  <ng-container *ngIf="isAuthenticated$ | async">
+    <ng-container *ngIf="isCoach$ | async">
+      <ch-nav-list-item [route]="coachRoute"
+                        icon="school"
+                        name="Coach Dashboard"></ch-nav-list-item>
+    </ng-container>
+
+    <ch-nav-list-item [route]="messagingRoute"
+                      icon="school"
+                      name="Messaging"></ch-nav-list-item>
+  </ng-container>
+
+  <ch-nav-list-item route="/legal"
+                    icon="policy"
+                    name="Legal"></ch-nav-list-item>
+
+  <ch-nav-list-item route="/careers"
+                    icon="work"
+                    name="Careers"></ch-nav-list-item>
+
+  <ch-nav-list-item route="/contact-us"
+                    icon="local_phone"
+                    name="Contact Us"></ch-nav-list-item>
+
+  <ch-nav-list-item route="/about-us"
+                    icon="home_work"
+                    name="About Us"></ch-nav-list-item>
+
+</div>

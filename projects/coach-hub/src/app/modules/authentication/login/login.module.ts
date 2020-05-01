@@ -16,6 +16,7 @@ import { SimpleLoaderModule } from '../../../shared/modules/simple-loader/simple
 import { SimpleMessageModule } from '../../../shared/modules/simple-message/simple-message.module';
 import { LoginService } from './state/login.service';
 import { FormContainerModule } from '../../../shared/modules/form-container/form-container.module';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 @NgModule({
@@ -33,10 +34,8 @@ import { FormContainerModule } from '../../../shared/modules/form-container/form
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatCardModule,
     MatCheckboxModule,
-    MatProgressSpinnerModule,
-    MatProgressBarModule
+    MatDividerModule
   ],
 })
 export class LoginModule { }
