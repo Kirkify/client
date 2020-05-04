@@ -39,11 +39,11 @@
           },
           "configurations": {
             "production": {
+              "index": {
+                "input": "projects/coach-hub/src/index.prod.html",
+                "output": "index.html"
+              },
               "fileReplacements": [
-                {
-                  "replace": "projects/coach-hub/src/index.html",
-                  "with": "projects/coach-hub/src/index.prod.html"
-                },
                 {
                   "replace": "projects/coach-hub/src/environments/environment.ts",
                   "with": "projects/coach-hub/src/environments/environment.prod.ts"
@@ -98,11 +98,10 @@
             "tsConfig": "projects/coach-hub/tsconfig.spec.json",
             "karmaConfig": "projects/coach-hub/karma.conf.js",
             "assets": [
-              "projects/coach-hub/src/favicon.ico",
               "projects/coach-hub/src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "projects/coach-hub/src/styles-material-custom.scss",
               "projects/coach-hub/src/styles.scss"
             ],
             "scripts": []
