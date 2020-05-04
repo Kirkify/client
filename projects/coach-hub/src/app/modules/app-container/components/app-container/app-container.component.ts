@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'ch-app-container',
@@ -7,4 +8,5 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppContainerComponent {
+  assetUrl = environment.assets_url;
 }

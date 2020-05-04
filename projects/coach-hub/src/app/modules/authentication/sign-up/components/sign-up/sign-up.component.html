@@ -126,16 +126,18 @@
       </mat-form-field>
     </div>
 
-    <mat-checkbox class="d-block" formControlName="confirm_terms" required>
-      Do you agree to our
-      <a target="_blank"
-         routerLink='/terms-of-use'>terms of use,</a>
-      and
-      <a target="_blank"
-         routerLink='/privacy-policy'>
-        privacy policy.
-      </a>
-    </mat-checkbox>
+    <div>
+      <mat-checkbox formControlName="confirm_terms" required>
+        Do you agree to our
+        <a target="_blank"
+           routerLink='/terms-of-use'>terms of use,</a>
+        and
+        <a target="_blank"
+           routerLink='/privacy-policy'>
+          privacy policy.
+        </a>
+      </mat-checkbox>
+    </div>
 
     <div *ngIf="formGroup.get('confirm_terms').invalid  && f.submitted">
       <mat-error class="d-block mb-2" *ngIf="formGroup.get('confirm_terms').hasError('required')">

@@ -29,7 +29,6 @@
             "tsConfig": "projects/coach-hub/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "projects/coach-hub/src/favicon.ico",
               "projects/coach-hub/src/assets"
             ],
             "styles": [
@@ -41,6 +40,10 @@
           "configurations": {
             "production": {
               "fileReplacements": [
+                {
+                  "replace": "projects/coach-hub/src/index.html",
+                  "with": "projects/coach-hub/src/index.prod.html"
+                },
                 {
                   "replace": "projects/coach-hub/src/environments/environment.ts",
                   "with": "projects/coach-hub/src/environments/environment.prod.ts"

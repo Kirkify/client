@@ -16,7 +16,9 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <a routerLink="/">
-        <img src="assets/img/header-wide-logo-white.png" height="32" alt="triangle with equal sides" srcset="assets/img/header-wide-logo-white.svg">
+        <img [src]="assetUrl + '/img/header-wide-logo-white.png'"
+             height="32"
+             alt="triangle with equal sides" [srcset]="assetUrl + '/img/header-wide-logo-white.svg'">
       </a>
       <!-- This fills the remaining space of the current row -->
       <span class="fill-space"></span>

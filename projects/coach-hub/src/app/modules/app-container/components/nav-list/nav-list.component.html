@@ -1,6 +1,6 @@
 <div>
   <ch-nav-list-item [route]="searchRoute"
-                    icon="folder"
+                    icon="search"
                     name="Search"></ch-nav-list-item>
 
   <ng-container *ngIf="isAuthenticated$ | async">
@@ -11,7 +11,7 @@
     </ng-container>
 
     <ch-nav-list-item [route]="messagingRoute"
-                      icon="school"
+                      icon="email"
                       name="Messaging"></ch-nav-list-item>
   </ng-container>
 

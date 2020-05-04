@@ -9,11 +9,12 @@ export let environment: Partial<EnvironmentInterface> = {
   hmr: false,
   is_docker: false,
   app_name: 'Coach Hub',
-  x_debug_key: '15773',
+  x_debug_key: '19796',
   url: 'http://localhost:4200',
   dev_url: 'http://homestead.test'
 };
 
+environment.assets_url = environment.url + '/assets';
 environment.ws_url = environment.is_docker ? (environment.url + '/ws') : 'http://homestead.test';
 environment.api_url = '/api';
 environment.ws_script = environment.ws_url + '/socket.io/socket.io.js';

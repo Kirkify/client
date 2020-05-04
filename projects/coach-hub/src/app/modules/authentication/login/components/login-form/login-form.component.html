@@ -36,10 +36,13 @@
 
   </mat-form-field>
 
-  <a [routerLink]="forgetPasswordRoute$ | async"
-     class="d-block" tabindex="3">
-    Forgot Password?
-  </a>
+  <div>
+    <a [routerLink]="forgetPasswordRoute$ | async"
+       tabindex="3">
+      Forgot Password?
+    </a>
+  </div>
+
 
   <button mat-raised-button
           color="accent"
@@ -51,10 +54,12 @@
 
   <ch-simple-message [message]="error$ | async"></ch-simple-message>
 
-  <mat-checkbox class="d-block"
-  tabindex="5"
-  formControlName="rememberMe">
-  Remember Me
-  </mat-checkbox>
+  <div>
+    <mat-checkbox tabindex="5"
+                  formControlName="rememberMe">
+      Remember Me
+    </mat-checkbox>
+  </div>
+
 
 </form>

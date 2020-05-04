@@ -6,6 +6,7 @@ export interface EnvironmentInterface {
   x_debug_key: string;
   dev_url: string;
   url: string;
+  assets_url: string;
   api_url: string;
   ws_url: string;
   ws_script: string;

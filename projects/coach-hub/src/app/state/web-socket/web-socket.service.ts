@@ -52,6 +52,7 @@ export class WebSocketService {
   }
 
   private _privateSocketMessage(ev: SocketMessageInterface) {
+    console.log('MESSAGE RECEIVED YO');
     this.webSocketStore.update({ socketMessage: ev });
   }
 
@@ -93,6 +94,7 @@ export class WebSocketService {
       broadcaster: 'socket.io',
       host: environment.is_docker ? environment.url : environment.dev_url,
       path: environment.is_docker ? '/ws/socket.io' : '/socket.io',
+      authEndpoint: '/broadcasting/auth?XDEBUG_SESSION_START=19796',
       auth: {
         headers: {
           Authorization: token
