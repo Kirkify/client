@@ -24,12 +24,12 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-
 // that you are using.
 @include angular-material-theme($candy-app-theme);
 
+// Set to at least 16px for iPhone not to zoom
 $custom-typography: mat-typography-config(
-  $input: mat-typography-level(16px, (19/16), 300)
+  $input: mat-typography-level(16px, (19/16))
 );
-
-// Override typography for a specific Angular Material components.
 @include mat-input-typography($custom-typography);
+@include mat-form-field-typography($custom-typography);
 
 .test12 {
   color: mat-color($candy-app-accent);
