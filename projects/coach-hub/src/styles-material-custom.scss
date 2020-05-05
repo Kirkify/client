@@ -24,6 +24,13 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-
 // that you are using.
 @include angular-material-theme($candy-app-theme);
 
+$custom-typography: mat-typography-config(
+  $input: mat-typography-level(16px, (19/16), 300)
+);
+
+// Override typography for a specific Angular Material components.
+@include mat-input-typography($custom-typography);
+
 .test12 {
   color: mat-color($candy-app-accent);
 
