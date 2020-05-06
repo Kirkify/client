@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { UiQuery } from '../../../state/ui/ui.query';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { NavListItemInterface } from './models/nav-list-item.interface';
 import { MatDrawerContent } from '@angular/material/sidenav';
 import { UiService } from '../../../state/ui/ui.service';
+import { take, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'ch-drawer-container',
@@ -18,21 +19,25 @@ export class DrawerContainerComponent implements OnInit, OnDestroy {
   @Input() navList: NavListItemInterface[] = [];
 
   isExpanded: boolean;
-  toolbarHeight$: Observable<number>;
+  toolbarHeight$ = this.uiQuery.selectFullToolbarHeight$;
+
+  private _subscriptions = new Subscription();
 
   constructor(
     private uiQuery: UiQuery,
-    private uiService: UiService
   ) {
-    this.toolbarHeight$ = this.uiQuery.selectToolbarHeight();
-    this.isExpanded = this.uiQuery.getIsScreenWidthMediumOrGreater();
   }
 
   ngOnInit() {
-    this.uiService.updateAppContainerOverflow(true);
+    this._subscriptions.add(
+      this.uiQuery.selectIsScreenWidthMediumOrGreater$.pipe(
+        take(1),
+        tap(isGreater => this.isExpanded = isGreater)
+      ).subscribe()
+    );
   }
 
   ngOnDestroy(): void {
-    this.uiService.updateAppContainerOverflow(false);
+    this._subscriptions.unsubscribe();
   }
 }

@@ -13,6 +13,7 @@ import { NavListComponent } from './components/nav-list/nav-list.component';
 import { AppContainerComponent } from './components/app-container/app-container.component';
 import { ToolbarContentComponent } from './components/toolbar-content/toolbar-content.component';
 import { NavListItemComponent } from './components/nav-list-item/nav-list-item.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { NavListItemComponent } from './components/nav-list-item/nav-list-item.c
     MatIconModule,
     MatListModule,
     MatMenuModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatProgressBarModule
   ]
 })
 export class AppContainerModule {

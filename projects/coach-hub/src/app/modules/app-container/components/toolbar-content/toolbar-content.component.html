@@ -2,7 +2,7 @@
   <a mat-button
      [routerLink]="loginRoute">Login</a>
   <a mat-raised-button
-     color="accent"
+     color="primary"
      [routerLink]="signUpRoute">Sign Up</a>
 </nav>
 
@@ -29,8 +29,7 @@
        mat-button
        matTooltip="Inbox">
       <!--[matBadgeHidden]="unreadCount === 0"-->
-      <mat-icon [matBadge]="1"
-                matBadgeColor="accent">
+      <mat-icon [matBadge]="1">
         mail_outline
       </mat-icon>
     </a>

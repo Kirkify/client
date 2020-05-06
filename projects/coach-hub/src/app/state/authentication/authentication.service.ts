@@ -14,6 +14,7 @@ import { AuthenticationQuery } from './authentication.query';
 import { RootRoutesEnum } from '../../root-routes.enum';
 import { CustomHeadersEnum } from './models/custom-headers.enum';
 import { JwtClass } from './models/jwt/jwt.class';
+import { UI_STORE_NAME } from '../ui/ui.store';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -58,7 +59,7 @@ export class AuthenticationService {
       tap(() => this.store.update({ isLoggingOut: true })),
       mergeMap(() => {
         return this.http.post<string>(environment.api_url + path, null, { withCredentials: true }).pipe(
-          finalize(() => resetStores())
+          finalize(() => resetStores({ exclude: [ UI_STORE_NAME ]}))
         );
       })
     );

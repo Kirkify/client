@@ -3,6 +3,7 @@ import { ToolbarHeightEnum } from './models/toolbar-height.enum';
 import { MediaBreakpointsEnum } from './models/media-breakpoints.enum';
 import { UiStore } from './ui.store';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { guid } from '@datorama/akita';
 
 @Injectable({ providedIn: 'root' })
 export class UiService {
@@ -45,21 +46,19 @@ export class UiService {
     }
   }
 
-  updateProgressBarStatus(value: boolean) {
-    this.uiStore.update({
-      progressBarLoading: value
-    });
+  closeSideNav() {
+    this.uiStore.update({ sideNavOpened: false });
   }
 
-  updateToolbarHeight(value: ToolbarHeightEnum) {
-    this.uiStore.update({
-      toolbarHeight: value
-    });
+  openSideNav() {
+    this.uiStore.update({ sideNavOpened: true });
   }
 
-  updateAppContainerOverflow(hideOverflow: boolean) {
-    this.uiStore.update({
-      hideAppOverflow: hideOverflow
-    });
+  setToolbarHeightToSmall() {
+    this.uiStore.update({ toolbarHeight: ToolbarHeightEnum.Small });
+  }
+
+  setToolbarHeightToLarge() {
+    this.uiStore.update({ toolbarHeight: ToolbarHeightEnum.Large });
   }
 }

@@ -7,7 +7,7 @@ import { AuthenticationQuery } from '../../../../state/authentication/authentica
   selector: 'ch-nav-list',
   templateUrl: './nav-list.component.html',
   styleUrls: [ './nav-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class NavListComponent implements OnInit {
 

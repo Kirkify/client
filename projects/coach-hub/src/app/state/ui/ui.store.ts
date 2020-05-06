@@ -1,30 +1,30 @@
 import { Injectable } from '@angular/core';
 import { Store, StoreConfig } from '@datorama/akita';
 import { MediaBreakpointsEnum } from './models/media-breakpoints.enum';
+import { ToolbarHeightEnum } from './models/toolbar-height.enum';
 
 export interface UiState {
-  progressBarLoading: boolean;
-  toolbarHeight: number;
+  toolbarHeight: ToolbarHeightEnum;
   screenWidth: MediaBreakpointsEnum;
-  hideAppOverflow: boolean;
+  sideNavOpened: boolean;
 }
 
 export function createInitialState(): UiState {
   return {
-    progressBarLoading: false,
-    toolbarHeight: 60,
+    toolbarHeight: ToolbarHeightEnum.Large,
     screenWidth: MediaBreakpointsEnum.Small,
-    hideAppOverflow: false
+    sideNavOpened: false
   };
 }
 
+export const UI_STORE_NAME = 'ui';
+
 @Injectable({ providedIn: 'root' })
-@StoreConfig({ name: 'ui' })
+@StoreConfig({ name: UI_STORE_NAME })
 export class UiStore extends Store<UiState> {
 
   constructor() {
     super(createInitialState());
   }
-
 }
 

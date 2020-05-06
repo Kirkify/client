@@ -10,8 +10,12 @@
   background: inherit;
 }
 
-.mat-toolbar.mat-primary {
+.lineTop {
   position: sticky;
   top: 0;
+  height: 2px;
+}
+.mat-toolbar.mat-accent {
+  position: sticky;
   z-index: 1;
 }

@@ -10,19 +10,19 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$candy-app-primary: mat-palette($md-primary);
-$candy-app-accent:  mat-palette($mat-deep-orange);
+$ch-primary: mat-palette($mat-deep-orange);
+$ch-accent:  mat-palette($md-primary);
 
 // The warn palette is optional (defaults to red).
-$candy-app-warn:    mat-palette($mat-deep-orange);
+$ch-warn:    mat-palette($md-primary);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
+$ch-theme: mat-light-theme($ch-primary, $ch-accent, $ch-warn);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($candy-app-theme);
+@include angular-material-theme($ch-theme);
 
 // Set to at least 16px for iPhone not to zoom
 $custom-typography: mat-typography-config(
@@ -32,9 +32,16 @@ $custom-typography: mat-typography-config(
 @include mat-form-field-typography($custom-typography);
 
 .test12 {
-  color: mat-color($candy-app-accent);
+  color: mat-color($ch-primary);
 
   // Get a specific hue for a palette.
   // See https://material.io/archive/guidelines/style/color.html#color-color-palette for hues.
-  background-color: mat-color($candy-app-accent, 300);
+  //background-color: mat-color($ch-primary, 200);
+}
+
+.topBorder {
+  border-top: 4px solid mat-color($ch-primary);
+}
+.primaryBackground {
+  background-color: mat-color($ch-primary);
 }

@@ -7,8 +7,7 @@
         <input matInput
                formControlName="first_name"
                maxlength="255"
-               required
-               autofocus>
+               required>
 
         <mat-error *ngIf="formGroup.get('first_name').hasError('required')">
           First Name is required

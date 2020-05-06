@@ -1,4 +1,4 @@
-<a mat-list-item routerLinkActive="test12" #rla="routerLinkActive" [routerLink]="route">
-  <mat-icon mat-list-icon class="mr-2">{{ icon }}</mat-icon>
-  {{ name }}
+<a mat-list-item routerLinkActive #rla="routerLinkActive" [routerLink]="route" (click)="closeDrawer()">
+  <mat-icon mat-list-icon [color]="rla.isActive ? 'primary' : undefined" class="mr-2">{{ icon }}</mat-icon>
+  <span [class.test12]="rla.isActive">{{ name }}</span>
 </a>

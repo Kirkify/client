@@ -1,4 +1,4 @@
-<mat-drawer-container autosize>
+<mat-drawer-container autosize [style.height]="'calc(100% - ' + (toolbarHeight$ | async) + 'px)'">
   <mat-drawer opened="true" mode="side">
     <mat-nav-list>
       <mat-list-item [matTooltip]="isExpanded ? 'Close Menu' : 'Open Menu'"
@@ -18,7 +18,7 @@
         >
           <mat-icon
             matListIcon
-            [color]="rla.isActive ? 'primary' : ''"
+            [color]="rla.isActive ? 'primary' : undefined"
             [innerHTML]="item.icon"
           ></mat-icon>
 

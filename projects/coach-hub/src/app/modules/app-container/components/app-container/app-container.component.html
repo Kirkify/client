@@ -1,5 +1,6 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
+<mat-sidenav-container class="sidenav-container" (backdropClick)="closeSideNav()">
+  <mat-sidenav class="sidenav" fixedInViewport disableClose (keydown.escape)="closeSideNav()"
+               [opened]="isSideNavOpen$ | async"
                mode="over">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
@@ -7,12 +8,19 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-progress-bar *ngIf="isProgressBarLoading$ | async"
+                      [style.height.px]="progressBarHeight$ | async"
+                      mode="indeterminate"
+                      color="accent"></mat-progress-bar>
+    <mat-toolbar [style.height.px]="toolbarHeight$ | async"
+                 [style.top.px]="progressBarHeight$ | async"
+                 color="accent"
+                 class="topBorder">
       <button
         type="button"
         aria-label="Toggle sidenav"
         mat-icon-button
-        (click)="drawer.toggle()">
+        (click)="openSideNav()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <a routerLink="/">
