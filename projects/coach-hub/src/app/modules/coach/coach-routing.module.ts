@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { CoachRoutesEnum } from './coach-routes.enum';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RootComponent } from './components/root/root.component';
-import { InitialStateGuardService } from './guards/initial-state/initial-state-guard.service';
 
 const routes: Routes = [
   {
