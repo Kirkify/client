@@ -29,7 +29,7 @@ export class WebSocketService {
     private webSocketStore: WebSocketStore) {
   }
 
-  initialize() {
+  init() {
     this.query.selectIsAuthenticated$.pipe(
       mergeMap(isAuthenticated => {
         if (isAuthenticated) {

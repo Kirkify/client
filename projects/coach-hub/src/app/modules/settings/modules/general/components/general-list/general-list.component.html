@@ -1,0 +1,21 @@
+<mat-nav-list>
+  <h3 matSubheader>General Account Settings</h3>
+  <mat-list-item [routerLink]="routes.User" routerLinkActive="active">
+    <mat-icon matListIcon>face</mat-icon>
+    <h4 matLine>Change your Name</h4>
+    <p matLine>{{ 'Hello' }}</p>
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </mat-list-item>
+  <mat-list-item [routerLink]="routes.UserProfile" routerLinkActive="active">
+    <mat-icon matListIcon>account_box</mat-icon>
+    <h4 matLine>Update your Profile</h4>
+    <p matLine>Address, Birth Date, Phone number</p>
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </mat-list-item>
+  <mat-list-item [routerLink]="routes.Email" routerLinkActive="active">
+    <mat-icon matListIcon>email</mat-icon>
+    <h4 matLine>Change your Email</h4>
+    <p matLine>{{ 'email' }}</p>
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </mat-list-item>
+</mat-nav-list>

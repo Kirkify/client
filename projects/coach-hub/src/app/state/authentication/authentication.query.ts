@@ -52,6 +52,10 @@ export class AuthenticationQuery extends Query<AuthenticationState> {
     map(user => user.first_name)
   );
 
+  selectUserEmail$ = this.selectUser$.pipe(
+    map(user => user.email)
+  );
+
   getUser() {
     return this.getValue().token.user;
   }

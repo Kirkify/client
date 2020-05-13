@@ -1,1 +1,15 @@
-<p>dashboard works!</p>
+<div class="container mt-4">
+  <ch-simple-loader [loader]="loader"></ch-simple-loader>
+
+  <ng-container *ngIf="query.fetched$ | async">
+    <ch-interested-in *ngIf="!(query.categoriesSelected$ | async)"></ch-interested-in>
+    <div *ngIf="query.categoriesSelected$ | async">
+      <h1 class="mat-title">Welcome to your dashboard</h1>
+      <p class="mat-body">
+        We are working hard to build a dashboard tailored just for you.
+      </p>
+    </div>
+
+
+  </ng-container>
+</div>

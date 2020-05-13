@@ -1,25 +1,23 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { WebSocketService } from './state/web-socket/web-socket.service';
 import { Subscription } from 'rxjs';
+import { InitialStateService } from './services/initial-state/initial-state.service';
 
 @Component({
   selector: 'ch-root',
   templateUrl: './root.component.html',
-  styleUrls: ['./root.component.scss']
+  styleUrls: [ './root.component.scss' ]
 })
-export class RootComponent implements OnInit, OnDestroy {
-
-  private _subscriptions = new Subscription();
+export class RootComponent implements OnInit {
 
   constructor(
-    private socketService: WebSocketService
-  ) {}
-
-  ngOnInit(): void {
-    this.socketService.initialize();
+    private socketService: WebSocketService,
+    private initialStateService: InitialStateService
+  ) {
   }
 
-  ngOnDestroy(): void {
-    this._subscriptions.unsubscribe();
+  ngOnInit(): void {
+    this.socketService.init();
+    this.initialStateService.init();
   }
 }

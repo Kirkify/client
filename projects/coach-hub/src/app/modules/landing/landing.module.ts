@@ -5,6 +5,7 @@ import { LandingRoutingModule } from './landing-routing.module';
 import { LandingComponent } from './components/landing/landing.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -14,7 +15,9 @@ import { MatButtonModule } from '@angular/material/button';
     LandingRoutingModule,
 
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+
+    FontAwesomeModule
   ]
 })
 export class LandingModule { }

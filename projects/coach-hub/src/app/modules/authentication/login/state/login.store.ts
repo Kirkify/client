@@ -11,7 +11,7 @@ export function createInitialState(): LoginState {
   };
 }
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: 'any' })
 @StoreConfig({ name: 'login' })
 export class LoginStore extends Store<LoginState> {
 

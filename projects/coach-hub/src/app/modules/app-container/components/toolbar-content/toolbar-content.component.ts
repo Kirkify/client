@@ -19,6 +19,8 @@ export class ToolbarContentComponent {
   loginRoute = this.rootRoutingQuery.getLoginRoute;
   signUpRoute = this.rootRoutingQuery.getSignUpRoute;
   messagingRoute = this.rootRoutingQuery.getMessagingRoute;
+  dashboardRoute = this.rootRoutingQuery.getDashboardRoute;
+  settingsRoute = this.rootRoutingQuery.getSettingsRoute;
 
   constructor(
     private query: AuthenticationQuery,

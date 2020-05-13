@@ -18,10 +18,12 @@ export class RootRoutingQuery extends Query<AppRoutingState> {
   getSignUpRoute = this.getValue().signUpRoute;
   getLoginRoute = this.getValue().loginRoute;
   getMessagingRoute = this.getValue().messagingRoute;
+  getDashboardRoute = this.getValue().dashboardRoute;
   getDefaultRoute = this.getValue().defaultRoute;
   getCoachSignUpRoute = this.getValue().coachSignUpRoute;
   getCoachRoute = this.getValue().coachRoute;
   getSearchRoute = this.getValue().searchRoute;
+  getSettingsRoute = this.getValue().settingsRoute;
 
   selectDefaultRouteOnce$ = this.coachQuery.selectIsCoach$.pipe(
     take(1),

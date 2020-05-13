@@ -1,0 +1,17 @@
+<div>
+  <h2 class="mat-title">
+    Help us customize your Dashboard!
+  </h2>
+  <p class="mat-body">
+    What are you interested in? Select a few categories that interest you to help us personalize your Coach Hub experience.
+  </p>
+  <div class="simpleHeight">
+    <ch-simple-loader [loader]="loader"></ch-simple-loader>
+    <ng-container *ngFor="let group of groups$ | async">
+      <ch-group-displayer class="d-block mb-3" [group]="group"></ch-group-displayer>
+    </ng-container>
+    <button mat-raised-button color="accent" (click)="submit()">Continue</button>
+  </div>
+
+</div>
+

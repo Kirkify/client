@@ -42,16 +42,11 @@
     </button>
     <mat-menu #menu="matMenu">
       <ng-template matMenuContent>
-        <!--<a mat-menu-item-->
-        <!--[routerLink]="appRoutes.Settings">Settings</a>-->
-        <!--<a mat-menu-item-->
-        <!--[routerLink]="appRoutes.Contact">Contact Us</a>-->
         <a mat-menu-item
-           [routerLink]="messagingRoute"
+           [routerLink]="dashboardRoute"
            routerLinkActive="d-none">Dashboard</a>
         <a mat-menu-item
-           routerLink="/404"
-           routerLinkActive="d-none">404 Page</a>
+           [routerLink]="settingsRoute">Settings</a>
         <button mat-menu-item
                 (click)="logout()">Logout</button>
       </ng-template>

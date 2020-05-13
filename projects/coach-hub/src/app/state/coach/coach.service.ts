@@ -34,6 +34,7 @@ export class CoachService {
         finalize(() => this.progressBarService.hideProgressBar(id)),
         map(res => res.data),
         tap(state => {
+          console.log(state);
           this.coachStore.update({
             fetched: true,
             baseProfile: state.coachBaseProfile

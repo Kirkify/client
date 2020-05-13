@@ -16,6 +16,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from '@angular/material/form-field';
 import { AppContainerModule } from './modules/app-container/app-container.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [

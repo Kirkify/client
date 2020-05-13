@@ -16,7 +16,7 @@ export class VerySimpleLoaderClass {
   constructor(input: VerySimpleLoaderInterface = {}) {
     const {
       loader = null,
-      cancellable = true,
+      cancellable = false,
       message = 'Loading...',
       loading = false,
       hasBackground = true

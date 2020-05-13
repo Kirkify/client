@@ -12,7 +12,7 @@ import { RootRoutingQuery } from '../../../../../state/root-routing/root-routing
   templateUrl: './login-form.component.html',
   styleUrls: [ './login-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [ LoginService ]
+  providers: [ ]
 })
 export class LoginFormComponent {
 

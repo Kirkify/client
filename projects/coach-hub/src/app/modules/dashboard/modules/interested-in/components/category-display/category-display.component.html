@@ -1,0 +1,9 @@
+<mat-chip *ngIf="category$ | async as category"
+          color="primary"
+          class="chippy"
+          [class.transparent]="!isActive"
+          [selected]="isActive"
+          (click)="chipClicked.emit(category.id)"
+>
+  {{ category.name }}
+</mat-chip>

@@ -1,6 +1,6 @@
 <div class="container">
   <mat-card class="mat-elevation-z8" [style.max-width.px]="maxWidth">
-    <h2 class="mat-title">{{ title }}</h2>
+    <h2 class="mat-title" [class.mb-0]="description">{{ title }}</h2>
     <p class="mat-body">{{ description }}</p>
     <mat-card-content>
       <ng-content></ng-content>

@@ -33,8 +33,18 @@ const routes: Routes = [
   },
   // APPLICATION ROUTES
   {
+    path: RootRoutesEnum.Dashboard,
+    loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)
+  },
+  {
     path: RootRoutesEnum.Search,
     loadChildren: () => import('./modules/search/search.module').then(m => m.SearchModule)
+  },
+  {
+    path: RootRoutesEnum.Settings,
+    loadChildren: () => import('./modules/settings/settings.module').then(m => m.SettingsModule),
+    canLoad: [ AuthenticatedGuard ],
+    canActivate: [ AuthenticatedGuard ]
   },
   {
     path: RootRoutesEnum.CoachSignUp,

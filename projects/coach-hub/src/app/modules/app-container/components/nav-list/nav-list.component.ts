@@ -16,6 +16,7 @@ export class NavListComponent implements OnInit {
   coachRoute = this.rootRoutingQuery.getCoachRoute;
   searchRoute = this.rootRoutingQuery.getSearchRoute;
   messagingRoute = this.rootRoutingQuery.getMessagingRoute;
+  dashboardRoute = this.rootRoutingQuery.getDashboardRoute;
 
   constructor(
     private authenticationQuery: AuthenticationQuery,

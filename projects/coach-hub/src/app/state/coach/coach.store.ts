@@ -10,7 +10,7 @@ export interface CoachState {
 export function createInitialState(): CoachState {
   return {
     fetched: false,
-    baseProfile: null
+    baseProfile: null,
   };
 }
 

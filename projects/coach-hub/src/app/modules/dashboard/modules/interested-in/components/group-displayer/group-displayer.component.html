@@ -1,0 +1,10 @@
+<h4 class="mat-title">{{ group.name }}</h4>
+<mat-chip-list aria-label="Fish selection">
+  <ng-container *ngFor="let category of group.categories">
+    <ch-category-display [categoryId]="category.category_id"
+                         [isActive]="activeIds$ | async | isCategoryIdActive: category.category_id"
+                         (chipClicked)="chipClicked($event)"
+    ></ch-category-display>
+  </ng-container>
+
+</mat-chip-list>
