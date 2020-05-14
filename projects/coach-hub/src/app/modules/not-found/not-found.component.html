@@ -1,7 +1,16 @@
-<div class="container pt-3 text-center">
-  <h2>
-    404 - Page not found
-  </h2>
-  <mat-icon inline>broken_image</mat-icon>
+<section class="my-3">
+  <mat-card class="mx-auto">
+    <img mat-card-image [src]="assetsUrl + '/img/404.jpg'" alt="404 Error Photo">
+    <mat-card-content>
+      <p>
+        <strong>Quote:</strong> {{ randomQuote }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button routerLink="/">Go Back Home</button>
+      <button mat-button
+              (click)="updateQuote()">Change Quote?</button>
+    </mat-card-actions>
+  </mat-card>
   <p *ngIf="path">You might want to go to the <a [routerLink]="path">"{{ path }}" page</a></p>
-</div>
+</section>

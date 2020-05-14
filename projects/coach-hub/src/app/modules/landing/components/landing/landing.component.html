@@ -4,17 +4,21 @@
     <div class="row h-100 align-items-center">
       <div class="col-lg-12 text-center">
         <h2 class="mat-title">
-          We provide people in the know with the people who want to know!
+          We Provide People in the Know with the People Who Want to Know
         </h2>
         <p class="lead">
           Coach Hub is a platform where anybody can learn something new. We provide a completely
-          free platform
-          for coaches to share their knowledge with anyone,
-          using simple intuitive tools, coaches can create individual and/or group programs which
-          can be conducted locally or virtually.
+          free platform for coaches to share their knowledge with anyone through videos and
+          podcasts,
+          using simple intuitive tools, coaches can also create individual and/or group programs
+          which
+          can be conducted locally or completely virtual.
         </p>
 
-        <button mat-raised-button color="accent">Sign Up Today</button>
+        <a mat-raised-button
+           color="accent"
+           [routerLink]="rootRoutingQuery.getSignUpRoute"
+        >Sign Up Today</a>
       </div>
     </div>
   </div>
@@ -37,8 +41,10 @@
       <div class="text-center">
         <h2>Knowledge is power</h2>
         <p>Start exploring our platform today, whether it's a sport, an instrument
-          or a trade, Coach Hub is changing the world for the better!</p>
-        <button mat-button color="accent">Sign Up Now</button>
+          or a trade, Coach Hub is increasing the worlds knowledge one user at a time!</p>
+        <a mat-button
+           color="accent"
+           [routerLink]="rootRoutingQuery.getSignUpRoute">Sign Up Now</a>
       </div>
 
     </div>
@@ -48,81 +54,4 @@
 </div>
 <!-- /.container -->
 
-<!-- Footer -->
-<footer class="py-5 bg-dark">
-  <div class="container">
-    <!--/.Social buttons-->
-    <div class="text-center mb-3">
-      <a href="https://www.facebook.com/coachhub/" target="_blank" class="m-1">
-        <fa-icon size="3x" [icon]="faFacebookSquare"></fa-icon>
-      </a>
-      <a href="https://twitter.com/coach_hub" target="_blank" class="m-1">
-        <fa-icon size="3x" [icon]="faTwitterSquare"></fa-icon>
-      </a>
-      <a href="https://www.youtube.com/" target="_blank" class="m-1">
-        <fa-icon size="3x" [icon]="faYoutubeSquare"></fa-icon>
-      </a>
-      <a href="https://www.instagram.com/" target="_blank" class="m-1">
-        <fa-icon size="3x" [icon]="faInstagramSquare"></fa-icon>
-      </a>
-      <a href="https://plus.google.com" target="_blank" class="m-1">
-        <fa-icon size="3x" [icon]="faGooglePlusSquare"></fa-icon>
-      </a>
-    </div>
-
-    <div class="container-fluid text-center">
-      <div class="row">
-        <!--First column-->
-        <div class="col-md-4">
-          <h2 class="mat-title">Useful Links</h2>
-          <ul>
-            <li><a class="mat-body" routerLink="/faq">Frequently Asked Questions</a></li>
-            <li><a href="#">Browsers and devices</a></li>
-            <li><a href="#">Our Team</a></li>
-          </ul>
-        </div>
-        <!--/.First column-->
-        <hr class="w-100 clearfix d-md-none">
-        <!--Second column-->
-        <div class="col-md-4">
-          <h2 class="mat-title">Important Pages</h2>
-          <ul>
-            <li>
-              <a href="#">
-                Privacy Policy
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                Terms and Conditions
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                Contact Us
-              </a>
-            </li>
-          </ul>
-        </div>
-        <!--/.Second column-->
-        <hr class="w-100 clearfix d-md-none">
-        <!--Third column-->
-        <div class="col-md-3">
-          <h2 class="mat-title">Partnerships</h2>
-          <ul>
-            <li><a routerLink="partnerships/affiliate-program">Affiliate Program</a></li>
-            <li><a routerLink="partnerships/academy">Students and Universities</a></li>
-            <li><a routerLink="partnerships/sponsor">Sponsorship</a></li>
-          </ul>
-
-        </div>
-        <!--/.Third column-->
-
-      </div>
-    </div>
-
-    <!--/.Social buttons-->
-    <p class="mat-body m-0 text-center text-white">Copyright &copy; {{ appName }} Inc. 2020</p>
-  </div>
-  <!-- /.container -->
-</footer>
+<ch-footer></ch-footer>

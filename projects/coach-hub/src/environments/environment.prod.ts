@@ -3,6 +3,7 @@ import { EnvironmentInterface } from './environment.interface';
 export let environment: Partial<EnvironmentInterface> = {
   production: true,
   hmr: false,
+  app_name: 'Coach Hub',
   url: 'https://coachhub.com',
   ws_url: 'https://coachhub.com',
 };

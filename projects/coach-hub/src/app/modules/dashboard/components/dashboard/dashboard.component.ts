@@ -4,6 +4,8 @@ import { VerySimpleLoaderClass } from '../../../../shared/modules/simple-loader/
 import { DashboardQuery } from '../../state/dashboard.query';
 import { catchError, finalize, takeUntil } from 'rxjs/operators';
 import { EMPTY, Subscription } from 'rxjs';
+import { RootRoutingQuery } from '../../../../state/root-routing/root-routing.query';
+import { CoachQuery } from '../../../../state/coach/coach.query';
 
 @Component({
   selector: 'ch-dashboard',
@@ -19,6 +21,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   constructor(
     public query: DashboardQuery,
+    public rootRoutingQuery: RootRoutingQuery,
+    public coachQuery: CoachQuery,
     private service: DashboardService
   ) {
     if (! this.query.getValue().fetched) {

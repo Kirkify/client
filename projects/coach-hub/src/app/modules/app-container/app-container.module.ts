@@ -14,6 +14,7 @@ import { AppContainerComponent } from './components/app-container/app-container.
 import { ToolbarContentComponent } from './components/toolbar-content/toolbar-content.component';
 import { NavListItemComponent } from './components/nav-list-item/nav-list-item.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatListModule,
     MatMenuModule,
     MatBadgeModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatTooltipModule
   ]
 })
 export class AppContainerModule {

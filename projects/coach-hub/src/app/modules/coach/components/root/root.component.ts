@@ -54,9 +54,9 @@ export class RootComponent implements OnInit {
     private coachQuery: CoachQuery,
     private coachService: CoachService
   ) {
-    // if (! this.coachQuery.fetched) {
-    //   this.coachService.getInitialState().subscribe();
-    // }
+    if (! this.coachQuery.fetched) {
+      this.coachService.getInitialState().subscribe();
+    }
   }
 
   ngOnInit() {

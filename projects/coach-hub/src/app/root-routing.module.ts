@@ -25,11 +25,33 @@ const routes: Routes = [
   },
   {
     path: RootRoutesEnum.SignUp,
-    loadChildren: () => import('./modules/authentication/sign-up/sign-up.module').then(m => m.SignUpModule)
+    loadChildren: () => import('./modules/authentication/sign-up/sign-up.module').then(m => m.SignUpModule),
+    canLoad: [ GuestGuard ],
+    canActivate: [ GuestGuard ]
   },
   {
     path: RootRoutesEnum.ForgotPassword,
     loadChildren: () => import('./modules/authentication/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule)
+  },
+  {
+    path: RootRoutesEnum.ContactUs,
+    loadChildren: () => import('./modules/contact/contact.module').then(m => m.ContactModule)
+  },
+  {
+    path: RootRoutesEnum.Faq,
+    loadChildren: () => import('./modules/faq/faq.module').then(m => m.FaqModule)
+  },
+  {
+    path: RootRoutesEnum.Partnerships,
+    loadChildren: () => import('./modules/partnerships/partnerships.module').then(m => m.PartnershipsModule)
+  },
+  {
+    path: RootRoutesEnum.Legal,
+    loadChildren: () => import('./modules/legal/legal.module').then(m => m.LegalModule)
+  },
+  {
+    path: RootRoutesEnum.Careers,
+    loadChildren: () => import('./modules/careers/careers.module').then(m => m.CareersModule)
   },
   // APPLICATION ROUTES
   {

@@ -6,23 +6,20 @@ import { AuthenticationQuery } from '../../../../state/authentication/authentica
 @Component({
   selector: 'ch-nav-list',
   templateUrl: './nav-list.component.html',
-  styleUrls: [ './nav-list.component.scss'],
+  styleUrls: [ './nav-list.component.scss' ],
   changeDetection: ChangeDetectionStrategy.Default
 })
 export class NavListComponent implements OnInit {
 
   isAuthenticated$ = this.authenticationQuery.selectIsAuthenticated$;
   isCoach$ = this.coachQuery.selectIsCoach$;
-  coachRoute = this.rootRoutingQuery.getCoachRoute;
-  searchRoute = this.rootRoutingQuery.getSearchRoute;
-  messagingRoute = this.rootRoutingQuery.getMessagingRoute;
-  dashboardRoute = this.rootRoutingQuery.getDashboardRoute;
 
   constructor(
+    public rootRoutingQuery: RootRoutingQuery,
     private authenticationQuery: AuthenticationQuery,
     private coachQuery: CoachQuery,
-    private rootRoutingQuery: RootRoutingQuery
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
   }

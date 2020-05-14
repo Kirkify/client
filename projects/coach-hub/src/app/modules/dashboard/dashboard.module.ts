@@ -5,6 +5,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { InterestedInModule } from './modules/interested-in/interested-in.module';
 import { SimpleLoaderModule } from '../../shared/modules/simple-loader/simple-loader.module';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { SimpleLoaderModule } from '../../shared/modules/simple-loader/simple-lo
 
     SimpleLoaderModule,
 
-    InterestedInModule
+    InterestedInModule,
+    MatButtonModule
   ]
 })
 export class DashboardModule { }

@@ -8,6 +8,11 @@
       <p class="mat-body">
         We are working hard to build a dashboard tailored just for you.
       </p>
+      <a *ngIf="!(coachQuery.selectIsCoach$ | async)"
+         mat-button
+         [routerLink]="rootRoutingQuery.getCoachSignUpRoute">
+        Interested in becoming a coach?
+      </a>
     </div>
 
 

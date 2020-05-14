@@ -25,9 +25,6 @@ export class CoachQuery extends Query<CoachState> {
   ]).pipe(
     map(([ baseProfile, hasCoachRole ]) => {
       return !!( baseProfile || hasCoachRole );
-    }),
-    tap(val => {
-      console.log(val);
     })
   );
 

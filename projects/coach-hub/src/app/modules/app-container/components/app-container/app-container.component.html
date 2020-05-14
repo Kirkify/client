@@ -25,8 +25,13 @@
       </button>
       <a routerLink="/">
         <img [src]="assetUrl + '/img/header-wide-logo-white.png'"
+             class="d-none d-sm-block"
              height="32"
              alt="triangle with equal sides" [srcset]="assetUrl + '/img/header-wide-logo-white.svg'">
+        <img [src]="assetUrl + '/img/header-wide-logo-white.png'"
+             class="d-sm-none"
+             height="32"
+             alt="triangle with equal sides" [srcset]="assetUrl + '/img/header-logo-white.svg'">
       </a>
       <!-- This fills the remaining space of the current row -->
       <span class="fill-space"></span>

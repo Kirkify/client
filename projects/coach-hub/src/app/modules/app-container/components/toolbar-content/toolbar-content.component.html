@@ -12,24 +12,24 @@
   </div>
   <ng-template #elseBlock>
     <!-- Notifications Dropdown -->
-    <a mat-button
-       [matMenuTriggerFor]="notificationsMenu">
-      <i class="material-icons">notifications_none</i>
-      <i class="material-icons">keyboard_arrow_down</i>
-    </a>
-    <mat-menu #notificationsMenu="matMenu">
-      <ng-template matMenuContent>
-        <button mat-menu-item>Alarms</button>
-        <button mat-menu-item>Health Alerts</button>
-      </ng-template>
-    </mat-menu>
+<!--    <a mat-button-->
+<!--       [matMenuTriggerFor]="notificationsMenu">-->
+<!--      <i class="material-icons">notifications_none</i>-->
+<!--      <i class="material-icons">keyboard_arrow_down</i>-->
+<!--    </a>-->
+<!--    <mat-menu #notificationsMenu="matMenu">-->
+<!--      <ng-template matMenuContent>-->
+<!--        <button mat-menu-item>Alarms</button>-->
+<!--        <button mat-menu-item>Health Alerts</button>-->
+<!--      </ng-template>-->
+<!--    </mat-menu>-->
 
     <!-- Unread Messages Dropdown -->
     <a [routerLink]="messagingRoute"
        mat-button
        matTooltip="Inbox">
-      <!--[matBadgeHidden]="unreadCount === 0"-->
-      <mat-icon [matBadge]="1">
+      <mat-icon       [matBadgeHidden]="unreadCount === 0"
+                      [matBadge]="1">
         mail_outline
       </mat-icon>
     </a>

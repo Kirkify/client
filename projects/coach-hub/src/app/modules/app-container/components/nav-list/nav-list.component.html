@@ -1,20 +1,20 @@
 <div>
-  <ch-nav-list-item [route]="searchRoute"
+  <ch-nav-list-item [route]="rootRoutingQuery.getSearchRoute"
                     icon="search"
                     name="Search"></ch-nav-list-item>
 
   <ng-container *ngIf="isAuthenticated$ | async">
     <ng-container *ngIf="isCoach$ | async">
-      <ch-nav-list-item [route]="coachRoute"
+      <ch-nav-list-item [route]="rootRoutingQuery.getCoachRoute"
                         icon="school"
                         name="Coach Dashboard"></ch-nav-list-item>
     </ng-container>
 
-    <ch-nav-list-item [route]="dashboardRoute"
+    <ch-nav-list-item [route]="rootRoutingQuery.getDashboardRoute"
                       icon="dashboard"
                       name="Dashboard"></ch-nav-list-item>
 
-    <ch-nav-list-item [route]="messagingRoute"
+    <ch-nav-list-item [route]="rootRoutingQuery.getMessagingRoute"
                       icon="email"
                       name="Messaging"></ch-nav-list-item>
   </ng-container>
@@ -27,7 +27,7 @@
                     icon="work"
                     name="Careers"></ch-nav-list-item>
 
-  <ch-nav-list-item route="/contact-us"
+  <ch-nav-list-item [route]="rootRoutingQuery.getValue().contactUsRoute"
                     icon="local_phone"
                     name="Contact Us"></ch-nav-list-item>
 

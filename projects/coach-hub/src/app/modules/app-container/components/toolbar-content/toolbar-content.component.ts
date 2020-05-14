@@ -21,7 +21,7 @@ export class ToolbarContentComponent {
   messagingRoute = this.rootRoutingQuery.getMessagingRoute;
   dashboardRoute = this.rootRoutingQuery.getDashboardRoute;
   settingsRoute = this.rootRoutingQuery.getSettingsRoute;
-
+  unreadCount = 0;
   constructor(
     private query: AuthenticationQuery,
     private rootRoutingQuery: RootRoutingQuery,

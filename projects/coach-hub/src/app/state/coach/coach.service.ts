@@ -25,7 +25,7 @@ export class CoachService {
   }
 
   getInitialState() {
-    const path = this._basePath + '/initial-state';
+    const path = this._basePath + '/initial-coach-state';
 
     const id = this.progressBarService.showProgressBar();
 
