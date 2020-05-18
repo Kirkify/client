@@ -241,6 +241,7 @@ export class ProgramFormComponent extends CrudFormClass implements CrudFormInter
     this.checkFormValidity(this.formGroup);
 
     if (this._isFormInvalid) {
+      console.log('Invalid form');
       return;
     }
 

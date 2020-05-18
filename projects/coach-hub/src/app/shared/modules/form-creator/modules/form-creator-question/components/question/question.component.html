@@ -16,7 +16,7 @@
 
 <div class="questionContainer" *ngIf="question$ | async as question" [class.mat-elevation-z4]="(isActive$ | async) && !question.sectionHeader">
   <ng-container *ngIf="{item: isActive$ | async} as isActive">
-    <div class="horizontalBar" *ngIf="isActive.item"></div>
+    <div class="horizontalBar primaryBackground" *ngIf="isActive.item"></div>
     <div class="w-100">
       <div *ngIf="!hideDrag" class="dragContainer">
         <mat-icon class="dragIcon">drag_indicator</mat-icon>

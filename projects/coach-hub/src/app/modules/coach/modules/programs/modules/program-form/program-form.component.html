@@ -61,42 +61,40 @@
   </mat-toolbar>
   <mat-divider></mat-divider>
 
-  <ch-sticky-header [element]="scroll">
-    <mat-tab-group #matTabGroup
-                   [dynamicHeight]="true"
-                   mat-align-tabs="center"
-                   [selectedIndex]="tabSelectedIndex$ | async"
-                   (selectedTabChange)="navigate($event)"
-    >
-      <mat-tab>
-        <ng-template mat-tab-label>
-          <mat-icon>edit</mat-icon>
-          <span class="pl-2">General</span>
-        </ng-template>
-      </mat-tab>
+  <mat-tab-group #matTabGroup
+                 [dynamicHeight]="true"
+                 mat-align-tabs="center"
+                 [selectedIndex]="tabSelectedIndex$ | async"
+                 (selectedTabChange)="navigate($event)"
+  >
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>edit</mat-icon>
+        <span class="pl-2">General</span>
+      </ng-template>
+    </mat-tab>
 
-      <mat-tab>
-        <ng-template mat-tab-label>
-          <mat-icon>attach_money</mat-icon>
-          <span class="pl-2">Pricing</span>
-        </ng-template>
-      </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>attach_money</mat-icon>
+        <span class="pl-2">Pricing</span>
+      </ng-template>
+    </mat-tab>
 
-      <mat-tab>
-        <ng-template mat-tab-label>
-          <mat-icon>question_answer</mat-icon>
-          <span class="pl-2">Questions</span>
-        </ng-template>
-      </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>question_answer</mat-icon>
+        <span class="pl-2">Questions</span>
+      </ng-template>
+    </mat-tab>
 
-      <mat-tab>
-        <ng-template mat-tab-label>
-          <mat-icon>attachment</mat-icon>
-          <span class="pl-2">Attachments</span>
-        </ng-template>
-      </mat-tab>
-    </mat-tab-group>
-  </ch-sticky-header>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>attachment</mat-icon>
+        <span class="pl-2">Attachments</span>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
 
   <div class="contentContainer" #scroll>
     <ch-simple-message [message]="msg | async"></ch-simple-message>
@@ -104,8 +102,7 @@
     <form #formRef="ngForm" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
 
 
-      <mat-tab-group [dynamicHeight]="true"
-                     class="hiddenTabs"
+      <mat-tab-group class="hiddenTabs"
                      [selectedIndex]="tabSelectedIndex$ | async"
       >
         <!-- General Tab -->

@@ -10,6 +10,4 @@ export class UserProfileQuery extends Query<UserProfileState> {
   }
 
   selectProfile$ = this.select(store => store.profile);
-
-  fetched = this.getValue().fetched;
 }

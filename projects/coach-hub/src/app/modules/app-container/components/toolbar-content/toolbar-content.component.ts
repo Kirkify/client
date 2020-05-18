@@ -3,6 +3,7 @@ import { AuthenticationQuery } from '../../../../state/authentication/authentica
 import { AuthenticationService } from '../../../../state/authentication/authentication.service';
 import { RootRoutesEnum } from '../../../../root-routes.enum';
 import { RootRoutingQuery } from '../../../../state/root-routing/root-routing.query';
+import { CoachQuery } from '../../../../state/coach/coach.query';
 
 @Component({
   selector: 'ch-toolbar-content',
@@ -15,22 +16,19 @@ export class ToolbarContentComponent {
   isAuthenticated$ = this.query.selectIsAuthenticated$;
   firstName$ = this.query.selectUserFirstName$;
   isLoggingOut$ = this.query.selectIsLoggingOut$;
+  isCoach$ = this.coachQuery.selectIsCoach$;
 
-  loginRoute = this.rootRoutingQuery.getLoginRoute;
-  signUpRoute = this.rootRoutingQuery.getSignUpRoute;
-  messagingRoute = this.rootRoutingQuery.getMessagingRoute;
-  dashboardRoute = this.rootRoutingQuery.getDashboardRoute;
-  settingsRoute = this.rootRoutingQuery.getSettingsRoute;
   unreadCount = 0;
   constructor(
+    public rootRoutingQuery: RootRoutingQuery,
     private query: AuthenticationQuery,
-    private rootRoutingQuery: RootRoutingQuery,
-    private service: AuthenticationService
+    private service: AuthenticationService,
+    private coachQuery: CoachQuery
   ) {
   }
 
   logout() {
-    this.service.logout().subscribe();
+    this.service.logout();
   }
 
 }

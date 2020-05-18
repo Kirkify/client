@@ -39,6 +39,10 @@ const routes: Routes = [
         path: CoachRoutesEnum.Registrations,
         loadChildren: () => import('./modules/registrations/registrations.module').then(m => m.RegistrationsModule),
       },
+      {
+        path: CoachRoutesEnum.Videos,
+        loadChildren: () => import('./modules/videos/videos.module').then(m => m.VideosModule),
+      },
     ]
   }
 ];

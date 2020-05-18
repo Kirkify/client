@@ -15,8 +15,6 @@ export class CoachQuery extends Query<CoachState> {
     super(store);
   }
 
-  fetched = this.getValue().fetched;
-
   selectBaseProfile$ = this.select(store => store.baseProfile);
 
   selectIsCoach$ = combineLatest([

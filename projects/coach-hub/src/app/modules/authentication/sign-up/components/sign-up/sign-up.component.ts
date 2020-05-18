@@ -26,7 +26,6 @@ export class SignUpComponent implements OnInit, OnDestroy {
     cancellable: false
   });
 
-  loginRoute = this.rootRoutingQuery.getLoginRoute;
   errors$ = this.query.selectError();
   formGroup: FormGroup;
 
@@ -36,7 +35,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
     private service: SignUpService,
     private router: Router,
     private route: ActivatedRoute,
-    private rootRoutingQuery: RootRoutingQuery,
+    public rootRoutingQuery: RootRoutingQuery,
     private query: SignUpQuery,
     private fb: FormBuilder) {
   }

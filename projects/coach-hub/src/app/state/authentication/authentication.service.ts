@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthenticationStore } from './authentication.store';
-import { filter, finalize, mergeMap, switchMap, take, tap } from 'rxjs/operators';
+import { catchError, filter, finalize, map, mergeMap, switchMap, take, tap } from 'rxjs/operators';
 import { LoginInterface } from './models/login.interface';
 import { TokenInterface } from './models/token.interface';
 import { environment } from '../../../environments/environment';
 import { resetStores } from '@datorama/akita';
 import { SignUpInterface } from './models/sign-up.interface';
 import { ResetPasswordInterface } from '../../modules/authentication/forgot-password/models/reset-password.interface';
-import { from, Observable, of } from 'rxjs';
+import { from, Observable, of, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthenticationQuery } from './authentication.query';
 import { RootRoutesEnum } from '../../root-routes.enum';
@@ -51,18 +51,31 @@ export class AuthenticationService {
     ))
   );
 
-  logout(): Observable<any> {
+  logout(force = false) {
     const path = '/logout';
 
-    return from(this.router.navigate([ '/' ])).pipe(
-      take(1),
-      tap(() => this.store.update({ isLoggingOut: true })),
-      mergeMap(() => {
-        return this.http.post<string>(environment.api_url + path, null, { withCredentials: true }).pipe(
-          finalize(() => resetStores({ exclude: [ UI_STORE_NAME ]}))
-        );
+    return this.router.navigate([ '/' ])
+      .then(() => {
+        this.store.update({ isLoggingOut: true });
       })
-    );
+      .then(() => {
+        if (! force) {
+          this.http.post<string>(environment.api_url + path, null, { withCredentials: true }).toPromise()
+            .then(() => resetStores({ exclude: [ UI_STORE_NAME ] }));
+        } else {
+          resetStores({ exclude: [ UI_STORE_NAME ] });
+        }
+      });
+    // return from(this.router..navigateByUrl('/')).pipe(
+    //   take(1),
+    //   tap(() => this.store.update({ isLoggingOut: true })),
+    //   mergeMap(() => {
+    //     const next = force ? of(null) : this.http.post<string>(environment.api_url + path, null, { withCredentials: true });
+    //     return next.pipe(
+    //       finalize(() => resetStores({ exclude: [ UI_STORE_NAME ] }))
+    //     );
+    //   })
+    // );
   }
 
   login(user: LoginInterface) {
@@ -138,6 +151,15 @@ export class AuthenticationService {
       .post<TokenInterface>(environment.api_url + path, JSON.stringify(formData), httpOptions)
       .pipe(
         finalize(() => this.store.update({ isAccessTokenRefreshing: false })),
+        catchError(err => {
+          // return throwError(err).pipe(
+          //   mergeMap(() => this.logout(true))
+          // );
+          return from(this.logout(true)).pipe(
+            take(1),
+            map(() => null)
+          );
+        }),
         tap(token => {
           this.setAccessToken(token);
         })

@@ -50,6 +50,16 @@ mat-form-field {
 .mat-input-element {
   font-size: 16px;
 }
+
+.primaryBackground {
+  background-color: $ch-primary-background;
+  color: $ch-primacy-color;
+}
+
+.accentBackground {
+  background-color: $ch-accent-background;
+  color: $ch-accent-color;
+}
 //mat-form-field .mat-form-field {
 //  &-underline {
 //    position: relative;

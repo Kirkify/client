@@ -1,15 +1,16 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { NavListItemInterface } from '../../../../shared/modules/drawer-container/models/nav-list-item.interface';
 import { CoachRoutesEnum } from '../../coach-routes.enum';
 import { CoachQuery } from '../../../../state/coach/coach.query';
 import { CoachService } from '../../../../state/coach/coach.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   templateUrl: './root.component.html',
   styleUrls: [ './root.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RootComponent implements OnInit {
+export class RootComponent implements OnDestroy {
 
   navList: NavListItemInterface[] = [
     {
@@ -19,16 +20,22 @@ export class RootComponent implements OnInit {
       route: CoachRoutesEnum.Dashboard
     },
     {
-      name: 'Profile',
-      icon: 'account_circle',
-      description: '',
-      route: CoachRoutesEnum.Profile
-    },
-    {
       name: 'Programs',
       icon: 'assignment',
       description: '',
       route: CoachRoutesEnum.Programs
+    },
+    {
+      name: 'Videos',
+      icon: 'videocam',
+      description: '',
+      route: CoachRoutesEnum.Videos
+    },
+    {
+      name: 'Profile',
+      icon: 'account_circle',
+      description: '',
+      route: CoachRoutesEnum.Profile
     },
     {
       name: 'Registrations',
@@ -50,16 +57,19 @@ export class RootComponent implements OnInit {
     }
   ];
 
+  private _subscriptions = new Subscription();
+
   constructor(
     private coachQuery: CoachQuery,
     private coachService: CoachService
   ) {
-    if (! this.coachQuery.fetched) {
+    if (! this.coachQuery.getValue().fetched) {
       this.coachService.getInitialState().subscribe();
     }
   }
 
-  ngOnInit() {
+  ngOnDestroy(): void {
+    this._subscriptions.unsubscribe();
   }
 
 }

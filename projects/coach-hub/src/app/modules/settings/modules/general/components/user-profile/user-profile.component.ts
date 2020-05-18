@@ -81,7 +81,7 @@ export class UserProfileComponent implements OnInit, OnDestroy, CanComponentDeac
       ).subscribe()
     );
 
-    if (!this.userProfileQuery.fetched) {
+    if (!this.userProfileQuery.getValue().fetched) {
       this.loader.setLoadingMessage('Fetching your profile');
 
       this._subscriptions.add(

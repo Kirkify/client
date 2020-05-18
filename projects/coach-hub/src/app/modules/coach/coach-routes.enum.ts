@@ -4,5 +4,6 @@ export enum CoachRoutesEnum {
   Programs = 'programs',
   Locations = 'locations',
   Tags = 'tags',
-  Registrations = 'registrations'
+  Registrations = 'registrations',
+  Videos = 'videos'
 }

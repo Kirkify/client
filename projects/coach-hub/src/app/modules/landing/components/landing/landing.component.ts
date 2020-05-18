@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { RootRoutesEnum } from '../../../../root-routes.enum';
 import { RootRoutingQuery } from '../../../../state/root-routing/root-routing.query';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'ch-landing',
@@ -9,7 +10,7 @@ import { RootRoutingQuery } from '../../../../state/root-routing/root-routing.qu
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LandingComponent implements OnInit {
-
+  appName = environment.app_name;
   routes = RootRoutesEnum;
 
   constructor(
