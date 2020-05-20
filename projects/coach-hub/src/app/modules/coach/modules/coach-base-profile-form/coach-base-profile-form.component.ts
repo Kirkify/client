@@ -42,6 +42,7 @@ export class CoachBaseProfileFormComponent implements OnInit {
       username: [ '', [ Validators.required, Validators.minLength(3), Validators.maxLength(15) ] ],
       gender: [ '', [ Validators.required ] ],
       date_of_birth: [ [], [ Validators.required ] ],
+      profile_pic: null
     });
   }
 
@@ -62,6 +63,9 @@ export class CoachBaseProfileFormComponent implements OnInit {
     ).subscribe();
   }
 
+  onFileInput(ev) {
+    console.log(ev);
+  }
   onSubmit() {
     if (this.formGroup.invalid) {
       return;
@@ -71,8 +75,10 @@ export class CoachBaseProfileFormComponent implements OnInit {
       name: this.formGroup.get('name').value,
       username: this.formGroup.get('username').value,
       date_of_birth: serverDate(this.formGroup.get('date_of_birth').value),
-      gender: this.formGroup.get('gender').value
+      gender: this.formGroup.get('gender').value,
+      profile_pic: this.formGroup.get('profile_pic').value
     };
+
 
     this.errorMsg.next('');
     this.loader.setLoadingStatus(true);

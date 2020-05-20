@@ -8,7 +8,9 @@ import { InitialStateService } from './services/initial-state/initial-state.serv
   templateUrl: './root.component.html',
   styleUrls: [ './root.component.scss' ]
 })
-export class RootComponent implements OnInit {
+export class RootComponent implements OnInit, OnDestroy {
+
+  private _subscriptions = new Subscription();
 
   constructor(
     private socketService: WebSocketService,
@@ -18,6 +20,13 @@ export class RootComponent implements OnInit {
 
   ngOnInit(): void {
     this.socketService.init();
-    this.initialStateService.init();
+
+    this._subscriptions.add(
+      this.initialStateService.fetchInitialState().subscribe()
+    );
+  }
+
+  ngOnDestroy(): void {
+    this._subscriptions.unsubscribe();
   }
 }

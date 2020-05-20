@@ -11,6 +11,7 @@ import { SimpleMessageTypesEnum } from '../../../shared/modules/simple-message/m
 import { VerySimpleLoaderClass } from '../../../shared/modules/simple-loader/models/very-simple-loader.class';
 import { UserInterface } from '../../../state/authentication/models/user.interface';
 import { AuthenticationQuery } from '../../../state/authentication/authentication.query';
+import { RootRoutingQuery } from '../../../state/root-routing/root-routing.query';
 
 @Component({
   selector: 'ch-contact',
@@ -32,6 +33,7 @@ export class ContactComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private contactService: ContactService,
+    public rootRoutingQuery: RootRoutingQuery,
     private query: AuthenticationQuery) {
   }
 

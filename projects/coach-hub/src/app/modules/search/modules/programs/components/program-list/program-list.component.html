@@ -1,15 +1,14 @@
 <div class="listContainer">
   <ch-simple-loader [loader]="loader"></ch-simple-loader>
-  <mat-list class="d-block">
-    <mat-list-item *ngFor="let program of programs$ | async">
+  <div class="container listContainer">
+    <div class="row">
       <ch-program-displayer
+        *ngFor="let program of programs$ | async"
         [program]="program"
-        class="w-100"
+        class="col-6"
       ></ch-program-displayer>
-      <!--<mat-icon mat-list-icon>folder</mat-icon>-->
-      <!--<h4 mat-line>{{folder.name}}</h4>-->
-      <!--<p mat-line> {{folder.updated | date}} </p>-->
-    </mat-list-item>
-  </mat-list>
+    </div>
+
+  </div>
 </div>
 

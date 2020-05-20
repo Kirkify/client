@@ -17,10 +17,7 @@ export class InitialStateService {
     private categoriesStore: CategoriesStore,
     private groupsStore: GroupsStore,
     private http: HttpClient,
-  ) {}
-
-  init() {
-    this.fetchInitialState().subscribe();
+  ) {
   }
 
   fetchInitialState() {

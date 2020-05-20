@@ -12,6 +12,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { FooterModule } from '../footer/footer.module';
 
 @NgModule({
   declarations: [ ContactComponent ],
@@ -22,6 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
     ContactRoutingModule,
     MatCardModule,
     SimpleLoaderModule,
+    FooterModule,
     MatFormFieldModule,
     SimpleMessageModule,
     MatCheckboxModule,

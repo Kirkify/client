@@ -2,6 +2,7 @@
   <ch-simple-loader [loader]="loader"></ch-simple-loader>
   <div *ngIf="coachPortfolio$ | async as coachPortfolio; else errTemplate">
     <p>{{ coachPortfolio.id }}</p>
+    <p>{{ coachPortfolio.base.name }}</p>
     <div *ngIf="coachPortfolio.profiles.length">
       <p>I have at least one profile</p>
     </div>

@@ -2,12 +2,12 @@ import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { catchError, finalize, map, switchMap, tap } from 'rxjs/operators';
 import { BehaviorSubject, Observable, Subscription, throwError } from 'rxjs';
-import { CoachPortfolioQuery } from '../../state/coach-portfolio.query';
-import { CoachPortfolioService } from '../../services/coach-portfolio.service';
+import { CoachPortfolioQuery } from '../../../../state/coach-portfolio.query';
+import { CoachPortfolioService } from '../../../../services/coach-portfolio.service';
 import { filterNil } from '@datorama/akita';
-import { CoachPortfolioInterface } from '../../models/coach-portfolio.interface';
-import { VerySimpleLoaderClass } from '../../../../shared/modules/simple-loader/models/very-simple-loader.class';
-import { SimpleMessageType } from '../../../../shared/modules/simple-message/models/simple-message.type';
+import { CoachPortfolioInterface } from '../../../../models/coach-portfolio.interface';
+import { VerySimpleLoaderClass } from '../../../../../../shared/modules/simple-loader/models/very-simple-loader.class';
+import { SimpleMessageType } from '../../../../../../shared/modules/simple-message/models/simple-message.type';
 
 @Component({
   selector: 'ch-profile',
@@ -18,7 +18,7 @@ import { SimpleMessageType } from '../../../../shared/modules/simple-message/mod
 export class ProfileComponent implements OnInit, OnDestroy {
 
   coachPortfolio$: Observable<CoachPortfolioInterface>;
-  loader = new VerySimpleLoaderClass({cancellable: false});
+  loader = new VerySimpleLoaderClass();
   errMsg = new BehaviorSubject<SimpleMessageType>('');
   private _subscriptions = new Subscription();
 

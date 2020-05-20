@@ -1,3 +1,4 @@
 export enum CustomHeadersEnum {
-  TokenFree = 'TokenFree'
+  TokenFree = 'TokenFree',
+  NoContentType = 'NoContentType'
 }

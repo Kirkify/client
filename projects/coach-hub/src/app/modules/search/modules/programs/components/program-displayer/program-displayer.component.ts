@@ -17,6 +17,6 @@ export class ProgramDisplayerComponent implements OnInit {
   }
 
   getProgramLink(): string {
-    return `programs/${this.program.id}`;
+    return `/@${this.program.coach.username}/programs/${this.program.id}`;
   }
 }

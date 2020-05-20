@@ -993,6 +993,13 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@datorama/akita-ng-forms-manager@^3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@datorama/akita-ng-forms-manager/-/akita-ng-forms-manager-3.3.0.tgz#8f2ccd5790656f64fc7f68755834a2982a6437be"
+  integrity sha512-gsz8phK5ejWg/RVTlAFeXSMv1xlXuveP44lEAZ5mEr5BmeloDBhfsJqQwG2lgVYVJJnIDJUSScA06TrbDvHKDA==
+  dependencies:
+    tslib "^1.9.0"
+
 "@datorama/akita-ng-router-store@^5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@datorama/akita-ng-router-store/-/akita-ng-router-store-5.0.0.tgz#8a7a2fba2cd4eb424b5ba1916d9d76b18646dde4"

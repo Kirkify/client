@@ -1,4 +1,4 @@
-<form [formGroup]="formGroup" #formRef="ngForm" class="position-relative" (ngSubmit)="onSubmit()">
+<form [formGroup]="formGroup" #formRef="ngForm" class="position-relative" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
   <ch-simple-loader [loader]="loader"></ch-simple-loader>
 
   <div class="row">
@@ -14,9 +14,6 @@
           This field is required
         </mat-error>
       </mat-form-field>
-    </div>
-
-    <div class="col-md-6">
       <mat-form-field>
         <mat-label>Username</mat-label>
         <input matInput
@@ -28,11 +25,6 @@
           This field is required
         </mat-error>
       </mat-form-field>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6">
       <mat-form-field>
         <mat-label>Gender</mat-label>
         <mat-select formControlName="gender">
@@ -42,23 +34,36 @@
         </mat-select>
       </mat-form-field>
     </div>
+
     <div class="col-md-6">
-      <!--<mat-form-field appearance="outline">-->
-        <!--<mat-label>Date of Birth</mat-label>-->
-        <!--<input matInput-->
-               <!--formControlName="date_of_birth"-->
-               <!--[matDatepicker]="date_of_birth"-->
-               <!--(focus)="date_of_birth.open()">-->
-        <!--<mat-datepicker-toggle matSuffix [for]="date_of_birth"></mat-datepicker-toggle>-->
-        <!--<mat-datepicker [touchUi]="isScreenMobile | async" #date_of_birth></mat-datepicker>-->
+      <ch-file-uploader formControlName="profile_pic"></ch-file-uploader>
 
-        <!--<mat-error *ngIf="formGroup.get('date_of_birth').hasError('required')">-->
-          <!--This field is required-->
-        <!--</mat-error>-->
-      <!--</mat-form-field>-->
     </div>
-
   </div>
+
+<!--  <div class="row">-->
+<!--    <div class="col-md-6">-->
+<!--      -->
+<!--    </div>-->
+<!--    <div class="col-md-6">-->
+<!--      <button mat-button type="button" (click)="fileInput.click()">Upload Profile Pic</button>-->
+<!--      <input #fileInput type="file" (change)="onFileInput($event)" style="display:none;" />-->
+<!--      <mat-form-field appearance="outline">-->
+<!--        <mat-label>Date of Birth</mat-label>-->
+<!--        <input matInput-->
+<!--               formControlName="date_of_birth"-->
+<!--               [matDatepicker]="date_of_birth"-->
+<!--               (focus)="date_of_birth.open()">-->
+<!--        <mat-datepicker-toggle matSuffix [for]="date_of_birth"></mat-datepicker-toggle>-->
+<!--        <mat-datepicker [touchUi]="isScreenMobile | async" #date_of_birth></mat-datepicker>-->
+
+<!--        <mat-error *ngIf="formGroup.get('date_of_birth').hasError('required')">-->
+<!--          This field is required-->
+<!--        </mat-error>-->
+<!--      </mat-form-field>-->
+<!--    </div>-->
+
+<!--  </div>-->
 
   <ch-simple-message [message]="errorMsg | async"></ch-simple-message>
 

@@ -29,6 +29,8 @@ import { ProgramPriceInterface } from '../../../../../app/models/program-price.i
 import { catchError, distinctUntilChanged, finalize, map, tap } from 'rxjs/operators';
 import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 import { FormInterface } from '../../../../../../shared/modules/form-creator/models/form.interface';
+import { AkitaNgFormsManager } from '@datorama/akita-ng-forms-manager';
+import { ProgramFormStateInterface } from './models/program-form-state.interface';
 
 @Component({
   selector: 'ch-program-form',
@@ -44,10 +46,6 @@ export class ProgramFormComponent extends CrudFormClass implements CrudFormInter
       this.loader.setLoadingStatus(true);
       this._subscriptions.add(
         this.service.create(null).pipe(
-          catchError(err => {
-            // this.errMsg.next(err);
-            return throwError(err);
-          }),
           tap(program => {
             this.router.navigate([ program.id, CrudRoutesEnum.Edit ], {
               relativeTo: this.route.parent,
@@ -139,6 +137,7 @@ export class ProgramFormComponent extends CrudFormClass implements CrudFormInter
     private router: Router,
     private route: ActivatedRoute,
     public service: ProgramsService,
+    private formsManager: AkitaNgFormsManager<ProgramFormStateInterface>
   ) {
     super();
     super.setComponent(this);
@@ -152,6 +151,12 @@ export class ProgramFormComponent extends CrudFormClass implements CrudFormInter
       program_start: '',
       program_end: '',
       location_id: ''
+    });
+
+    this.formsManager.upsert('general', this.formGroup);
+
+    this.formsManager.selectValue('general').subscribe(test => {
+      console.log(test);
     });
   }
 

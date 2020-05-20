@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
+import { FileUploaderModule } from '../../../../shared/modules/file-uploader/file-uploader.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
     ReactiveFormsModule,
     SimpleMessageModule,
     SimpleLoaderModule,
+    FileUploaderModule,
 
     // Material Modules
     MatFormFieldModule,

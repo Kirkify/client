@@ -32,7 +32,7 @@
         [routerLink]="[registrationRoute, createRoute]"
         [queryParams]="registrationParams"
         color="warn"
-        class="mb-3"
+        class="mr-1"
       >
         <!--<div>-->
         <!--<span class="mat-title">Add</span><br>-->
@@ -56,7 +56,7 @@
                 preserveFragment
         >Edit</a>
       </div>
-      <button mat-stroked-button *ngIf="!disabled">Save &amp; Exit</button>
+      <button mat-stroked-button *ngIf="!disabled" (click)="onSubmit()">Save &amp; Exit</button>
     </mat-toolbar-row>
   </mat-toolbar>
   <mat-divider></mat-divider>
@@ -96,7 +96,7 @@
     </mat-tab>
   </mat-tab-group>
 
-  <div class="contentContainer" #scroll>
+  <div class="contentContainer">
     <ch-simple-message [message]="msg | async"></ch-simple-message>
 
     <form #formRef="ngForm" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
@@ -128,13 +128,6 @@
         </mat-tab>
 
       </mat-tab-group>
-
-      <button *ngIf="!hideSubmit"
-              mat-raised-button
-              color="primary"
-              type="submit">
-        {{ isAnUpdateRequest ? 'Update' : 'Create' }}
-      </button>
     </form>
   </div>
 </div>

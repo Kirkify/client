@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CoachStore } from './coach.store';
 import { finalize, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -9,6 +9,8 @@ import { CoachHubInitialStateInterface } from '../../modules/app/models/coach-hu
 import { environment } from '../../../environments/environment';
 import { CoachBaseProfileInterface } from '../../modules/app/models/coach-base-profile.interface';
 import { ProgressBarService } from '../progress-bar/progress-bar.service';
+import { toFormData } from '../../shared/modules/file-uploader/models/to-form-data';
+import { CustomHeadersEnum } from '../authentication/models/custom-headers.enum';
 
 @Injectable({ providedIn: 'root' })
 export class CoachService {
@@ -59,8 +61,14 @@ export class CoachService {
   updateNewCoachProfile(id: number, value: Partial<CoachBaseProfileInterface>) {
     const path = this._basePath + '/coach-profile/' + id;
 
+    const test = toFormData(value);
+
     return this.http
-      .post<JsonResponseInterface<CoachBaseProfileInterface>>(environment.api_url + path, JSON.stringify(value)).pipe(
+      .post<JsonResponseInterface<CoachBaseProfileInterface>>(environment.api_url + path, test, {
+        headers: new HttpHeaders({
+          [CustomHeadersEnum.NoContentType]: ''
+        })
+      }).pipe(
         map(res => res.data),
         tap(coachBaseProfile => {
           this.coachStore.updateBaseProfile(coachBaseProfile);

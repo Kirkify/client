@@ -6,4 +6,5 @@ export interface CoachBaseProfileInterface {
   gender: string;
   date_of_birth: string;
   created_at: string;
+  profile_pic: any;
 }
