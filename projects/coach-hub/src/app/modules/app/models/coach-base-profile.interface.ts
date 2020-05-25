@@ -4,6 +4,7 @@ export interface CoachBaseProfileInterface {
   name: string;
   username: string;
   gender: string;
+  avatar_url: string;
   date_of_birth: string;
   created_at: string;
   profile_pic: any;

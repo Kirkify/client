@@ -1,15 +1,15 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
-import { genders } from '../../../app/shared/models/genders.helper';
+import { genders } from '../../../../../app/shared/models/genders.helper';
 import { BehaviorSubject, Observable, Subscription, throwError } from 'rxjs';
-import { SimpleMessageType } from '../../../../shared/modules/simple-message/models/simple-message.type';
-import { CoachBaseProfileInterface } from '../../../app/models/coach-base-profile.interface';
-import { serverDate } from '../../../../shared/helpers/server-date.helper';
+import { SimpleMessageType } from '../../../../../../shared/modules/simple-message/models/simple-message.type';
+import { CoachBaseProfileInterface } from '../../../../../app/models/coach-base-profile.interface';
+import { serverDate } from '../../../../../../shared/helpers/server-date.helper';
 import { catchError, finalize, tap } from 'rxjs/operators';
-import { VerySimpleLoaderClass } from '../../../../shared/modules/simple-loader/models/very-simple-loader.class';
+import { VerySimpleLoaderClass } from '../../../../../../shared/modules/simple-loader/models/very-simple-loader.class';
 import { Router } from '@angular/router';
-import { CoachService } from '../../../../state/coach/coach.service';
-import { CoachQuery } from '../../../../state/coach/coach.query';
+import { CoachService } from '../../../../../../state/coach/coach.service';
+import { CoachQuery } from '../../../../../../state/coach/coach.query';
 
 @Component({
   selector: 'ch-coach-base-profile-form',
@@ -27,6 +27,7 @@ export class CoachBaseProfileFormComponent implements OnInit {
   loader = new VerySimpleLoaderClass();
   errorMsg = new BehaviorSubject<SimpleMessageType>('');
   isAnUpdateRequest = false;
+  imageUrl = '';
 
   private _subscriptions = new Subscription();
   private _id: number;
@@ -42,7 +43,7 @@ export class CoachBaseProfileFormComponent implements OnInit {
       username: [ '', [ Validators.required, Validators.minLength(3), Validators.maxLength(15) ] ],
       gender: [ '', [ Validators.required ] ],
       date_of_birth: [ [], [ Validators.required ] ],
-      profile_pic: null
+      profile_pic: ''
     });
   }
 
@@ -58,6 +59,7 @@ export class CoachBaseProfileFormComponent implements OnInit {
           this.isAnUpdateRequest = true;
           this._id = profile.id;
           this.formGroup.patchValue(profile);
+          this.imageUrl = profile.avatar_url;
         }
       })
     ).subscribe();

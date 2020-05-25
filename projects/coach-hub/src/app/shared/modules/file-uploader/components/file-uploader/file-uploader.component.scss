@@ -1,0 +1,27 @@
+.outerContainer {
+  height: 100%;
+  padding: 5px 10px 30px 10px;
+}
+
+.innerContainer {
+  height: 100%;
+  border: 1px solid black;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageContainer {
+  position: relative;
+  padding-top: 20px;
+}
+.removeImage {
+  position: absolute;
+  top: 0;
+  right: -10px;
+}
+img {
+  max-width: 120px;
+  width: 100%;
+}

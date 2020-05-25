@@ -1,7 +1,9 @@
-<div class="container">
-  <ch-coach-base-profile-displayer class="d-block py-3" [profile]="baseProfile$ | async"></ch-coach-base-profile-displayer>
+<div class="container mt-3">
+  <h1 class="text-center mat-title">Your Main Profile</h1>
 
-  <mat-divider></mat-divider>
+  <ch-coach-base-profile-simple-display></ch-coach-base-profile-simple-display>
 
-  <ch-coach-application-displayer class="d-block py-3"></ch-coach-application-displayer>
+  <mat-divider class="my-3"></mat-divider>
+
+  <ch-coach-application-displayer class="d-block"></ch-coach-application-displayer>
 </div>

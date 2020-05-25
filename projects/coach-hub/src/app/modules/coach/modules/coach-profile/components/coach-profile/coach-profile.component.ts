@@ -8,9 +8,4 @@ import { CoachQuery } from '../../../../../../state/coach/coach.query';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CoachProfileComponent {
-
-  baseProfile$ = this.query.selectBaseProfile$;
-
-  constructor(private query: CoachQuery) {
-  }
 }
