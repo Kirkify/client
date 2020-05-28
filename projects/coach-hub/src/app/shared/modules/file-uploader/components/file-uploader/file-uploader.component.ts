@@ -27,13 +27,16 @@ export class FileUploaderComponent implements ControlValueAccessor {
   @Input('imageUrl')
   set imageUrl(value: string) {
     this._imageUrl = value;
+
+    if (this._imageUrl) {
+      this.imageSrcSubject.next(this._imageUrl);
+    }
     console.log('setting image');
   }
-  @ViewChild('displayImage', { read: ElementRef }) displayImage: ElementRef<HTMLImageElement>;
   @ViewChild('fileUpload', { read: ElementRef }) fileUpload: ElementRef<HTMLInputElement>;
   onChange: any;
   file: File | null = null;
-  imageHidden = new BehaviorSubject<boolean>(true);
+  imageSrcSubject = new BehaviorSubject<string>('');
 
   @HostListener('change', ['$event.target.files']) emitFiles( event: FileList ) {
     const file = event && event.item(0);
@@ -45,8 +48,8 @@ export class FileUploaderComponent implements ControlValueAccessor {
 
     reader.onload = (e) => {
       if (typeof e.target.result === 'string') {
-        this.imageHidden.next(false);
-        this.displayImage.nativeElement.src = e.target.result;
+        // this.displayImage.nativeElement.src = e.target.result;
+        this.imageSrcSubject.next(e.target.result);
       }
       // this.uploadedImage = e.target.result;
     };
@@ -73,8 +76,8 @@ export class FileUploaderComponent implements ControlValueAccessor {
   removeImage() {
     this.host.nativeElement.value = '';
     this.file = null;
-    this.imageHidden.next(true);
-    this.displayImage.nativeElement.src = '';
+    this.imageSrcSubject.next('');
+    // this.displayImage.nativeElement.src = '';
   }
 
   simulateFileUploadClick() {

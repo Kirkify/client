@@ -1,25 +1,27 @@
 <div class="outerContainer">
   <div class="innerContainer">
 <!--    <app-progress [progress]="progress"></app-progress>-->
-    <div class="text-center">
-      <div [hidden]="!(imageHidden | async)">
+
+    <div class="imageContainer" *ngIf="imageSrcSubject | async as imageSrc else elseBlock">
+      <button
+        mat-icon-button
+        type="button"
+        (click)="removeImage()"
+        class="removeImage"
+      >
+        <mat-icon aria-label="Cancel Request">close</mat-icon>
+      </button>
+      <img alt="Uploaded Profile Image" [src]="imageSrc" />
+    </div>
+
+    <ng-template #elseBlock>
+      <div class="text-center">
         <p>Upload a Profile Picture</p>
         <button type="button" mat-raised-button color="primary" class="mb-2" (click)="simulateFileUploadClick()">Upload</button>
         <p>{{ file ? file.name : '' }}</p>
       </div>
+    </ng-template>
 
-      <div class="imageContainer" [hidden]="imageHidden | async">
-        <button
-          mat-icon-button
-          type="button"
-          (click)="removeImage()"
-          class="removeImage"
-        >
-          <mat-icon aria-label="Cancel Request">close</mat-icon>
-        </button>
-        <img #displayImage alt="Uploaded Profile Image" />
-      </div>
-    </div>
 
 
 <!--    <span>Choose file</span>-->

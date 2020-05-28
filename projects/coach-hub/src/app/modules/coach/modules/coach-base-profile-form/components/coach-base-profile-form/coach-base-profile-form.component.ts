@@ -59,6 +59,7 @@ export class CoachBaseProfileFormComponent implements OnInit {
           this.isAnUpdateRequest = true;
           this._id = profile.id;
           this.formGroup.patchValue(profile);
+          console.log(profile.avatar_url);
           this.imageUrl = profile.avatar_url;
         }
       })
