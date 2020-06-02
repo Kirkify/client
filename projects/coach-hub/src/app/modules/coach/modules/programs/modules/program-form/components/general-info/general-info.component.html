@@ -5,6 +5,7 @@
         <mat-label>Program Title</mat-label>
 
         <input matInput
+               (blur)="updateNow()"
                formControlName="program_title">
 
         <mat-error *ngIf="formGroup.get('program_title').hasError('required')">

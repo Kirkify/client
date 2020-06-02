@@ -97,4 +97,8 @@ export class GeneralInfoComponent implements OnInit, OnDestroy {
       ).subscribe()
     );
   }
+
+  updateNow() {
+    console.log('Updating');
+  }
 }

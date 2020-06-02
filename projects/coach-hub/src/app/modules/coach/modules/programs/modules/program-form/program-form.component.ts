@@ -243,12 +243,12 @@ export class ProgramFormComponent extends CrudFormClass implements CrudFormInter
     this._isFormInvalid = false;
     this.formGroup.get('prices_form').updateValueAndValidity();
 
-    this.checkFormValidity(this.formGroup);
-
-    if (this._isFormInvalid) {
-      console.log('Invalid form');
-      return;
-    }
+    // this.checkFormValidity(this.formGroup);
+    //
+    // if (this._isFormInvalid) {
+    //   console.log('Invalid form');
+    //   return;
+    // }
 
     let prices = this.formGroup.get('prices_form').value as Array<any>;
     let subOptions = [];

@@ -1,6 +1,17 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, HostListener, ElementRef, ViewChild, forwardRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  forwardRef,
+  HostListener,
+  Input,
+  SecurityContext,
+  ViewChild
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'ch-file-uploader',
@@ -19,45 +30,69 @@ import { BehaviorSubject } from 'rxjs';
 export class FileUploaderComponent implements ControlValueAccessor {
 
   @Input() progress;
-  _imageUrl: string;
-  get imageUrl(): string {
-    return this._imageUrl;
-  }
 
   @Input('imageUrl')
   set imageUrl(value: string) {
-    this._imageUrl = value;
-
-    if (this._imageUrl) {
-      this.imageSrcSubject.next(this._imageUrl);
+    if (value) {
+      this.imageSrcSubject.next(value);
     }
-    console.log('setting image');
   }
   @ViewChild('fileUpload', { read: ElementRef }) fileUpload: ElementRef<HTMLInputElement>;
   onChange: any;
   file: File | null = null;
-  imageSrcSubject = new BehaviorSubject<string>('');
+  imageSrcSubject = new BehaviorSubject<SafeResourceUrl>('');
 
   @HostListener('change', ['$event.target.files']) emitFiles( event: FileList ) {
     const file = event && event.item(0);
-    this.onChange(file);
-    this.file = file;
-    console.log(this.file);
-
+    const fileName = file.name;
     const reader = new FileReader();
+    console.log(file.size);
 
     reader.onload = (e) => {
       if (typeof e.target.result === 'string') {
         // this.displayImage.nativeElement.src = e.target.result;
-        this.imageSrcSubject.next(e.target.result);
+        // this.imageSrcSubject.next(e.target.result);
+
+        const img = new Image();
+        img.src = e.target.result;
+        img.onload = () => {
+          const elem = document.createElement('canvas');
+
+          const width = 300;
+          const scaleFactor = width / img.width;
+          elem.width = width;
+          elem.height = img.height * scaleFactor;
+
+          const ctx = elem.getContext('2d');
+          // img.width and img.height will contain the original dimensions
+          ctx.drawImage(img, 0, 0, width, img.height * scaleFactor);
+
+          ctx.canvas.toBlob((blob) => {
+            const file2 = new File([blob], fileName, {
+              type: 'image/jpeg',
+              lastModified: Date.now()
+            });
+            this.onChange(file2);
+            this.file = file2;
+            this.imageSrcSubject.next(
+              this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(blob))
+            );
+            this.cdr.detectChanges();
+          }, 'image/jpeg', 0.5);
+        },
+          reader.onerror = error => console.log(error);
       }
       // this.uploadedImage = e.target.result;
     };
 
-    reader.readAsDataURL(this.file);
+    reader.readAsDataURL(file);
   }
 
-  constructor( private host: ElementRef<HTMLInputElement> ) {
+  constructor(
+    private host: ElementRef<HTMLInputElement>,
+    private sanitizer: DomSanitizer,
+    private cdr: ChangeDetectorRef
+  ) {
   }
 
   registerOnChange(fn: any): void {
@@ -76,7 +111,9 @@ export class FileUploaderComponent implements ControlValueAccessor {
   removeImage() {
     this.host.nativeElement.value = '';
     this.file = null;
+    this.onChange('');
     this.imageSrcSubject.next('');
+    this.cdr.detectChanges();
     // this.displayImage.nativeElement.src = '';
   }
 

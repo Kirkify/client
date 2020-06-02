@@ -82,6 +82,12 @@ export class CoachBaseProfileFormComponent implements OnInit {
       profile_pic: this.formGroup.get('profile_pic').value
     };
 
+    console.log(value);
+    if (value.profile_pic) {
+      console.log('TESTING');
+    } else {
+      console.log('YOOO');
+    }
 
     this.errorMsg.next('');
     this.loader.setLoadingStatus(true);

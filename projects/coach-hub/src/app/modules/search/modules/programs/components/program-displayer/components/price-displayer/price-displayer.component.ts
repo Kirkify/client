@@ -15,6 +15,7 @@ export class PriceDisplayerComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.prices);
   }
 
   getStartingAtPrice() {
@@ -32,7 +33,7 @@ export class PriceDisplayerComponent implements OnInit {
 
     for (const price of this.prices) {
 
-      if (price.sub_options_preset !== 0) {
+      if (price.sub_options_preset !== ProgramPriceSubOptionsPresetEnum.NoneRequired) {
 
         if (price.sub_options_preset === ProgramPriceSubOptionsPresetEnum.OneRequired) {
           const cheapestSubOption = price.sub_options_values.reduce(
